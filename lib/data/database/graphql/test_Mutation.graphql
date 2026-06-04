@@ -1,0 +1,33 @@
+mutation {
+  createProduct(
+    id: "123e4567-e89b-12d3-a456-426614174000",
+    name: "Sudadera",
+    stock: 2,
+    price: 23000.0,
+    idbusiness: "BIZ001",
+    idcategory: "CAT001",
+    image: "sudadera.png",
+    createdat: "2026-05-14T16:30:00Z",
+    owner: "guest",
+    barcode: "ABC123",
+    stockminimumlevel: 1,
+    deviceid: "dev01",
+    platform: "android",
+    ubicacion: "Bogotá",
+    bodega: "central",
+    syncstatus: 1,
+    lastsyncedat: "2026-05-14T16:30:00Z",
+    syncstate: "pending"
+  ) {
+    id
+    name
+    stock
+    price
+    idbusiness
+    idcategory
+    createdat
+    owner
+    syncstatus
+    syncstate
+  }
+}
