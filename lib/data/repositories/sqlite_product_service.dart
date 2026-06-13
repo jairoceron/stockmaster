@@ -42,7 +42,9 @@ class SQLiteProductService implements ProductRepository {
 
     try {
       // Insertar usando Companion
-      final insertedEntity = await dao.insertProductEntity(product.toInsertCompanion());
+      final insertedEntity = await dao.insertProductEntity(
+        product.toInsertCompanion(),
+      );
 
       // Asegurarse de devolver un Product con id String
       return ProductMapper.fromEntity(insertedEntity);
@@ -61,32 +63,35 @@ class SQLiteProductService implements ProductRepository {
 
   @override
   Future<Product> updateProductStock(String id, int newStock) async {
-    await (db.update(db.products)..where((tbl) => tbl.id.equals(id)))
-        .write(ProductsCompanion(stock: Value(newStock)));
+    await (db.update(db.products)..where((tbl) => tbl.id.equals(id))).write(
+      ProductsCompanion(stock: Value(newStock)),
+    );
 
-    final row = await (db.select(db.products)..where((tbl) => tbl.id.equals(id)))
-        .getSingle();
+    final row = await (db.select(
+      db.products,
+    )..where((tbl) => tbl.id.equals(id))).getSingle();
 
     return ProductMapper.fromEntity(row);
   }
 
   Future<Product> modifyProduct(Product product) async {
     debugPrint("\n\n  !!!!! SQLITE ProductService ...... **** ${product} \n\n");
-    debugPrint("\n\n  +++++ SQLITE ProductService ...... **** ${product.id} -- stock ${product.stock} \n\n");
+    debugPrint(
+      "\n\n  +++++ SQLITE ProductService ...... **** ${product.id} -- stock ${product.stock} \n\n",
+    );
 
     if (product.id == null || product.id!.isEmpty) {
       throw Exception("No se puede actualizar un producto sin id");
     }
 
     // Actualizar registro usando Companion
-    await (db.update(db.products)
-      ..where((tbl) => tbl.id.equals(product.id!)))
+    await (db.update(db.products)..where((tbl) => tbl.id.equals(product.id!)))
         .write(product.toUpdateCompanion());
 
     // Volver a leer el registro actualizado
-    final row = await (db.select(db.products)
-      ..where((tbl) => tbl.id.equals(product.id!)))
-        .getSingleOrNull();
+    final row = await (db.select(
+      db.products,
+    )..where((tbl) => tbl.id.equals(product.id!))).getSingleOrNull();
 
     if (row == null) {
       throw Exception("No se encontró el producto con id ${product.id}");
@@ -117,5 +122,23 @@ class SQLiteProductService implements ProductRepository {
 
     final rows = await query.get();
     return rows.map((row) => ProductMapper.fromEntity(row)).toList();
+  }
+
+  /// Contar productos de forma eficiente
+  Future<int> countProducts() async {
+    try {
+      return await dao.countProductsEfficient();
+    } catch (e) {
+      debugPrint("❌ Error contando productos: $e");
+      return 0;
+    }
+  }
+
+  Future<void> deleteAllProducts() async {
+    try {
+      await dao.deleteAllProducts();
+    } catch (e) {
+      debugPrint("❌ Error deleteAllProductos(): $e");
+    }
   }
 }

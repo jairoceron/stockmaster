@@ -21,14 +21,24 @@ class BottomNavItem {
 }
 
 class BottomNavBar extends StatefulWidget {
-  const BottomNavBar({super.key});
+  /// 🔑 Nuevo parámetro para controlar el tab inicial
+  final int initialIndex;
+
+  const BottomNavBar({super.key, this.initialIndex = 0});
 
   @override
   State<BottomNavBar> createState() => _BottomNavBarState();
 }
 
 class _BottomNavBarState extends State<BottomNavBar> {
-  int _selectedIndex = 0;
+  late int _selectedIndex;
+
+  @override
+  void initState() {
+    super.initState();
+    // 🔑 Usa el índice inicial que se pasa desde fuera
+    _selectedIndex = widget.initialIndex;
+  }
 
   // Lista unificada de items y pantallas
   final List<BottomNavItem> navItems = [

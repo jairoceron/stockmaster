@@ -15,26 +15,20 @@ class InventoryNotifier extends ChangeNotifier {
   bool hasMore = true;
 
   List<Product> get products => _filteredProducts;
+  int get productCount => _allProducts.length;
 
   Future<void> loadProducts() async {
-
     try {
-
       final items = await repository.getAllProducts();
       _allProducts
         ..clear()
         ..addAll(items);
 
-      debugPrint('\n root_screen.dart ... loadProducts ... step 000 ');
-
       _filteredProducts
         ..clear()
         ..addAll(items);
 
-      debugPrint('\n root_screen.dart ... loadProducts ... step 001 ');
-
       notifyListeners();
-
     } catch (e, stack) {
       debugPrint('Failed to load products: $e\n$stack');
     }
@@ -42,20 +36,9 @@ class InventoryNotifier extends ChangeNotifier {
 
   Future<void> addProduct(Product product) async {
     try {
-      debugPrint('\n\n\n inventory_notifier ... addProduct ... step 00_0 ${product}  \n\n\n');
-
       final newProduct = await repository.add(product);
-
-      debugPrint('\n\n\n inventory_notifier ... addProduct ... step 00_1 newProduct  \n\n\n');
-
       _allProducts.insert(0, newProduct);
-
-      debugPrint('\n\n\n inventory_notifier ... addProduct ... step 00_2 $newProduct   \n\n\n ');
-
       _filteredProducts.insert(0, newProduct);
-
-      debugPrint('\n\n\n inventory_notifier en.dart ... addProduct ... step 00_3 $newProduct   \n\n\n ');
-
       notifyListeners();
     } catch (e, stack) {
       debugPrint('Failed to add product: $e\n$stack');
@@ -94,7 +77,6 @@ class InventoryNotifier extends ChangeNotifier {
       ..clear()
       ..addAll(filtered);
 
-    // 🔑 Si no hay resultados, restaurar todos
     if (_filteredProducts.isEmpty) {
       _filteredProducts.addAll(_allProducts);
     }
@@ -114,7 +96,6 @@ class InventoryNotifier extends ChangeNotifier {
         ..clear()
         ..addAll(filtered);
 
-      // 🔑 Restaurar todos si no hay resultados
       if (_filteredProducts.isEmpty) {
         _filteredProducts.addAll(_allProducts);
       }
@@ -124,13 +105,12 @@ class InventoryNotifier extends ChangeNotifier {
 
   Future<void> modifyProduct(Product product) async {
     try {
-
       final modifyProduct = await repository.modifyProduct(product);
       final index = _filteredProducts.indexWhere((p) => p.id == product.id);
-      if (index != -1) _filteredProducts[index] = product;
+      if (index != -1) _filteredProducts[index] = modifyProduct;
 
       final allIndex = _allProducts.indexWhere((p) => p.id == product.id);
-      if (allIndex != -1) _allProducts[allIndex] = product;
+      if (allIndex != -1) _allProducts[allIndex] = modifyProduct;
 
       notifyListeners();
     } catch (e) {
@@ -145,7 +125,6 @@ class InventoryNotifier extends ChangeNotifier {
       _filteredProducts.removeWhere((p) => p.id == id);
       _allProducts.removeWhere((p) => p.id == id);
 
-      // 🔑 Si el filtro queda vacío, restaurar todos
       if (_filteredProducts.isEmpty && _allProducts.isNotEmpty) {
         _filteredProducts.addAll(_allProducts);
       }
@@ -159,13 +138,9 @@ class InventoryNotifier extends ChangeNotifier {
 
   Future<void> restoreProduct(Product product) async {
     try {
-      // Reinsertar en BD
       final restored = await repository.add(product);
-
-      // Reinsertar en memoria
       _allProducts.insert(0, restored);
       _filteredProducts.insert(0, restored);
-
       notifyListeners();
     } catch (e, stack) {
       debugPrint('Error al restaurar producto: $e\n$stack');
@@ -173,27 +148,19 @@ class InventoryNotifier extends ChangeNotifier {
     }
   }
 
-
   Future<void> updateStock(Product product, int delta) async {
-
-    debugPrint("\n\n ------- InventoryNotifier.updateStock() ..product.id === ... ${product.id}");
     try {
       final newStock = (product.stock ?? 0) + delta;
       if (newStock < 0) throw Exception("Stock no puede ser negativo");
 
       final updatedProduct = product.copyWith(stock: newStock);
-
-      debugPrint("\n\n ********* InventoryNotifier() ..... updatedProduct  $updatedProduct   \n\n");
-      product = await repository.modifyProduct(updatedProduct);
-
-
-
+      final saved = await repository.modifyProduct(updatedProduct);
 
       final index = _filteredProducts.indexWhere((p) => p.id == product.id);
-      if (index != -1) _filteredProducts[index] = updatedProduct;
+      if (index != -1) _filteredProducts[index] = saved;
 
       final allIndex = _allProducts.indexWhere((p) => p.id == product.id);
-      if (allIndex != -1) _allProducts[allIndex] = updatedProduct;
+      if (allIndex != -1) _allProducts[allIndex] = saved;
 
       notifyListeners();
     } catch (e, stack) {
@@ -202,25 +169,16 @@ class InventoryNotifier extends ChangeNotifier {
     }
   }
 
-
-
   Future<void> borrarRegistrosDeDemo() async {
-    debugPrint('\n\n borrarRegistrosDeDemo() ... eliminando productos demo \n\n');
     try {
-      // 🔹 Borrar en la base de datos
       await repository.deleteDemoProducts();
-
-      // 🔹 Borrar en memoria
       _allProducts.removeWhere((p) => p.isdemo == true);
       _filteredProducts.removeWhere((p) => p.isdemo == true);
 
-      // 🔑 Si el filtro queda vacío pero aún hay productos en _allProducts,
-      // restauramos todos para que la UI no quede vacía
       if (_filteredProducts.isEmpty && _allProducts.isNotEmpty) {
         _filteredProducts.addAll(_allProducts);
       }
 
-      // 🔹 Notificar a la UI
       notifyListeners();
     } catch (e, stack) {
       debugPrint('Error al borrar productos demo: $e\n$stack');
@@ -228,4 +186,16 @@ class InventoryNotifier extends ChangeNotifier {
     }
   }
 
+  /// 🔹 Nuevo método para borrar todos los productos
+  Future<void> deleteAllProducts() async {
+    try {
+      await repository.deleteAllProducts();
+      _allProducts.clear();
+      _filteredProducts.clear();
+      notifyListeners();
+    } catch (e, stack) {
+      debugPrint('Error al borrar todos los productos: $e\n$stack');
+      rethrow;
+    }
+  }
 }

@@ -320,5 +320,5 @@ class PostgresAWSProductRepository implements ProductRepository {
     return 0;  // metodo para borrar los registros de la tabla product marcados como demo = true  isdemo = true;
   }
 
-
+  Future<void> deleteAllProducts() async {}
 }

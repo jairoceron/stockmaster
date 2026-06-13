@@ -1,33 +1,25 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Permisos básicos -->
+    <!-- Basic permissions -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
 
-    <!-- Permisos de almacenamiento modernos (Android 13+) -->
-    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
-
-    <!-- Compatibilidad con versiones antiguas -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
-    <!-- Features de cámara -->
+    <!-- Camera features -->
     <uses-feature android:name="android.hardware.camera" android:required="true" />
     <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
 
-    <!-- Queries deben ir antes de <application> -->
+    <!-- Queries must be declared before <application> -->
     <queries>
         <intent>
             <action android:name="android.intent.action.PROCESS_TEXT"/>
             <data android:mimeType="text/plain"/>
         </intent>
-        <!-- Permitir que la app consulte si existe WhatsApp -->
+        <!-- Optional: check if WhatsApp exists -->
         <intent>
             <action android:name="android.intent.action.VIEW" />
             <data android:scheme="whatsapp" />
         </intent>
-
-        <!-- Opcional: permitir consultas a navegadores para enlaces web -->
+        <!-- Optional: allow queries to browsers for web links -->
         <intent>
             <action android:name="android.intent.action.VIEW" />
             <data android:scheme="https" />
@@ -37,6 +29,7 @@
     <application
         android:label="StockMaster"
         android:icon="@mipmap/ic_launcher">
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -45,6 +38,7 @@
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
             android:hardwareAccelerated="true"
             android:windowSoftInputMode="adjustResize">
+
             <meta-data
                 android:name="io.flutter.embedding.android.NormalTheme"
                 android:resource="@style/NormalTheme"/>
@@ -53,6 +47,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show FilteringTextInputFormatter;
 import 'package:provider/provider.dart';
-// import 'package:mobile_scanner/mobile_scanner.dart'; // 👈 para escanear códigos
+import 'package:easy_localization/easy_localization.dart';
 import 'package:stockmaster/state/attribute_notifier.dart';
 import 'package:stockmaster/state/inventory_notifier.dart';
 import '../models/product.dart';
@@ -30,9 +30,8 @@ class _ProductFormState extends State<ProductForm> {
   void initState() {
     super.initState();
     final notifier = context.read<AttributeNotifier>();
-    notifier.loadAttributesForClient("Salsamentaria"); // 👈 aquí defines el tipo
+    notifier.loadAttributesForClient("Salsamentaria");
 
-    // Inicializar controladores vacíos para cada atributo
     for (var attr in notifier.clientAttributes) {
       _attributeControllers[attr.fieldName] = TextEditingController();
     }
@@ -44,16 +43,13 @@ class _ProductFormState extends State<ProductForm> {
     _stockController.dispose();
     _priceController.dispose();
     _barcodeController.dispose();
-
     for (var controller in _attributeControllers.values) {
       controller.dispose();
     }
     super.dispose();
   }
 
-
   void _openScanner() async {
-
     await Navigator.push(
       context,
       MaterialPageRoute(
@@ -67,23 +63,16 @@ class _ProductFormState extends State<ProductForm> {
         ),
       ),
     );
-
-
   }
 
   void _saveProduct(BuildContext context, AttributeNotifier attributeNotifier) {
-
     final tenantid = context.read<UserProvider>().user.tenantid;
     debugPrint("\n\n Este es el $tenantid  de la empresa   \n\n");
 
     var stock = int.tryParse(_stockController.text.trim()) ?? 100;
-    if (stock < 0) {
-      stock = 100;
-    }
-    var nombreProducto = _nameController.text.trim();
+    if (stock < 0) stock = 100;
 
-    nombreProducto = capitalizeWords(nombreProducto);
-
+    var nombreProducto = capitalizeWords(_nameController.text.trim());
 
     if (_formKey.currentState!.validate()) {
       final appUser = context.read<UserProvider>().user;
@@ -95,21 +84,16 @@ class _ProductFormState extends State<ProductForm> {
         idbusiness: tenantid,
         idcategory: _stockController.text.trim(),
         owner: appUser?.username,
-        createdat : DateTime.now(),
-        lastsyncedat : DateTime.now(),
+        createdat: DateTime.now(),
+        lastsyncedat: DateTime.now(),
       );
 
       try {
-         // 👇 Aquí actualizas el provider
-         context.read<InventoryNotifier>().addProduct(product);
-
-         // está guardando dos veces (miremos si con esto se arregla .......********************************** se comentó la linea de arriba)
-         // attributeNotifier.addProduct(product);
-         // esto toca cuadrarlo para cuando los atributos son dinámicos .............
+        context.read<InventoryNotifier>().addProduct(product);
 
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('✅ Producto agregado con éxito'),
+          SnackBar(
+            content: Text('form.messages.success'.tr()),
             backgroundColor: Colors.green,
           ),
         );
@@ -117,7 +101,7 @@ class _ProductFormState extends State<ProductForm> {
       } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('❌ Error al guardar: $e'),
+            content: Text('${'form.messages.error'.tr()}: $e'),
             backgroundColor: Colors.red,
           ),
         );
@@ -129,77 +113,72 @@ class _ProductFormState extends State<ProductForm> {
   Widget build(BuildContext context) {
     return Consumer<AttributeNotifier>(
       builder: (context, attributeNotifier, _) {
-        // pasos base
         final baseSteps = [
           _buildStep(
-            title: "Nombre del producto",
+            title: "form.name.label".tr(),
             child: TextFormField(
               controller: _nameController,
-              decoration: const InputDecoration(
-                labelText: "Nombre",
-                hintText: "Ej. Camiseta Azul",
-                prefixIcon: Icon(Icons.shopping_bag),
+              decoration: InputDecoration(
+                labelText: "form.name.label".tr(),
+                hintText: "form.name.hint".tr(),
+                prefixIcon: const Icon(Icons.shopping_bag),
               ),
               validator: (value) =>
-              value == null || value.isEmpty ? "Ingresa el nombre" : null,
+              value == null || value.isEmpty ? "form.name.error".tr() : null,
             ),
           ),
           _buildStep(
-            title: "Stock inicial",
+            title: "form.stock.label".tr(),
             child: TextFormField(
               controller: _stockController,
-              decoration: const InputDecoration(
-                labelText: "Stock",
-                hintText: "Ej. 50",
-                prefixIcon: Icon(Icons.format_list_numbered),
+              decoration: InputDecoration(
+                labelText: "form.stock.label".tr(),
+                hintText: "form.stock.hint".tr(),
+                prefixIcon: const Icon(Icons.format_list_numbered),
               ),
-              keyboardType: const TextInputType.numberWithOptions(decimal: false, signed: false),
-              inputFormatters: [FilteringTextInputFormatter.digitsOnly], // ✅ solo dígitos
+              keyboardType: const TextInputType.numberWithOptions(decimal: false),
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
               validator: (value) {
-                if (value == null || value.isEmpty) return "Ingresa el stock";
-                if (int.tryParse(value) == null) return "Debe ser un número";
+                if (value == null || value.isEmpty) return "form.stock.error".tr();
+                if (int.tryParse(value) == null) return "form.stock.error".tr();
                 return null;
               },
             ),
           ),
           _buildStep(
-            title: "Precio",
+            title: "form.price.label".tr(),
             child: TextFormField(
               controller: _priceController,
-              decoration: const InputDecoration(
-                labelText: "Precio",
-                hintText: "Ej. 29.99",
-                prefixIcon: Icon(Icons.attach_money),
+              decoration: InputDecoration(
+                labelText: "form.price.label".tr(),
+                hintText: "form.price.hint".tr(),
+                prefixIcon: const Icon(Icons.attach_money),
               ),
-              keyboardType: const TextInputType.numberWithOptions(decimal: false, signed: false),
-              inputFormatters: [FilteringTextInputFormatter.digitsOnly], // ✅ solo dígitos
+              keyboardType: const TextInputType.numberWithOptions(decimal: true),
               validator: (value) {
-                if (value == null || value.isEmpty) return "Ingresa el precio";
-                if (double.tryParse(value) == null) {
-                  return "Debe ser un número válido";
-                }
+                if (value == null || value.isEmpty) return "form.price.error".tr();
+                if (double.tryParse(value) == null) return "form.price.error".tr();
                 return null;
               },
             ),
           ),
           _buildStep(
-            title: "Código de barras",
+            title: "form.barcode.label".tr(),
             child: Row(
               children: [
                 Expanded(
                   child: TextFormField(
                     controller: _barcodeController,
-                    decoration: const InputDecoration(
-                      labelText: "Código de barras",
-                      hintText: "Escanea o escribe",
-                      prefixIcon: Icon(Icons.qr_code),
+                    decoration: InputDecoration(
+                      labelText: "form.barcode.label".tr(),
+                      hintText: "form.barcode.hint".tr(),
+                      prefixIcon: const Icon(Icons.qr_code),
                     ),
-                    readOnly: false,
                     keyboardType: TextInputType.number,
                     validator: (value) {
                       if (value != null && value.isNotEmpty) {
                         if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
-                          return "El código debe ser numérico";
+                          return "form.barcode.error".tr();
                         }
                       }
                       return null;
@@ -215,15 +194,12 @@ class _ProductFormState extends State<ProductForm> {
           ),
         ];
 
-        // pasos dinámicos desde AttributeNotifier
         final dynamicSteps = attributeNotifier.clientAttributes.map((attr) {
-          // Crear controlador único si no existe
           _attributeControllers.putIfAbsent(attr.fieldName, () => TextEditingController());
-
           return _buildStep(
             title: attr.fieldName,
             child: TextFormField(
-              controller: _attributeControllers[attr.fieldName], // ✅ ahora sí único
+              controller: _attributeControllers[attr.fieldName],
               decoration: InputDecoration(labelText: attr.fieldName),
               keyboardType: attr.fieldType.toLowerCase() == "int"
                   ? TextInputType.number
@@ -244,13 +220,11 @@ class _ProductFormState extends State<ProductForm> {
           );
         }).toList();
 
-
-
         final steps = [...baseSteps, ...dynamicSteps];
 
         return Scaffold(
           appBar: AppBar(
-            title: const Text('Agregar producto'),
+            title: Text('form.buttons.save'.tr()),
             backgroundColor: Colors.orange,
           ),
           body: Form(
@@ -267,7 +241,7 @@ class _ProductFormState extends State<ProductForm> {
                       if (_currentStep > 0)
                         OutlinedButton(
                           onPressed: () => setState(() => _currentStep--),
-                          child: const Text("Atrás"),
+                          child: Text("form.buttons.back".tr()),
                         ),
                       if (_currentStep < steps.length - 1)
                         ElevatedButton(
@@ -275,14 +249,14 @@ class _ProductFormState extends State<ProductForm> {
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.orange,
                           ),
-                          child: const Text("Siguiente"),
+                          child: Text("form.buttons.next".tr()),
                         )
                       else
                         ElevatedButton.icon(
                           onPressed: () =>
                               _saveProduct(context, attributeNotifier),
                           icon: const Icon(Icons.check),
-                          label: const Text("Guardar producto"),
+                          label: Text("form.buttons.save".tr()),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.orange,
                           ),
@@ -316,4 +290,3 @@ class _ProductFormState extends State<ProductForm> {
     );
   }
 }
-

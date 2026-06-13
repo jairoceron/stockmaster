@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:url_launcher/url_launcher.dart'; // 🔹 para abrir WhatsApp
 import 'package:stockmaster/screens/product_form.dart';
 import '../models/user.dart';
 import '../providers/inventory_provider.dart';
@@ -7,15 +9,11 @@ import '../data/repositories/product_repository.dart';
 import '../state/inventory_notifier.dart';
 import 'category_filter.dart';
 import 'product_search_bar.dart';
-import '/services/bar_inventario.dart'; // ✅ AppBar personalizado
+import '/services/bar_inventario.dart';
 import 'inventory_filter_sheet.dart';
 import 'empty_state_widget.dart';
 import 'inventory_list_view.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import '../models/product.dart';
-import '../models/user.dart';
-import '../providers/inventory_provider.dart';
 import '../controllers/inventory_controller.dart';
 import 'product_list_item.dart';
 
@@ -34,35 +32,29 @@ class InventoryListView extends StatefulWidget {
 }
 
 class _InventoryListViewState extends State<InventoryListView> {
-
-
-
   final ScrollController _scrollController = ScrollController();
   late InventoryController _controller;
   bool _hasRequestedNextPage = false;
+  bool _modalShown = false; // 🔹 para evitar mostrar el modal varias veces
 
   @override
   void initState() {
     super.initState();
     _controller = InventoryController(context);
 
-
     debugPrint("\n\n  |||||||||||||||||||  products   ${widget.products}  \n\n");
+  }
 
-    _scrollController.addListener(() {
-      /*
-      final provider = context.read<ProductRepository>();
-      if (_scrollController.position.pixels >=
-          _scrollController.position.maxScrollExtent - 100 &&
-          !provider.isLoading &&
-          provider.hasMore &&
-          !_hasRequestedNextPage) {
-        _hasRequestedNextPage = true;
-        provider.loadProductsForUser(widget.user , context).then((_) {
-          _hasRequestedNextPage = false;
-        });
-      }*/
-    });
+  Future<void> _openWhatsApp() async {
+    final phone = "573102952469"; // 🔹 tu número en formato internacional
+    final message = Uri.encodeComponent("Hola, quiero enviar mi inventario en Excel para carga automática.");
+    final url = Uri.parse("https://wa.me/$phone?text=$message");
+
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url, mode: LaunchMode.externalApplication);
+    } else {
+      debugPrint("❌ No se pudo abrir WhatsApp");
+    }
   }
 
   @override
@@ -70,22 +62,45 @@ class _InventoryListViewState extends State<InventoryListView> {
     final provider = context.watch<InventoryNotifier>();
     final products = widget.products;
 
-    // 🔹 Verificar si hay productos demo
     final hasDemoProducts = products.any((p) => p.isdemo == true);
+
+    // 🔹 Mostrar modal si hay más de 20 productos y aún no se mostró
+    if (provider.productCount > 2 && !_modalShown) {
+      _modalShown = true;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        showDialog(
+          context: context,
+          barrierDismissible: true, // permite cerrar tocando fuera
+          builder: (_) => AlertDialog(
+            title: Text("inventory.banner.excel".tr()),
+            content: Text("inventory.banner.excel_message".tr()),
+            actions: [
+              TextButton(
+                onPressed: _openWhatsApp,
+                child: Text("inventory.banner.contact".tr()),
+              ),
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: Text("inventory.banner.dismiss".tr()),
+              ),
+            ],
+          ),
+        );
+      });
+    }
 
     return Stack(
       children: [
         Column(
           children: [
-            // 🔹 Banner y botón solo si hay productos demo
             if (hasDemoProducts) ...[
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(12),
                 color: Colors.grey.shade200,
-                child: const Text(
-                  "Estos son productos de ejemplo. Puedes borrarlos y añadir tus propios productos",
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                child: Text(
+                  "inventory.demo.banner".tr(),
+                  style: const TextStyle(fontWeight: FontWeight.bold),
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -99,15 +114,13 @@ class _InventoryListViewState extends State<InventoryListView> {
                   onPressed: () async {
                     await provider.borrarRegistrosDeDemo();
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text("Inventario demo vaciado")),
+                      SnackBar(content: Text("inventory.demo.cleared".tr())),
                     );
                   },
-                  child: const Text("Vaciar Inventario Demo"),
+                  child: Text("inventory.demo.clear_button".tr()),
                 ),
               ),
             ],
-
-            // 🔹 Lista de productos
             Expanded(
               child: ListView.builder(
                 controller: _scrollController,
@@ -131,8 +144,6 @@ class _InventoryListViewState extends State<InventoryListView> {
             ),
           ],
         ),
-
-        // 🔹 Botón fijo inferior
         Positioned(
           bottom: 16,
           right: 16,
@@ -148,23 +159,22 @@ class _InventoryListViewState extends State<InventoryListView> {
                 context,
                 MaterialPageRoute(
                   builder: (_) => Scaffold(
-                    appBar: AppBar(title: const Text("Nuevo producto")),
+                    appBar: AppBar(title: Text("inventory.new_product.title".tr())),
                     body: const Padding(
                       padding: EdgeInsets.all(16.0),
-                      child: ProductForm(), // 👈 tu formulario
+                      child: ProductForm(),
                     ),
                   ),
                 ),
               );
             },
             icon: const Icon(Icons.add),
-            label: const Text("Añadir Nuevo Producto"),
+            label: Text("inventory.new_product.button".tr()),
           ),
         ),
       ],
     );
   }
-
 
   @override
   void dispose() {

@@ -72,7 +72,7 @@ class AppDatabase extends _$AppDatabase {
 LazyDatabase _openConnection() {
   return LazyDatabase(() async {
     final dir = await getApplicationDocumentsDirectory();
-    final dbPath = p.join(dir.path, 'app.sqlite');
+    final dbPath = p.join(dir.path, 'stockmaster.sqlite');
     final file = File(dbPath);
 
     print('\n\n >>>>>>>>> RUTA DE LA BASE DE DATOS: DB path: ${dir.path} \n\n');

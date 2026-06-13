@@ -52,11 +52,7 @@ class ProductDao extends DatabaseAccessor<AppDatabase> with _$ProductDaoMixin {
     return count.isNotEmpty;
   }
 
-  /// Contar productos
-  Future<int> countProducts() async {
-    final rows = await select(products).get();
-    return rows.length;
-  }
+
 
   /// Insertar productos iniciales en batch
   Future<void> insertInitialProducts(List<ProductsCompanion> initial) async {
@@ -82,4 +78,23 @@ class ProductDao extends DatabaseAccessor<AppDatabase> with _$ProductDaoMixin {
 
   /// Obtener todos los productos (alias de getAll)
   Future<List<ProductEntity>> getAllProducts() => select(products).get();
+
+
+  Future<int> countProductsEfficient() async {
+    final countExp = products.id.count();
+    final query = selectOnly(products)..addColumns([countExp]);
+    final result = await query.getSingle();
+    return result?.read(countExp) ?? 0;
+  }
+
+  /// Contar productos
+  Future<int> countProducts() async {
+    final rows = await select(products).get();
+    return rows.length;
+  }
+
+  Future<int> deleteAllProducts() {
+    return delete(products).go();
+  }
+
 }

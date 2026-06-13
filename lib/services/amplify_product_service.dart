@@ -554,4 +554,8 @@ class AmplifyProductService implements ProductRepository {
   }
 
 
+  Future<void> deleteAllProducts() async {
+    // borra todos los registros de la tabla products
+  }
+
 }

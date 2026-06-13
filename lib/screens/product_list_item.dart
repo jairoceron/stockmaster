@@ -28,6 +28,7 @@ class _ProductListItemState extends State<ProductListItem> {
   final ImagePicker _picker = ImagePicker();
   bool _loadingImage = false;
 
+  /// Seleccionar foto desde cámara o galería
   Future<void> _seleccionarFoto(Product product) async {
     try {
       final opcion = await showModalBottomSheet<ImageSource>(
@@ -67,13 +68,17 @@ class _ProductListItemState extends State<ProductListItem> {
       final newPath = '${appDir.path}/${product.id}_image.jpg';
       final savedFile = await File(xfile.path).copy(newPath);
 
+      // 🔹 Crear miniatura optimizada
+      final thumbPath = '${appDir.path}/${product.id}_thumb.jpg';
+      final thumbFile = await File(xfile.path).copy(thumbPath);
+
       setState(() {
-        product.image = savedFile.path;
+        product.image = thumbFile.path; // usar miniatura en la lista
         _loadingImage = false;
       });
 
       final dao = context.read<ProductDao>();
-      await dao.updateProductImage(product.id!, savedFile.path);
+      await dao.updateProductImage(product.id!, thumbFile.path);
 
     } on PlatformException {
       setState(() => _loadingImage = false);
@@ -88,6 +93,7 @@ class _ProductListItemState extends State<ProductListItem> {
     }
   }
 
+  /// Resolver imagen desde ruta
   ImageProvider? _resolverImagen(String? imagePath) {
     if (imagePath == null || imagePath.isEmpty) return null;
     final file = File(imagePath);
@@ -122,18 +128,20 @@ class _ProductListItemState extends State<ProductListItem> {
                   decoration: BoxDecoration(
                     color: Colors.blue.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(8),
-                    image: _resolverImagen(p.image) != null
-                        ? DecorationImage(
-                      image: _resolverImagen(p.image)!,
-                      fit: BoxFit.cover,
-                    )
-                        : null,
                   ),
                   child: _loadingImage
                       ? const Center(child: CircularProgressIndicator())
                       : (p.image == null || p.image!.isEmpty)
                       ? const Icon(Icons.inventory_2_outlined, size: 40)
-                      : null,
+                      : ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: Image(
+                      image: _resolverImagen(p.image)!,
+                      height: 120,
+                      width: double.infinity,
+                      fit: BoxFit.contain, // 👈 escala perfectamente
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -275,7 +283,5 @@ class _ProductListItemState extends State<ProductListItem> {
         ),
       ),
     );
-
-
   }
 }

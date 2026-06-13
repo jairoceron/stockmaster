@@ -107,8 +107,72 @@
   "inventory_total_stock": "Total stock: {count}",
   "inventory_total_value": "Total value: ${value}",
   "sales_title": "💵 Sales / Services Today",
-  "sales_update_button": "Update"
+  "sales_update_button": "Update",
+
+
+  "form": {
+    "name": {
+      "label": "Product name",
+      "hint": "e.g. Blue T-shirt",
+      "error": "Enter the product name"
+    },
+    "stock": {
+      "label": "Initial stock",
+      "hint": "e.g. 50",
+      "error": "Enter a valid stock number"
+    },
+    "price": {
+      "label": "Price",
+      "hint": "e.g. 29.99",
+      "error": "Enter a valid price"
+    },
+    "barcode": {
+      "label": "Barcode",
+      "hint": "Scan or type",
+      "error": "Barcode must be numeric"
+    },
+    "buttons": {
+      "back": "Back",
+      "next": "Next",
+      "save": "Save product"
+    },
+    "messages": {
+      "success": "✅ Product added successfully",
+      "error": "❌ Error saving product"
+    }
+  },
+
+
+  "inventory": {
+    "demo": {
+      "banner": "These are demo products. You can delete them and add your own products",
+      "cleared": "Demo inventory cleared",
+      "clear_button": "Clear Demo Inventory"
+    },
+    "new_product": {
+      "title": "New product",
+      "button": "Add New Product"
+    }
+  },
+  "inventory": {
+    "banner": {
+      "excel": "Too many products to enter manually?",
+      "excel_message": "We can help you upload your full inventory from Excel.",
+      "contact": "Contact support",
+      "dismiss": "Continue entering manually"
+    },
+    "demo": {
+      "banner": "These are demo products. You can delete them and add your own products",
+      "cleared": "Demo inventory cleared",
+      "clear_button": "Clear Demo Inventory"
+    },
+    "new_product": {
+      "title": "New product",
+      "button": "Add New Product"
+    }
+  }
 }
+
 
 
 

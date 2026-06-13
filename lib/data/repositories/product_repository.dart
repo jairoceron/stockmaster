@@ -25,6 +25,8 @@ abstract class ProductRepository {
 
   Future<int> deleteDemoProducts();
 
+  Future<void> deleteAllProducts();
+
 
 
 }

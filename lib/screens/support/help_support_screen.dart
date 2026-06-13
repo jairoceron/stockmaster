@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:stockmaster/screens/migration_screen.dart';
 
 import 'detail/admin-database.dart';
 import '../../services/subscription_demo.dart';
@@ -31,6 +32,7 @@ class _HelpSupportScreenState extends State<HelpSupportScreen> {
     {'title': 'Admin Database', 'icon': HugeIcons.strokeRoundedDatabase},
     {'title': 'Users Premium', 'icon': HugeIcons.strokeRoundedCrown},
     {'title': 'Custom Software', 'icon': HugeIcons.strokeRounded1Circle},
+    {'title': 'Migration', 'icon': HugeIcons.strokeRoundedMouseRightClick01},
   ];
 
   void _onItemTap(String title) {
@@ -58,6 +60,9 @@ class _HelpSupportScreenState extends State<HelpSupportScreen> {
     } else if (title == 'Custom Software') {
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => const CustomSoftwareScreen()));
+    } else if (title == 'Migration') {
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => const MigrationScreen()));
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Tapped: $title')),

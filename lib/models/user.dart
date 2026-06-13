@@ -23,7 +23,6 @@ class AppUser {
   AppUser({
     required this.username,
     required this.phone,
-
     required this.idrol,
     this.isGuest = false,
     required this.deviceId,
@@ -39,33 +38,47 @@ class AppUser {
     this.createdAt,
   });
 
-  //final uuid = const Uuid().v4();
-
   /// Constructor para invitados
   AppUser.guest(String username, {String deviceId = '', String platform = ''})
-    : username = username,
-      phone = '',
+      : username = username,
+        phone = '',
+        idrol = 0,
+        isGuest = true,
+        deviceId = deviceId,
+        platform = platform,
+        id = 0,
+        tenantid = const Uuid().v4(),
+        name = '',
+        email = '',
+        direccion = '',
+        pais = '',
+        ciudad = '',
+        celular = '',
+        createdAt = null;
 
-      idrol = 0,
-      isGuest = true,
-      deviceId = deviceId,
-      platform = platform,
-      id = 0,
-      tenantid = const Uuid().v4(),
-      name = '',
-      email = '',
-      direccion = '',
-      pais = '',
-      ciudad = '',
-      celular = '',
-      createdAt = null;
+  /// Constructor rápido para pruebas o migraciones
+  AppUser.simple({
+    required this.id,
+    required this.name,
+  })  : username = '',
+        phone = '',
+        idrol = 0,
+        isGuest = false,
+        deviceId = '',
+        platform = '',
+        tenantid = const Uuid().v4(),
+        email = '',
+        direccion = '',
+        pais = '',
+        ciudad = '',
+        celular = '',
+        createdAt = null;
 
   /// Factory para construir desde JSON
   factory AppUser.fromJson(Map<String, dynamic> json) {
     return AppUser(
       username: json['username'] ?? '',
       phone: json['phone'] ?? '',
-
       idrol: json['idrol'] ?? 0,
       isGuest: json['isGuest'] ?? false,
       deviceId: json['deviceId'] ?? '',
@@ -84,11 +97,9 @@ class AppUser {
     );
   }
 
-  /// Conversión a JSON
   Map<String, dynamic> toJson() => {
     "username": username,
     "phone": phone,
-
     "idrol": idrol,
     "isGuest": isGuest,
     "deviceId": deviceId,
@@ -104,14 +115,11 @@ class AppUser {
     "createdAt": createdAt?.toIso8601String(),
   };
 
-  /// Getter calculado
   bool get isGuestUser => isGuest;
 
-  /// Método copyWith para actualizaciones parciales
   AppUser copyWith({
     String? username,
     String? phone,
-    String? idbusiness,
     int? idrol,
     bool? isGuest,
     String? deviceId,
@@ -129,7 +137,6 @@ class AppUser {
     return AppUser(
       username: username ?? this.username,
       phone: phone ?? this.phone,
-
       idrol: idrol ?? this.idrol,
       isGuest: isGuest ?? this.isGuest,
       deviceId: deviceId ?? this.deviceId,

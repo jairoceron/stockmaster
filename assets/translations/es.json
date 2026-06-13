@@ -107,7 +107,73 @@
   "inventory_total_stock": "Stock total: {count}",
   "inventory_total_value": "Valor total: ${value}",
   "sales_title": "💵 Ventas / Servicios de hoy",
-  "sales_update_button": "Actualizar"
+  "sales_update_button": "Actualizar",
+
+  "form": {
+    "name": {
+      "label": "Nombre del producto",
+      "hint": "Ej. Camiseta Azul",
+      "error": "Ingresa el nombre del producto"
+    },
+    "stock": {
+      "label": "Stock inicial",
+      "hint": "Ej. 50",
+      "error": "Ingresa un número válido de stock"
+    },
+    "price": {
+      "label": "Precio",
+      "hint": "Ej. 29.99",
+      "error": "Ingresa un precio válido"
+    },
+    "barcode": {
+      "label": "Código de barras",
+      "hint": "Escanea o escribe",
+      "error": "El código debe ser numérico"
+    },
+    "buttons": {
+      "back": "Atrás",
+      "next": "Siguiente",
+      "save": "Guardar producto"
+    },
+    "messages": {
+      "success": "✅ Producto agregado con éxito",
+      "error": "❌ Error al guardar el producto"
+    }
+  },
+
+  "inventory": {
+    "demo": {
+      "banner": "Estos son productos de ejemplo. Puedes borrarlos y añadir tus propios productos",
+      "cleared": "Inventario demo vaciado",
+      "clear_button": "Vaciar Inventario Demo"
+    },
+    "new_product": {
+      "title": "Nuevo producto",
+      "button": "Añadir Nuevo Producto"
+    }
+  },
+
+
+  "inventory": {
+    "banner": {
+      "excel": "¿Muchos productos por ingresar?",
+      "excel_message": "Podemos ayudarte a cargar tu inventario completo desde Excel.",
+      "contact": "Contactar con soporte",
+      "dismiss": "Seguir ingresando manualmente"
+    },
+    "demo": {
+      "banner": "Estos son productos de ejemplo. Puedes borrarlos y añadir tus propios productos",
+      "cleared": "Inventario demo vaciado",
+      "clear_button": "Vaciar Inventario Demo"
+    },
+    "new_product": {
+      "title": "Nuevo producto",
+      "button": "Añadir Nuevo Producto"
+    }
+  }
+
+
+
 }
 
 
