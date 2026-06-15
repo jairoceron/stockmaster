@@ -93,11 +93,23 @@ class _ProductListItemState extends State<ProductListItem> {
     }
   }
 
-  /// Resolver imagen desde ruta
+  /// Resolver imagen desde ruta (assets o filesystem)
   ImageProvider? _resolverImagen(String? imagePath) {
     if (imagePath == null || imagePath.isEmpty) return null;
+
+    // Caso 1: assets declarados en pubspec.yaml
+    if (imagePath.startsWith("assets/")) {
+      return AssetImage(imagePath);
+    }
+
+    // Caso 2: archivos locales en el filesystem
     final file = File(imagePath);
-    return file.existsSync() ? FileImage(file) : null;
+    if (file.existsSync()) {
+      return FileImage(file);
+    }
+
+    // Si no existe, devolver null
+    return null;
   }
 
   @override
@@ -111,6 +123,8 @@ class _ProductListItemState extends State<ProductListItem> {
       symbol: '\$',
       decimalDigits: 0,
     );
+
+    final resolvedImage = _resolverImagen(p.image);
 
     return Card(
       margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
@@ -131,12 +145,12 @@ class _ProductListItemState extends State<ProductListItem> {
                   ),
                   child: _loadingImage
                       ? const Center(child: CircularProgressIndicator())
-                      : (p.image == null || p.image!.isEmpty)
+                      : (p.image == null || p.image!.isEmpty || resolvedImage == null)
                       ? const Icon(Icons.inventory_2_outlined, size: 40)
                       : ClipRRect(
                     borderRadius: BorderRadius.circular(8),
                     child: Image(
-                      image: _resolverImagen(p.image)!,
+                      image: resolvedImage,
                       height: 120,
                       width: double.infinity,
                       fit: BoxFit.contain, // 👈 escala perfectamente

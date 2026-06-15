@@ -77,6 +77,17 @@ class $ProductsTable extends Products
     type: DriftSqlType.double,
     requiredDuringInsert: false,
   );
+  static const VerificationMeta _purchasepriceMeta = const VerificationMeta(
+    'purchaseprice',
+  );
+  @override
+  late final GeneratedColumn<double> purchaseprice = GeneratedColumn<double>(
+    'purchaseprice',
+    aliasedName,
+    true,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+  );
   static const VerificationMeta _ownerMeta = const VerificationMeta('owner');
   @override
   late final GeneratedColumn<String> owner = GeneratedColumn<String>(
@@ -209,6 +220,97 @@ class $ProductsTable extends Products
       'CHECK ("isdemo" IN (0, 1))',
     ),
   );
+  static const VerificationMeta _expiryDateMeta = const VerificationMeta(
+    'expiryDate',
+  );
+  @override
+  late final GeneratedColumn<DateTime> expiryDate = GeneratedColumn<DateTime>(
+    'expiry_date',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _unitMeta = const VerificationMeta('unit');
+  @override
+  late final GeneratedColumn<String> unit = GeneratedColumn<String>(
+    'unit',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _taxRateMeta = const VerificationMeta(
+    'taxRate',
+  );
+  @override
+  late final GeneratedColumn<double> taxRate = GeneratedColumn<double>(
+    'tax_rate',
+    aliasedName,
+    true,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _statusMeta = const VerificationMeta('status');
+  @override
+  late final GeneratedColumn<String> status = GeneratedColumn<String>(
+    'status',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _supplierMeta = const VerificationMeta(
+    'supplier',
+  );
+  @override
+  late final GeneratedColumn<String> supplier = GeneratedColumn<String>(
+    'supplier',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _averageCostMeta = const VerificationMeta(
+    'averageCost',
+  );
+  @override
+  late final GeneratedColumn<double> averageCost = GeneratedColumn<double>(
+    'average_cost',
+    aliasedName,
+    true,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _aisleMeta = const VerificationMeta('aisle');
+  @override
+  late final GeneratedColumn<String> aisle = GeneratedColumn<String>(
+    'aisle',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _shelfMeta = const VerificationMeta('shelf');
+  @override
+  late final GeneratedColumn<String> shelf = GeneratedColumn<String>(
+    'shelf',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _descriptionMeta = const VerificationMeta(
+    'description',
+  );
+  @override
+  late final GeneratedColumn<String> description = GeneratedColumn<String>(
+    'description',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
   @override
   List<GeneratedColumn> get $columns => [
     id,
@@ -218,6 +320,7 @@ class $ProductsTable extends Products
     image,
     stock,
     price,
+    purchaseprice,
     owner,
     barcode,
     stockminimumlevel,
@@ -230,6 +333,15 @@ class $ProductsTable extends Products
     syncstate,
     syncstatus,
     isdemo,
+    expiryDate,
+    unit,
+    taxRate,
+    status,
+    supplier,
+    averageCost,
+    aisle,
+    shelf,
+    description,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -280,6 +392,15 @@ class $ProductsTable extends Products
       context.handle(
         _priceMeta,
         price.isAcceptableOrUnknown(data['price']!, _priceMeta),
+      );
+    }
+    if (data.containsKey('purchaseprice')) {
+      context.handle(
+        _purchasepriceMeta,
+        purchaseprice.isAcceptableOrUnknown(
+          data['purchaseprice']!,
+          _purchasepriceMeta,
+        ),
       );
     }
     if (data.containsKey('owner')) {
@@ -360,6 +481,66 @@ class $ProductsTable extends Products
         isdemo.isAcceptableOrUnknown(data['isdemo']!, _isdemoMeta),
       );
     }
+    if (data.containsKey('expiry_date')) {
+      context.handle(
+        _expiryDateMeta,
+        expiryDate.isAcceptableOrUnknown(data['expiry_date']!, _expiryDateMeta),
+      );
+    }
+    if (data.containsKey('unit')) {
+      context.handle(
+        _unitMeta,
+        unit.isAcceptableOrUnknown(data['unit']!, _unitMeta),
+      );
+    }
+    if (data.containsKey('tax_rate')) {
+      context.handle(
+        _taxRateMeta,
+        taxRate.isAcceptableOrUnknown(data['tax_rate']!, _taxRateMeta),
+      );
+    }
+    if (data.containsKey('status')) {
+      context.handle(
+        _statusMeta,
+        status.isAcceptableOrUnknown(data['status']!, _statusMeta),
+      );
+    }
+    if (data.containsKey('supplier')) {
+      context.handle(
+        _supplierMeta,
+        supplier.isAcceptableOrUnknown(data['supplier']!, _supplierMeta),
+      );
+    }
+    if (data.containsKey('average_cost')) {
+      context.handle(
+        _averageCostMeta,
+        averageCost.isAcceptableOrUnknown(
+          data['average_cost']!,
+          _averageCostMeta,
+        ),
+      );
+    }
+    if (data.containsKey('aisle')) {
+      context.handle(
+        _aisleMeta,
+        aisle.isAcceptableOrUnknown(data['aisle']!, _aisleMeta),
+      );
+    }
+    if (data.containsKey('shelf')) {
+      context.handle(
+        _shelfMeta,
+        shelf.isAcceptableOrUnknown(data['shelf']!, _shelfMeta),
+      );
+    }
+    if (data.containsKey('description')) {
+      context.handle(
+        _descriptionMeta,
+        description.isAcceptableOrUnknown(
+          data['description']!,
+          _descriptionMeta,
+        ),
+      );
+    }
     return context;
   }
 
@@ -396,6 +577,10 @@ class $ProductsTable extends Products
       price: attachedDatabase.typeMapping.read(
         DriftSqlType.double,
         data['${effectivePrefix}price'],
+      ),
+      purchaseprice: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}purchaseprice'],
       ),
       owner: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
@@ -445,6 +630,42 @@ class $ProductsTable extends Products
         DriftSqlType.bool,
         data['${effectivePrefix}isdemo'],
       ),
+      expiryDate: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}expiry_date'],
+      ),
+      unit: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}unit'],
+      ),
+      taxRate: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}tax_rate'],
+      ),
+      status: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}status'],
+      ),
+      supplier: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}supplier'],
+      ),
+      averageCost: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}average_cost'],
+      ),
+      aisle: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}aisle'],
+      ),
+      shelf: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}shelf'],
+      ),
+      description: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}description'],
+      ),
     );
   }
 
@@ -462,6 +683,9 @@ class ProductEntity extends DataClass implements Insertable<ProductEntity> {
   final String? image;
   final int? stock;
   final double? price;
+
+  /// 🔹 Nuevo campo: precio de compra
+  final double? purchaseprice;
   final String? owner;
   final String? barcode;
   final int? stockminimumlevel;
@@ -474,6 +698,15 @@ class ProductEntity extends DataClass implements Insertable<ProductEntity> {
   final String? syncstate;
   final bool? syncstatus;
   final bool? isdemo;
+  final DateTime? expiryDate;
+  final String? unit;
+  final double? taxRate;
+  final String? status;
+  final String? supplier;
+  final double? averageCost;
+  final String? aisle;
+  final String? shelf;
+  final String? description;
   const ProductEntity({
     required this.id,
     this.idbusiness,
@@ -482,6 +715,7 @@ class ProductEntity extends DataClass implements Insertable<ProductEntity> {
     this.image,
     this.stock,
     this.price,
+    this.purchaseprice,
     this.owner,
     this.barcode,
     this.stockminimumlevel,
@@ -494,6 +728,15 @@ class ProductEntity extends DataClass implements Insertable<ProductEntity> {
     this.syncstate,
     this.syncstatus,
     this.isdemo,
+    this.expiryDate,
+    this.unit,
+    this.taxRate,
+    this.status,
+    this.supplier,
+    this.averageCost,
+    this.aisle,
+    this.shelf,
+    this.description,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -516,6 +759,9 @@ class ProductEntity extends DataClass implements Insertable<ProductEntity> {
     }
     if (!nullToAbsent || price != null) {
       map['price'] = Variable<double>(price);
+    }
+    if (!nullToAbsent || purchaseprice != null) {
+      map['purchaseprice'] = Variable<double>(purchaseprice);
     }
     if (!nullToAbsent || owner != null) {
       map['owner'] = Variable<String>(owner);
@@ -553,6 +799,33 @@ class ProductEntity extends DataClass implements Insertable<ProductEntity> {
     if (!nullToAbsent || isdemo != null) {
       map['isdemo'] = Variable<bool>(isdemo);
     }
+    if (!nullToAbsent || expiryDate != null) {
+      map['expiry_date'] = Variable<DateTime>(expiryDate);
+    }
+    if (!nullToAbsent || unit != null) {
+      map['unit'] = Variable<String>(unit);
+    }
+    if (!nullToAbsent || taxRate != null) {
+      map['tax_rate'] = Variable<double>(taxRate);
+    }
+    if (!nullToAbsent || status != null) {
+      map['status'] = Variable<String>(status);
+    }
+    if (!nullToAbsent || supplier != null) {
+      map['supplier'] = Variable<String>(supplier);
+    }
+    if (!nullToAbsent || averageCost != null) {
+      map['average_cost'] = Variable<double>(averageCost);
+    }
+    if (!nullToAbsent || aisle != null) {
+      map['aisle'] = Variable<String>(aisle);
+    }
+    if (!nullToAbsent || shelf != null) {
+      map['shelf'] = Variable<String>(shelf);
+    }
+    if (!nullToAbsent || description != null) {
+      map['description'] = Variable<String>(description);
+    }
     return map;
   }
 
@@ -575,6 +848,9 @@ class ProductEntity extends DataClass implements Insertable<ProductEntity> {
       price: price == null && nullToAbsent
           ? const Value.absent()
           : Value(price),
+      purchaseprice: purchaseprice == null && nullToAbsent
+          ? const Value.absent()
+          : Value(purchaseprice),
       owner: owner == null && nullToAbsent
           ? const Value.absent()
           : Value(owner),
@@ -611,6 +887,31 @@ class ProductEntity extends DataClass implements Insertable<ProductEntity> {
       isdemo: isdemo == null && nullToAbsent
           ? const Value.absent()
           : Value(isdemo),
+      expiryDate: expiryDate == null && nullToAbsent
+          ? const Value.absent()
+          : Value(expiryDate),
+      unit: unit == null && nullToAbsent ? const Value.absent() : Value(unit),
+      taxRate: taxRate == null && nullToAbsent
+          ? const Value.absent()
+          : Value(taxRate),
+      status: status == null && nullToAbsent
+          ? const Value.absent()
+          : Value(status),
+      supplier: supplier == null && nullToAbsent
+          ? const Value.absent()
+          : Value(supplier),
+      averageCost: averageCost == null && nullToAbsent
+          ? const Value.absent()
+          : Value(averageCost),
+      aisle: aisle == null && nullToAbsent
+          ? const Value.absent()
+          : Value(aisle),
+      shelf: shelf == null && nullToAbsent
+          ? const Value.absent()
+          : Value(shelf),
+      description: description == null && nullToAbsent
+          ? const Value.absent()
+          : Value(description),
     );
   }
 
@@ -627,6 +928,7 @@ class ProductEntity extends DataClass implements Insertable<ProductEntity> {
       image: serializer.fromJson<String?>(json['image']),
       stock: serializer.fromJson<int?>(json['stock']),
       price: serializer.fromJson<double?>(json['price']),
+      purchaseprice: serializer.fromJson<double?>(json['purchaseprice']),
       owner: serializer.fromJson<String?>(json['owner']),
       barcode: serializer.fromJson<String?>(json['barcode']),
       stockminimumlevel: serializer.fromJson<int?>(json['stockminimumlevel']),
@@ -639,6 +941,15 @@ class ProductEntity extends DataClass implements Insertable<ProductEntity> {
       syncstate: serializer.fromJson<String?>(json['syncstate']),
       syncstatus: serializer.fromJson<bool?>(json['syncstatus']),
       isdemo: serializer.fromJson<bool?>(json['isdemo']),
+      expiryDate: serializer.fromJson<DateTime?>(json['expiryDate']),
+      unit: serializer.fromJson<String?>(json['unit']),
+      taxRate: serializer.fromJson<double?>(json['taxRate']),
+      status: serializer.fromJson<String?>(json['status']),
+      supplier: serializer.fromJson<String?>(json['supplier']),
+      averageCost: serializer.fromJson<double?>(json['averageCost']),
+      aisle: serializer.fromJson<String?>(json['aisle']),
+      shelf: serializer.fromJson<String?>(json['shelf']),
+      description: serializer.fromJson<String?>(json['description']),
     );
   }
   @override
@@ -652,6 +963,7 @@ class ProductEntity extends DataClass implements Insertable<ProductEntity> {
       'image': serializer.toJson<String?>(image),
       'stock': serializer.toJson<int?>(stock),
       'price': serializer.toJson<double?>(price),
+      'purchaseprice': serializer.toJson<double?>(purchaseprice),
       'owner': serializer.toJson<String?>(owner),
       'barcode': serializer.toJson<String?>(barcode),
       'stockminimumlevel': serializer.toJson<int?>(stockminimumlevel),
@@ -664,6 +976,15 @@ class ProductEntity extends DataClass implements Insertable<ProductEntity> {
       'syncstate': serializer.toJson<String?>(syncstate),
       'syncstatus': serializer.toJson<bool?>(syncstatus),
       'isdemo': serializer.toJson<bool?>(isdemo),
+      'expiryDate': serializer.toJson<DateTime?>(expiryDate),
+      'unit': serializer.toJson<String?>(unit),
+      'taxRate': serializer.toJson<double?>(taxRate),
+      'status': serializer.toJson<String?>(status),
+      'supplier': serializer.toJson<String?>(supplier),
+      'averageCost': serializer.toJson<double?>(averageCost),
+      'aisle': serializer.toJson<String?>(aisle),
+      'shelf': serializer.toJson<String?>(shelf),
+      'description': serializer.toJson<String?>(description),
     };
   }
 
@@ -675,6 +996,7 @@ class ProductEntity extends DataClass implements Insertable<ProductEntity> {
     Value<String?> image = const Value.absent(),
     Value<int?> stock = const Value.absent(),
     Value<double?> price = const Value.absent(),
+    Value<double?> purchaseprice = const Value.absent(),
     Value<String?> owner = const Value.absent(),
     Value<String?> barcode = const Value.absent(),
     Value<int?> stockminimumlevel = const Value.absent(),
@@ -687,6 +1009,15 @@ class ProductEntity extends DataClass implements Insertable<ProductEntity> {
     Value<String?> syncstate = const Value.absent(),
     Value<bool?> syncstatus = const Value.absent(),
     Value<bool?> isdemo = const Value.absent(),
+    Value<DateTime?> expiryDate = const Value.absent(),
+    Value<String?> unit = const Value.absent(),
+    Value<double?> taxRate = const Value.absent(),
+    Value<String?> status = const Value.absent(),
+    Value<String?> supplier = const Value.absent(),
+    Value<double?> averageCost = const Value.absent(),
+    Value<String?> aisle = const Value.absent(),
+    Value<String?> shelf = const Value.absent(),
+    Value<String?> description = const Value.absent(),
   }) => ProductEntity(
     id: id ?? this.id,
     idbusiness: idbusiness.present ? idbusiness.value : this.idbusiness,
@@ -695,6 +1026,9 @@ class ProductEntity extends DataClass implements Insertable<ProductEntity> {
     image: image.present ? image.value : this.image,
     stock: stock.present ? stock.value : this.stock,
     price: price.present ? price.value : this.price,
+    purchaseprice: purchaseprice.present
+        ? purchaseprice.value
+        : this.purchaseprice,
     owner: owner.present ? owner.value : this.owner,
     barcode: barcode.present ? barcode.value : this.barcode,
     stockminimumlevel: stockminimumlevel.present
@@ -709,6 +1043,15 @@ class ProductEntity extends DataClass implements Insertable<ProductEntity> {
     syncstate: syncstate.present ? syncstate.value : this.syncstate,
     syncstatus: syncstatus.present ? syncstatus.value : this.syncstatus,
     isdemo: isdemo.present ? isdemo.value : this.isdemo,
+    expiryDate: expiryDate.present ? expiryDate.value : this.expiryDate,
+    unit: unit.present ? unit.value : this.unit,
+    taxRate: taxRate.present ? taxRate.value : this.taxRate,
+    status: status.present ? status.value : this.status,
+    supplier: supplier.present ? supplier.value : this.supplier,
+    averageCost: averageCost.present ? averageCost.value : this.averageCost,
+    aisle: aisle.present ? aisle.value : this.aisle,
+    shelf: shelf.present ? shelf.value : this.shelf,
+    description: description.present ? description.value : this.description,
   );
   ProductEntity copyWithCompanion(ProductsCompanion data) {
     return ProductEntity(
@@ -723,6 +1066,9 @@ class ProductEntity extends DataClass implements Insertable<ProductEntity> {
       image: data.image.present ? data.image.value : this.image,
       stock: data.stock.present ? data.stock.value : this.stock,
       price: data.price.present ? data.price.value : this.price,
+      purchaseprice: data.purchaseprice.present
+          ? data.purchaseprice.value
+          : this.purchaseprice,
       owner: data.owner.present ? data.owner.value : this.owner,
       barcode: data.barcode.present ? data.barcode.value : this.barcode,
       stockminimumlevel: data.stockminimumlevel.present
@@ -741,6 +1087,21 @@ class ProductEntity extends DataClass implements Insertable<ProductEntity> {
           ? data.syncstatus.value
           : this.syncstatus,
       isdemo: data.isdemo.present ? data.isdemo.value : this.isdemo,
+      expiryDate: data.expiryDate.present
+          ? data.expiryDate.value
+          : this.expiryDate,
+      unit: data.unit.present ? data.unit.value : this.unit,
+      taxRate: data.taxRate.present ? data.taxRate.value : this.taxRate,
+      status: data.status.present ? data.status.value : this.status,
+      supplier: data.supplier.present ? data.supplier.value : this.supplier,
+      averageCost: data.averageCost.present
+          ? data.averageCost.value
+          : this.averageCost,
+      aisle: data.aisle.present ? data.aisle.value : this.aisle,
+      shelf: data.shelf.present ? data.shelf.value : this.shelf,
+      description: data.description.present
+          ? data.description.value
+          : this.description,
     );
   }
 
@@ -754,6 +1115,7 @@ class ProductEntity extends DataClass implements Insertable<ProductEntity> {
           ..write('image: $image, ')
           ..write('stock: $stock, ')
           ..write('price: $price, ')
+          ..write('purchaseprice: $purchaseprice, ')
           ..write('owner: $owner, ')
           ..write('barcode: $barcode, ')
           ..write('stockminimumlevel: $stockminimumlevel, ')
@@ -765,13 +1127,22 @@ class ProductEntity extends DataClass implements Insertable<ProductEntity> {
           ..write('createdat: $createdat, ')
           ..write('syncstate: $syncstate, ')
           ..write('syncstatus: $syncstatus, ')
-          ..write('isdemo: $isdemo')
+          ..write('isdemo: $isdemo, ')
+          ..write('expiryDate: $expiryDate, ')
+          ..write('unit: $unit, ')
+          ..write('taxRate: $taxRate, ')
+          ..write('status: $status, ')
+          ..write('supplier: $supplier, ')
+          ..write('averageCost: $averageCost, ')
+          ..write('aisle: $aisle, ')
+          ..write('shelf: $shelf, ')
+          ..write('description: $description')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(
+  int get hashCode => Object.hashAll([
     id,
     idbusiness,
     idcategory,
@@ -779,6 +1150,7 @@ class ProductEntity extends DataClass implements Insertable<ProductEntity> {
     image,
     stock,
     price,
+    purchaseprice,
     owner,
     barcode,
     stockminimumlevel,
@@ -791,7 +1163,16 @@ class ProductEntity extends DataClass implements Insertable<ProductEntity> {
     syncstate,
     syncstatus,
     isdemo,
-  );
+    expiryDate,
+    unit,
+    taxRate,
+    status,
+    supplier,
+    averageCost,
+    aisle,
+    shelf,
+    description,
+  ]);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -803,6 +1184,7 @@ class ProductEntity extends DataClass implements Insertable<ProductEntity> {
           other.image == this.image &&
           other.stock == this.stock &&
           other.price == this.price &&
+          other.purchaseprice == this.purchaseprice &&
           other.owner == this.owner &&
           other.barcode == this.barcode &&
           other.stockminimumlevel == this.stockminimumlevel &&
@@ -814,7 +1196,16 @@ class ProductEntity extends DataClass implements Insertable<ProductEntity> {
           other.createdat == this.createdat &&
           other.syncstate == this.syncstate &&
           other.syncstatus == this.syncstatus &&
-          other.isdemo == this.isdemo);
+          other.isdemo == this.isdemo &&
+          other.expiryDate == this.expiryDate &&
+          other.unit == this.unit &&
+          other.taxRate == this.taxRate &&
+          other.status == this.status &&
+          other.supplier == this.supplier &&
+          other.averageCost == this.averageCost &&
+          other.aisle == this.aisle &&
+          other.shelf == this.shelf &&
+          other.description == this.description);
 }
 
 class ProductsCompanion extends UpdateCompanion<ProductEntity> {
@@ -825,6 +1216,7 @@ class ProductsCompanion extends UpdateCompanion<ProductEntity> {
   final Value<String?> image;
   final Value<int?> stock;
   final Value<double?> price;
+  final Value<double?> purchaseprice;
   final Value<String?> owner;
   final Value<String?> barcode;
   final Value<int?> stockminimumlevel;
@@ -837,6 +1229,15 @@ class ProductsCompanion extends UpdateCompanion<ProductEntity> {
   final Value<String?> syncstate;
   final Value<bool?> syncstatus;
   final Value<bool?> isdemo;
+  final Value<DateTime?> expiryDate;
+  final Value<String?> unit;
+  final Value<double?> taxRate;
+  final Value<String?> status;
+  final Value<String?> supplier;
+  final Value<double?> averageCost;
+  final Value<String?> aisle;
+  final Value<String?> shelf;
+  final Value<String?> description;
   final Value<int> rowid;
   const ProductsCompanion({
     this.id = const Value.absent(),
@@ -846,6 +1247,7 @@ class ProductsCompanion extends UpdateCompanion<ProductEntity> {
     this.image = const Value.absent(),
     this.stock = const Value.absent(),
     this.price = const Value.absent(),
+    this.purchaseprice = const Value.absent(),
     this.owner = const Value.absent(),
     this.barcode = const Value.absent(),
     this.stockminimumlevel = const Value.absent(),
@@ -858,6 +1260,15 @@ class ProductsCompanion extends UpdateCompanion<ProductEntity> {
     this.syncstate = const Value.absent(),
     this.syncstatus = const Value.absent(),
     this.isdemo = const Value.absent(),
+    this.expiryDate = const Value.absent(),
+    this.unit = const Value.absent(),
+    this.taxRate = const Value.absent(),
+    this.status = const Value.absent(),
+    this.supplier = const Value.absent(),
+    this.averageCost = const Value.absent(),
+    this.aisle = const Value.absent(),
+    this.shelf = const Value.absent(),
+    this.description = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   ProductsCompanion.insert({
@@ -868,6 +1279,7 @@ class ProductsCompanion extends UpdateCompanion<ProductEntity> {
     this.image = const Value.absent(),
     this.stock = const Value.absent(),
     this.price = const Value.absent(),
+    this.purchaseprice = const Value.absent(),
     this.owner = const Value.absent(),
     this.barcode = const Value.absent(),
     this.stockminimumlevel = const Value.absent(),
@@ -880,6 +1292,15 @@ class ProductsCompanion extends UpdateCompanion<ProductEntity> {
     this.syncstate = const Value.absent(),
     this.syncstatus = const Value.absent(),
     this.isdemo = const Value.absent(),
+    this.expiryDate = const Value.absent(),
+    this.unit = const Value.absent(),
+    this.taxRate = const Value.absent(),
+    this.status = const Value.absent(),
+    this.supplier = const Value.absent(),
+    this.averageCost = const Value.absent(),
+    this.aisle = const Value.absent(),
+    this.shelf = const Value.absent(),
+    this.description = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   static Insertable<ProductEntity> custom({
@@ -890,6 +1311,7 @@ class ProductsCompanion extends UpdateCompanion<ProductEntity> {
     Expression<String>? image,
     Expression<int>? stock,
     Expression<double>? price,
+    Expression<double>? purchaseprice,
     Expression<String>? owner,
     Expression<String>? barcode,
     Expression<int>? stockminimumlevel,
@@ -902,6 +1324,15 @@ class ProductsCompanion extends UpdateCompanion<ProductEntity> {
     Expression<String>? syncstate,
     Expression<bool>? syncstatus,
     Expression<bool>? isdemo,
+    Expression<DateTime>? expiryDate,
+    Expression<String>? unit,
+    Expression<double>? taxRate,
+    Expression<String>? status,
+    Expression<String>? supplier,
+    Expression<double>? averageCost,
+    Expression<String>? aisle,
+    Expression<String>? shelf,
+    Expression<String>? description,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
@@ -912,6 +1343,7 @@ class ProductsCompanion extends UpdateCompanion<ProductEntity> {
       if (image != null) 'image': image,
       if (stock != null) 'stock': stock,
       if (price != null) 'price': price,
+      if (purchaseprice != null) 'purchaseprice': purchaseprice,
       if (owner != null) 'owner': owner,
       if (barcode != null) 'barcode': barcode,
       if (stockminimumlevel != null) 'stockminimumlevel': stockminimumlevel,
@@ -924,6 +1356,15 @@ class ProductsCompanion extends UpdateCompanion<ProductEntity> {
       if (syncstate != null) 'syncstate': syncstate,
       if (syncstatus != null) 'syncstatus': syncstatus,
       if (isdemo != null) 'isdemo': isdemo,
+      if (expiryDate != null) 'expiry_date': expiryDate,
+      if (unit != null) 'unit': unit,
+      if (taxRate != null) 'tax_rate': taxRate,
+      if (status != null) 'status': status,
+      if (supplier != null) 'supplier': supplier,
+      if (averageCost != null) 'average_cost': averageCost,
+      if (aisle != null) 'aisle': aisle,
+      if (shelf != null) 'shelf': shelf,
+      if (description != null) 'description': description,
       if (rowid != null) 'rowid': rowid,
     });
   }
@@ -936,6 +1377,7 @@ class ProductsCompanion extends UpdateCompanion<ProductEntity> {
     Value<String?>? image,
     Value<int?>? stock,
     Value<double?>? price,
+    Value<double?>? purchaseprice,
     Value<String?>? owner,
     Value<String?>? barcode,
     Value<int?>? stockminimumlevel,
@@ -948,6 +1390,15 @@ class ProductsCompanion extends UpdateCompanion<ProductEntity> {
     Value<String?>? syncstate,
     Value<bool?>? syncstatus,
     Value<bool?>? isdemo,
+    Value<DateTime?>? expiryDate,
+    Value<String?>? unit,
+    Value<double?>? taxRate,
+    Value<String?>? status,
+    Value<String?>? supplier,
+    Value<double?>? averageCost,
+    Value<String?>? aisle,
+    Value<String?>? shelf,
+    Value<String?>? description,
     Value<int>? rowid,
   }) {
     return ProductsCompanion(
@@ -958,6 +1409,7 @@ class ProductsCompanion extends UpdateCompanion<ProductEntity> {
       image: image ?? this.image,
       stock: stock ?? this.stock,
       price: price ?? this.price,
+      purchaseprice: purchaseprice ?? this.purchaseprice,
       owner: owner ?? this.owner,
       barcode: barcode ?? this.barcode,
       stockminimumlevel: stockminimumlevel ?? this.stockminimumlevel,
@@ -970,6 +1422,15 @@ class ProductsCompanion extends UpdateCompanion<ProductEntity> {
       syncstate: syncstate ?? this.syncstate,
       syncstatus: syncstatus ?? this.syncstatus,
       isdemo: isdemo ?? this.isdemo,
+      expiryDate: expiryDate ?? this.expiryDate,
+      unit: unit ?? this.unit,
+      taxRate: taxRate ?? this.taxRate,
+      status: status ?? this.status,
+      supplier: supplier ?? this.supplier,
+      averageCost: averageCost ?? this.averageCost,
+      aisle: aisle ?? this.aisle,
+      shelf: shelf ?? this.shelf,
+      description: description ?? this.description,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -997,6 +1458,9 @@ class ProductsCompanion extends UpdateCompanion<ProductEntity> {
     }
     if (price.present) {
       map['price'] = Variable<double>(price.value);
+    }
+    if (purchaseprice.present) {
+      map['purchaseprice'] = Variable<double>(purchaseprice.value);
     }
     if (owner.present) {
       map['owner'] = Variable<String>(owner.value);
@@ -1034,6 +1498,33 @@ class ProductsCompanion extends UpdateCompanion<ProductEntity> {
     if (isdemo.present) {
       map['isdemo'] = Variable<bool>(isdemo.value);
     }
+    if (expiryDate.present) {
+      map['expiry_date'] = Variable<DateTime>(expiryDate.value);
+    }
+    if (unit.present) {
+      map['unit'] = Variable<String>(unit.value);
+    }
+    if (taxRate.present) {
+      map['tax_rate'] = Variable<double>(taxRate.value);
+    }
+    if (status.present) {
+      map['status'] = Variable<String>(status.value);
+    }
+    if (supplier.present) {
+      map['supplier'] = Variable<String>(supplier.value);
+    }
+    if (averageCost.present) {
+      map['average_cost'] = Variable<double>(averageCost.value);
+    }
+    if (aisle.present) {
+      map['aisle'] = Variable<String>(aisle.value);
+    }
+    if (shelf.present) {
+      map['shelf'] = Variable<String>(shelf.value);
+    }
+    if (description.present) {
+      map['description'] = Variable<String>(description.value);
+    }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
     }
@@ -1050,6 +1541,7 @@ class ProductsCompanion extends UpdateCompanion<ProductEntity> {
           ..write('image: $image, ')
           ..write('stock: $stock, ')
           ..write('price: $price, ')
+          ..write('purchaseprice: $purchaseprice, ')
           ..write('owner: $owner, ')
           ..write('barcode: $barcode, ')
           ..write('stockminimumlevel: $stockminimumlevel, ')
@@ -1062,6 +1554,15 @@ class ProductsCompanion extends UpdateCompanion<ProductEntity> {
           ..write('syncstate: $syncstate, ')
           ..write('syncstatus: $syncstatus, ')
           ..write('isdemo: $isdemo, ')
+          ..write('expiryDate: $expiryDate, ')
+          ..write('unit: $unit, ')
+          ..write('taxRate: $taxRate, ')
+          ..write('status: $status, ')
+          ..write('supplier: $supplier, ')
+          ..write('averageCost: $averageCost, ')
+          ..write('aisle: $aisle, ')
+          ..write('shelf: $shelf, ')
+          ..write('description: $description, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();
@@ -4881,6 +5382,7 @@ typedef $$ProductsTableCreateCompanionBuilder =
       Value<String?> image,
       Value<int?> stock,
       Value<double?> price,
+      Value<double?> purchaseprice,
       Value<String?> owner,
       Value<String?> barcode,
       Value<int?> stockminimumlevel,
@@ -4893,6 +5395,15 @@ typedef $$ProductsTableCreateCompanionBuilder =
       Value<String?> syncstate,
       Value<bool?> syncstatus,
       Value<bool?> isdemo,
+      Value<DateTime?> expiryDate,
+      Value<String?> unit,
+      Value<double?> taxRate,
+      Value<String?> status,
+      Value<String?> supplier,
+      Value<double?> averageCost,
+      Value<String?> aisle,
+      Value<String?> shelf,
+      Value<String?> description,
       Value<int> rowid,
     });
 typedef $$ProductsTableUpdateCompanionBuilder =
@@ -4904,6 +5415,7 @@ typedef $$ProductsTableUpdateCompanionBuilder =
       Value<String?> image,
       Value<int?> stock,
       Value<double?> price,
+      Value<double?> purchaseprice,
       Value<String?> owner,
       Value<String?> barcode,
       Value<int?> stockminimumlevel,
@@ -4916,6 +5428,15 @@ typedef $$ProductsTableUpdateCompanionBuilder =
       Value<String?> syncstate,
       Value<bool?> syncstatus,
       Value<bool?> isdemo,
+      Value<DateTime?> expiryDate,
+      Value<String?> unit,
+      Value<double?> taxRate,
+      Value<String?> status,
+      Value<String?> supplier,
+      Value<double?> averageCost,
+      Value<String?> aisle,
+      Value<String?> shelf,
+      Value<String?> description,
       Value<int> rowid,
     });
 
@@ -5013,6 +5534,11 @@ class $$ProductsTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
+  ColumnFilters<double> get purchaseprice => $composableBuilder(
+    column: $table.purchaseprice,
+    builder: (column) => ColumnFilters(column),
+  );
+
   ColumnFilters<String> get owner => $composableBuilder(
     column: $table.owner,
     builder: (column) => ColumnFilters(column),
@@ -5070,6 +5596,51 @@ class $$ProductsTableFilterComposer
 
   ColumnFilters<bool> get isdemo => $composableBuilder(
     column: $table.isdemo,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get expiryDate => $composableBuilder(
+    column: $table.expiryDate,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get unit => $composableBuilder(
+    column: $table.unit,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get taxRate => $composableBuilder(
+    column: $table.taxRate,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get status => $composableBuilder(
+    column: $table.status,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get supplier => $composableBuilder(
+    column: $table.supplier,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get averageCost => $composableBuilder(
+    column: $table.averageCost,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get aisle => $composableBuilder(
+    column: $table.aisle,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get shelf => $composableBuilder(
+    column: $table.shelf,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get description => $composableBuilder(
+    column: $table.description,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -5168,6 +5739,11 @@ class $$ProductsTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<double> get purchaseprice => $composableBuilder(
+    column: $table.purchaseprice,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   ColumnOrderings<String> get owner => $composableBuilder(
     column: $table.owner,
     builder: (column) => ColumnOrderings(column),
@@ -5227,6 +5803,51 @@ class $$ProductsTableOrderingComposer
     column: $table.isdemo,
     builder: (column) => ColumnOrderings(column),
   );
+
+  ColumnOrderings<DateTime> get expiryDate => $composableBuilder(
+    column: $table.expiryDate,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get unit => $composableBuilder(
+    column: $table.unit,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get taxRate => $composableBuilder(
+    column: $table.taxRate,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get status => $composableBuilder(
+    column: $table.status,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get supplier => $composableBuilder(
+    column: $table.supplier,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get averageCost => $composableBuilder(
+    column: $table.averageCost,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get aisle => $composableBuilder(
+    column: $table.aisle,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get shelf => $composableBuilder(
+    column: $table.shelf,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get description => $composableBuilder(
+    column: $table.description,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
 class $$ProductsTableAnnotationComposer
@@ -5262,6 +5883,11 @@ class $$ProductsTableAnnotationComposer
 
   GeneratedColumn<double> get price =>
       $composableBuilder(column: $table.price, builder: (column) => column);
+
+  GeneratedColumn<double> get purchaseprice => $composableBuilder(
+    column: $table.purchaseprice,
+    builder: (column) => column,
+  );
 
   GeneratedColumn<String> get owner =>
       $composableBuilder(column: $table.owner, builder: (column) => column);
@@ -5304,6 +5930,39 @@ class $$ProductsTableAnnotationComposer
 
   GeneratedColumn<bool> get isdemo =>
       $composableBuilder(column: $table.isdemo, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get expiryDate => $composableBuilder(
+    column: $table.expiryDate,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get unit =>
+      $composableBuilder(column: $table.unit, builder: (column) => column);
+
+  GeneratedColumn<double> get taxRate =>
+      $composableBuilder(column: $table.taxRate, builder: (column) => column);
+
+  GeneratedColumn<String> get status =>
+      $composableBuilder(column: $table.status, builder: (column) => column);
+
+  GeneratedColumn<String> get supplier =>
+      $composableBuilder(column: $table.supplier, builder: (column) => column);
+
+  GeneratedColumn<double> get averageCost => $composableBuilder(
+    column: $table.averageCost,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get aisle =>
+      $composableBuilder(column: $table.aisle, builder: (column) => column);
+
+  GeneratedColumn<String> get shelf =>
+      $composableBuilder(column: $table.shelf, builder: (column) => column);
+
+  GeneratedColumn<String> get description => $composableBuilder(
+    column: $table.description,
+    builder: (column) => column,
+  );
 
   Expression<T> transactionsRefs<T extends Object>(
     Expression<T> Function($$TransactionsTableAnnotationComposer a) f,
@@ -5395,6 +6054,7 @@ class $$ProductsTableTableManager
                 Value<String?> image = const Value.absent(),
                 Value<int?> stock = const Value.absent(),
                 Value<double?> price = const Value.absent(),
+                Value<double?> purchaseprice = const Value.absent(),
                 Value<String?> owner = const Value.absent(),
                 Value<String?> barcode = const Value.absent(),
                 Value<int?> stockminimumlevel = const Value.absent(),
@@ -5407,6 +6067,15 @@ class $$ProductsTableTableManager
                 Value<String?> syncstate = const Value.absent(),
                 Value<bool?> syncstatus = const Value.absent(),
                 Value<bool?> isdemo = const Value.absent(),
+                Value<DateTime?> expiryDate = const Value.absent(),
+                Value<String?> unit = const Value.absent(),
+                Value<double?> taxRate = const Value.absent(),
+                Value<String?> status = const Value.absent(),
+                Value<String?> supplier = const Value.absent(),
+                Value<double?> averageCost = const Value.absent(),
+                Value<String?> aisle = const Value.absent(),
+                Value<String?> shelf = const Value.absent(),
+                Value<String?> description = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => ProductsCompanion(
                 id: id,
@@ -5416,6 +6085,7 @@ class $$ProductsTableTableManager
                 image: image,
                 stock: stock,
                 price: price,
+                purchaseprice: purchaseprice,
                 owner: owner,
                 barcode: barcode,
                 stockminimumlevel: stockminimumlevel,
@@ -5428,6 +6098,15 @@ class $$ProductsTableTableManager
                 syncstate: syncstate,
                 syncstatus: syncstatus,
                 isdemo: isdemo,
+                expiryDate: expiryDate,
+                unit: unit,
+                taxRate: taxRate,
+                status: status,
+                supplier: supplier,
+                averageCost: averageCost,
+                aisle: aisle,
+                shelf: shelf,
+                description: description,
                 rowid: rowid,
               ),
           createCompanionCallback:
@@ -5439,6 +6118,7 @@ class $$ProductsTableTableManager
                 Value<String?> image = const Value.absent(),
                 Value<int?> stock = const Value.absent(),
                 Value<double?> price = const Value.absent(),
+                Value<double?> purchaseprice = const Value.absent(),
                 Value<String?> owner = const Value.absent(),
                 Value<String?> barcode = const Value.absent(),
                 Value<int?> stockminimumlevel = const Value.absent(),
@@ -5451,6 +6131,15 @@ class $$ProductsTableTableManager
                 Value<String?> syncstate = const Value.absent(),
                 Value<bool?> syncstatus = const Value.absent(),
                 Value<bool?> isdemo = const Value.absent(),
+                Value<DateTime?> expiryDate = const Value.absent(),
+                Value<String?> unit = const Value.absent(),
+                Value<double?> taxRate = const Value.absent(),
+                Value<String?> status = const Value.absent(),
+                Value<String?> supplier = const Value.absent(),
+                Value<double?> averageCost = const Value.absent(),
+                Value<String?> aisle = const Value.absent(),
+                Value<String?> shelf = const Value.absent(),
+                Value<String?> description = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => ProductsCompanion.insert(
                 id: id,
@@ -5460,6 +6149,7 @@ class $$ProductsTableTableManager
                 image: image,
                 stock: stock,
                 price: price,
+                purchaseprice: purchaseprice,
                 owner: owner,
                 barcode: barcode,
                 stockminimumlevel: stockminimumlevel,
@@ -5472,6 +6162,15 @@ class $$ProductsTableTableManager
                 syncstate: syncstate,
                 syncstatus: syncstatus,
                 isdemo: isdemo,
+                expiryDate: expiryDate,
+                unit: unit,
+                taxRate: taxRate,
+                status: status,
+                supplier: supplier,
+                averageCost: averageCost,
+                aisle: aisle,
+                shelf: shelf,
+                description: description,
                 rowid: rowid,
               ),
           withReferenceMapper: (p0) => p0

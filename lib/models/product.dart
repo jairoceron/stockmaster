@@ -10,6 +10,7 @@ class Product {
   String? image;
   final int? stock;
   final double price;
+  final double? purchaseprice; // 🔹 precio de compra
   final DateTime? createdat;
   final String? owner;
   final String? barcode;
@@ -27,6 +28,17 @@ class Product {
   // inventario demo
   final bool? isdemo;
 
+  // 🔹 Campos adicionales recomendados
+  final DateTime? expiryDate;
+  final String? unit;
+  final double? taxRate;
+  final String? status;
+  final String? supplier;
+  final double? averageCost;
+  final String? aisle;
+  final String? shelf;
+  final String? description;
+
   Product({
     this.id,
     this.idbusiness,
@@ -35,6 +47,7 @@ class Product {
     this.image,
     this.stock,
     required this.price,
+    this.purchaseprice,
     this.createdat,
     this.owner,
     this.barcode,
@@ -47,6 +60,15 @@ class Product {
     this.lastsyncedat,
     this.syncstate = 'pending',
     this.isdemo = false,
+    this.expiryDate,
+    this.unit,
+    this.taxRate,
+    this.status,
+    this.supplier,
+    this.averageCost,
+    this.aisle,
+    this.shelf,
+    this.description,
   });
 
   Product copyWith({
@@ -57,6 +79,7 @@ class Product {
     String? image,
     int? stock,
     double? price,
+    double? purchaseprice,
     DateTime? createdat,
     String? owner,
     String? barcode,
@@ -69,6 +92,15 @@ class Product {
     DateTime? lastsyncedat,
     String? syncstate,
     bool? isdemo,
+    DateTime? expiryDate,
+    String? unit,
+    double? taxRate,
+    String? status,
+    String? supplier,
+    double? averageCost,
+    String? aisle,
+    String? shelf,
+    String? description,
   }) {
     return Product(
       id: id ?? this.id,
@@ -78,6 +110,7 @@ class Product {
       image: image ?? this.image,
       stock: stock ?? this.stock,
       price: price ?? this.price,
+      purchaseprice: purchaseprice ?? this.purchaseprice,
       createdat: createdat ?? this.createdat,
       owner: owner ?? this.owner,
       barcode: barcode ?? this.barcode,
@@ -90,6 +123,15 @@ class Product {
       lastsyncedat: lastsyncedat ?? this.lastsyncedat,
       syncstate: syncstate ?? this.syncstate,
       isdemo: isdemo ?? this.isdemo,
+      expiryDate: expiryDate ?? this.expiryDate,
+      unit: unit ?? this.unit,
+      taxRate: taxRate ?? this.taxRate,
+      status: status ?? this.status,
+      supplier: supplier ?? this.supplier,
+      averageCost: averageCost ?? this.averageCost,
+      aisle: aisle ?? this.aisle,
+      shelf: shelf ?? this.shelf,
+      description: description ?? this.description,
     );
   }
 
@@ -102,6 +144,9 @@ class Product {
       image: json['image'] as String?,
       stock: json['stock'] != null ? int.tryParse(json['stock'].toString()) : null,
       price: double.tryParse(json['price']?.toString() ?? '') ?? 0.0,
+      purchaseprice: json['purchaseprice'] != null
+          ? double.tryParse(json['purchaseprice'].toString())
+          : null,
       createdat: json['createdat'] != null ? DateTime.tryParse(json['createdat'].toString()) : null,
       owner: json['owner'] as String?,
       barcode: json['barcode'] as String?,
@@ -114,31 +159,16 @@ class Product {
       lastsyncedat: json['lastsyncedat'] != null ? DateTime.tryParse(json['lastsyncedat'].toString()) : null,
       syncstate: json['syncstate']?.toString() ?? 'pending',
       isdemo: json['isdemo'] == true || json['isdemo'] == 1,
+      expiryDate: json['expiryDate'] != null ? DateTime.tryParse(json['expiryDate'].toString()) : null,
+      unit: json['unit']?.toString(),
+      taxRate: json['taxRate'] != null ? double.tryParse(json['taxRate'].toString()) : null,
+      status: json['status']?.toString(),
+      supplier: json['supplier']?.toString(),
+      averageCost: json['averageCost'] != null ? double.tryParse(json['averageCost'].toString()) : null,
+      aisle: json['aisle']?.toString(),
+      shelf: json['shelf']?.toString(),
+      description: json['description']?.toString(),
     );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'idbusiness': idbusiness,
-      'idcategory': idcategory,
-      'name': name,
-      'image': image,
-      'stock': stock,
-      'price': price,
-      'createdat': createdat?.toIso8601String(),
-      'owner': owner,
-      'barcode': barcode,
-      'stockminimumlevel': stockminimumlevel,
-      'deviceid': deviceid,
-      'platform': platform,
-      'ubicacion': ubicacion,
-      'bodega': bodega,
-      'syncstatus': syncstatus,
-      'lastsyncedat': lastsyncedat?.toIso8601String(),
-      'syncstate': syncstate,
-      'isdemo': isdemo,
-    };
   }
 
   factory Product.fromMap(Map<String, dynamic> map) {
@@ -150,6 +180,7 @@ class Product {
       image: map['image'] as String?,
       stock: map['stock'] as int?,
       price: (map['price'] as num).toDouble(),
+      purchaseprice: map['purchaseprice'] != null ? (map['purchaseprice'] as num).toDouble() : null,
       createdat: map['createdat'] != null ? DateTime.tryParse(map['createdat'].toString()) : null,
       owner: map['owner'] as String?,
       barcode: map['barcode'] as String?,
@@ -162,10 +193,19 @@ class Product {
       lastsyncedat: map['lastsyncedat'] != null ? DateTime.tryParse(map['lastsyncedat'].toString()) : null,
       syncstate: map['syncstate']?.toString() ?? 'pending',
       isdemo: map['isdemo'] == true || map['isdemo'] == 1,
+      expiryDate: map['expiryDate'] != null ? DateTime.tryParse(map['expiryDate'].toString()) : null,
+      unit: map['unit']?.toString(),
+      taxRate: map['taxRate'] != null ? (map['taxRate'] as num).toDouble() : null,
+      status: map['status']?.toString(),
+      supplier: map['supplier']?.toString(),
+      averageCost: map['averageCost'] != null ? (map['averageCost'] as num).toDouble() : null,
+      aisle: map['aisle']?.toString(),
+      shelf: map['shelf']?.toString(),
+      description: map['description']?.toString(),
     );
   }
 
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> toJson() {
     return {
       'id': id,
       'idbusiness': idbusiness,
@@ -174,6 +214,7 @@ class Product {
       'image': image,
       'stock': stock,
       'price': price,
+      'purchaseprice': purchaseprice,
       'createdat': createdat?.toIso8601String(),
       'owner': owner,
       'barcode': barcode,
@@ -186,11 +227,62 @@ class Product {
       'lastsyncedat': lastsyncedat?.toIso8601String(),
       'syncstate': syncstate,
       'isdemo': isdemo,
+      // 🔹 Campos adicionales
+      'expiryDate': expiryDate?.toIso8601String(),
+      'unit': unit,
+      'taxRate': taxRate,
+      'status': status,
+      'supplier': supplier,
+      'averageCost': averageCost,
+      'aisle': aisle,
+      'shelf': shelf,
+      'description': description,
+    };
+  }
+
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'idbusiness': idbusiness,
+      'idcategory': idcategory,
+      'name': name,
+      'image': image,
+      'stock': stock,
+      'price': price,
+      'purchaseprice': purchaseprice,
+      'createdat': createdat?.toIso8601String(),
+      'owner': owner,
+      'barcode': barcode,
+      'stockminimumlevel': stockminimumlevel,
+      'deviceid': deviceid,
+      'platform': platform,
+      'ubicacion': ubicacion,
+      'bodega': bodega,
+      'syncstatus': syncstatus,
+      'lastsyncedat': lastsyncedat?.toIso8601String(),
+      'syncstate': syncstate,
+      'isdemo': isdemo,
+      'expiryDate': expiryDate?.toIso8601String(),
+      'unit': unit,
+      'taxRate': taxRate,
+      'status': status,
+      'supplier': supplier,
+      'averageCost': averageCost,
+      'aisle': aisle,
+      'shelf': shelf,
+      'description': description,
     };
   }
 
   @override
   String toString() {
-    return 'Product(id: $id, name: $name, price: $price, stock: $stock, isdemo: $isdemo, syncstatus: $syncstatus, syncstate: $syncstate)';
+    return 'Product(id: $id, name: $name, price: $price, purchaseprice: $purchaseprice, '
+        'stock: $stock, expiryDate: $expiryDate, unit: $unit, taxRate: $taxRate, '
+        'status: $status, supplier: $supplier, averageCost: $averageCost, '
+        'aisle: $aisle, shelf: $shelf, description: $description, '
+        'isdemo: $isdemo, syncstatus: $syncstatus, syncstate: $syncstate)';
   }
+
+
 }

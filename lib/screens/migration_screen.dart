@@ -4,13 +4,14 @@ import 'package:http/http.dart' as http;
 import 'package:stockmaster/screens/bottom_navigation_bar.dart';
 import 'dart:convert';
 import 'package:provider/provider.dart';
+import 'package:stockmaster/screens/products_table.dart';
 
 import '../data/database/local/app_database.dart';
 import '../data/database/local/product_dao.dart';
 import '../data/database/local/products.dart';
-
 import '../data/repositories/sqlite_product_service.dart';
 import '/state/inventory_notifier.dart';
+
 
 class MigrationScreen extends StatefulWidget {
   const MigrationScreen({Key? key}) : super(key: key);
@@ -20,7 +21,6 @@ class MigrationScreen extends StatefulWidget {
 }
 
 class _MigrationScreenState extends State<MigrationScreen> {
-  // 🔹 Inicializa con el valor por defecto
   final TextEditingController _pathController = TextEditingController(
     text: "https://abcsoftbucket.s3.us-east-2.amazonaws.com/citricos/citricos.json",
   );
@@ -59,6 +59,9 @@ class _MigrationScreenState extends State<MigrationScreen> {
             image: drift.Value(item['image']),
             stock: drift.Value(item['quantity']),
             price: drift.Value((item['price'] as num).toDouble()),
+            purchaseprice: item['purchaseprice'] != null
+                ? drift.Value((item['purchaseprice'] as num).toDouble())
+                : const drift.Value(null),
             createdat: drift.Value(DateTime.now()),
             syncstate: const drift.Value("pending"),
             syncstatus: const drift.Value(false),
@@ -68,11 +71,9 @@ class _MigrationScreenState extends State<MigrationScreen> {
 
         await _dao.insertInitialProducts(productsList);
 
-        // 🔹 Actualizar el provider
         final provider = context.read<InventoryNotifier>();
         await provider.loadProducts();
 
-        // 🔹 Redirigir automáticamente a la página principal
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
@@ -91,7 +92,6 @@ class _MigrationScreenState extends State<MigrationScreen> {
     }
   }
 
-  /// 🔹 Nueva función para borrar todos los productos usando el servicio
   Future<void> _deleteAllProducts() async {
     final confirm = await showDialog<bool>(
       context: context,
@@ -114,9 +114,9 @@ class _MigrationScreenState extends State<MigrationScreen> {
     );
 
     if (confirm == true) {
-      await _service.deleteAllProducts(); // 👈 llama al servicio
+      await _service.deleteAllProducts();
       final provider = context.read<InventoryNotifier>();
-      await provider.deleteAllProducts(); // 👈 refresca la UI
+      await provider.deleteAllProducts();
 
       setState(() {
         _statusMessage = "Todos los productos fueron eliminados.";
@@ -131,7 +131,6 @@ class _MigrationScreenState extends State<MigrationScreen> {
   @override
   void dispose() {
     _pathController.dispose();
-    // _db.close();  _db.close(); // esto no se puede hacer nunca ...   // 👈 aquí cierras la base de datos
     super.dispose();
   }
 
@@ -162,11 +161,9 @@ class _MigrationScreenState extends State<MigrationScreen> {
               child: const Text("Eliminar todos los productos"),
             ),
             const SizedBox(height: 16),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Text(_statusMessage),
-              ),
-            ),
+
+            /// ✅ Aquí se invoca el nuevo componente reutilizable
+            const Expanded(child: ProductsTable()),
           ],
         ),
       ),
