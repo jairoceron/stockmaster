@@ -30,6 +30,13 @@
         android:label="StockMaster"
         android:icon="@mipmap/ic_launcher">
 
+        <!-- App ID de AdMob -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-8652653002656806~4803435382"/>
+
+
+
         <activity
             android:name=".MainActivity"
             android:exported="true"

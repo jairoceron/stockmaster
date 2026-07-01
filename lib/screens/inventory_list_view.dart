@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:stockmaster/screens/type_inventory_banner.dart';
 import 'package:url_launcher/url_launcher.dart'; // 🔹 para abrir WhatsApp
 import 'package:stockmaster/screens/product_form.dart';
 import '../models/user.dart';
@@ -8,14 +9,14 @@ import '../providers/inventory_provider.dart';
 import '../data/repositories/product_repository.dart';
 import '../state/inventory_notifier.dart';
 import 'category_filter.dart';
-import 'product_search_bar.dart';
 import '/services/bar_inventario.dart';
 import 'inventory_filter_sheet.dart';
 import 'empty_state_widget.dart';
 import 'inventory_list_view.dart';
 import '../models/product.dart';
 import '../controllers/inventory_controller.dart';
-import 'product_list_item.dart';
+import 'product_card_item.dart';
+import '../providers/inventory_type_provider.dart'; // 👈 Importa el provider
 
 class InventoryListView extends StatefulWidget {
   final List<Product> products;
@@ -61,8 +62,10 @@ class _InventoryListViewState extends State<InventoryListView> {
   Widget build(BuildContext context) {
     final provider = context.watch<InventoryNotifier>();
     final products = widget.products;
-
     final hasDemoProducts = products.any((p) => p.isdemo == true);
+
+    // 🔹 Obtener el tipo de inventario desde el provider
+    // final inventoryType = context.watch<InventoryTypeProvider>().inventoryType;
 
     // 🔹 Mostrar modal si hay más de 20 productos y aún no se mostró
     if (provider.productCount > 2 && !_modalShown) {
@@ -93,6 +96,9 @@ class _InventoryListViewState extends State<InventoryListView> {
       children: [
         Column(
           children: [
+            // 🔹 Banner superior con el tipo de inventario
+
+
             if (hasDemoProducts) ...[
               Container(
                 width: double.infinity,
@@ -129,7 +135,7 @@ class _InventoryListViewState extends State<InventoryListView> {
                 itemBuilder: (context, index) {
                   if (index < products.length) {
                     final product = products[index];
-                    return ProductListItem(
+                    return ProductCardItem(
                       product: product,
                       controller: _controller,
                     );

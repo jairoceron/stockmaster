@@ -40,7 +40,7 @@ class _InventoryScreenState extends State<InventoryScreen> {
   Widget build(BuildContext context) {
     final provider = context.watch<InventoryNotifier>();
     final products = provider.products;
-    debugPrint("\n\n InventoryScreen() este error es una mierda  ....... $products  \n\n");
+    // debugPrint("\n\n InventoryScreen() este error es una mierda  ....... $products  \n\n");
     final user = context.watch<UserProvider>().user;
 
     if (products.isEmpty || user == null) {

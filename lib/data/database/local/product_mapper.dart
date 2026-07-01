@@ -14,6 +14,7 @@ extension ProductEntityMapper on Product {
       image: image,
       stock: stock,
       price: price,
+      purchaseprice: purchaseprice,
       owner: owner,
       barcode: barcode,
       stockminimumlevel: stockminimumlevel,
@@ -25,13 +26,22 @@ extension ProductEntityMapper on Product {
       syncstate: syncstate ?? "",
       ubicacion: ubicacion,
       bodega: bodega,
-      isdemo: isdemo ?? false, // 👈 agregado
+      isdemo: isdemo ?? false,
+      expiryDate: expiryDate,
+      unit: unit,
+      taxRate: taxRate,
+      status: status,
+      supplier: supplier,
+      averageCost: averageCost,
+      aisle: aisle,
+      shelf: shelf,
+      description: description,
     );
   }
 }
 
 extension ProductMapper on Product {
-  /// Convierte Product a ProductsCompanion para inserción
+  /// Companion para inserción
   ProductsCompanion toInsertCompanion() {
     return ProductsCompanion.insert(
       id: Value(id ?? const Uuid().v4()),
@@ -41,6 +51,7 @@ extension ProductMapper on Product {
       image: Value(image),
       stock: Value(stock),
       price: Value(price),
+      purchaseprice: Value(purchaseprice),
       createdat: Value(createdat),
       owner: Value(owner),
       barcode: Value(barcode),
@@ -52,21 +63,30 @@ extension ProductMapper on Product {
       syncstate: Value(syncstate ?? ""),
       ubicacion: Value(ubicacion),
       bodega: Value(bodega),
-      isdemo: Value(isdemo ?? false), // 👈 agregado
+      isdemo: Value(isdemo ?? false),
+      expiryDate: Value(expiryDate),
+      unit: Value(unit),
+      taxRate: Value(taxRate),
+      status: Value(status),
+      supplier: Value(supplier),
+      averageCost: Value(averageCost),
+      aisle: Value(aisle),
+      shelf: Value(shelf),
+      description: Value(description),
     );
   }
 
-  /// Convierte Product a ProductsCompanion para actualización
+  /// Companion para actualización
   ProductsCompanion toUpdateCompanion() {
     assert(id != null && id!.isNotEmpty, 'El id no puede ser null al actualizar');
     return ProductsCompanion(
-      // ❌ No incluir id aquí
       idbusiness: idbusiness == null ? const Value.absent() : Value(idbusiness!),
       idcategory: idcategory == null ? const Value.absent() : Value(idcategory!),
       name: name == null ? const Value.absent() : Value(name!),
       image: image == null ? const Value.absent() : Value(image!),
       stock: stock == null ? const Value.absent() : Value(stock!),
-      price: Value(price),
+      price: price == null ? const Value.absent() : Value(price!),
+      purchaseprice: purchaseprice == null ? const Value.absent() : Value(purchaseprice!),
       createdat: createdat == null ? const Value.absent() : Value(createdat!),
       owner: owner == null ? const Value.absent() : Value(owner!),
       barcode: barcode == null ? const Value.absent() : Value(barcode!),
@@ -79,36 +99,19 @@ extension ProductMapper on Product {
       ubicacion: ubicacion == null ? const Value.absent() : Value(ubicacion!),
       bodega: bodega == null ? const Value.absent() : Value(bodega!),
       isdemo: Value(isdemo ?? false),
+      expiryDate: expiryDate == null ? const Value.absent() : Value(expiryDate!),
+      unit: unit == null ? const Value.absent() : Value(unit!),
+      taxRate: taxRate == null ? const Value.absent() : Value(taxRate!),
+      status: status == null ? const Value.absent() : Value(status!),
+      supplier: supplier == null ? const Value.absent() : Value(supplier!),
+      averageCost: averageCost == null ? const Value.absent() : Value(averageCost!),
+      aisle: aisle == null ? const Value.absent() : Value(aisle!),
+      shelf: shelf == null ? const Value.absent() : Value(shelf!),
+      description: description == null ? const Value.absent() : Value(description!),
     );
   }
 
-
-  /// Convierte Product a ProductEntity
-  ProductEntity toEntity() {
-    return ProductEntity(
-      id: id ?? '',
-      idbusiness: idbusiness,
-      idcategory: idcategory,
-      name: name,
-      image: image,
-      stock: stock,
-      price: price,
-      createdat: createdat,
-      owner: owner,
-      barcode: barcode,
-      stockminimumlevel: stockminimumlevel,
-      deviceid: deviceid,
-      platform: platform,
-      syncstatus: syncstatus ?? false,
-      lastsyncedat: lastsyncedat,
-      syncstate: syncstate ?? "",
-      ubicacion: ubicacion,
-      bodega: bodega,
-      isdemo: isdemo ?? false, // 👈 agregado
-    );
-  }
-
-  /// Convierte ProductEntity (de Drift) a Product
+  /// Mapper desde Entity
   static Product fromEntity(ProductEntity entity) {
     return Product(
       id: entity.id,
@@ -118,6 +121,7 @@ extension ProductMapper on Product {
       image: entity.image,
       stock: entity.stock ?? 0,
       price: entity.price ?? 0.0,
+      purchaseprice: entity.purchaseprice,
       createdat: entity.createdat,
       owner: entity.owner,
       barcode: entity.barcode,
@@ -129,11 +133,20 @@ extension ProductMapper on Product {
       syncstate: entity.syncstate,
       ubicacion: entity.ubicacion,
       bodega: entity.bodega,
-      isdemo: entity.isdemo, // 👈 agregado
+      isdemo: entity.isdemo,
+      expiryDate: entity.expiryDate,
+      unit: entity.unit,
+      taxRate: entity.taxRate,
+      status: entity.status,
+      supplier: entity.supplier,
+      averageCost: entity.averageCost,
+      aisle: entity.aisle,
+      shelf: entity.shelf,
+      description: entity.description,
     );
   }
 
-  /// Convierte Product a ProductsCompanion con nullToAbsent
+  /// Companion con nullToAbsent
   ProductsCompanion toCompanion(bool nullToAbsent) {
     return ProductsCompanion(
       id: id == null ? const Value.absent() : Value(id!),
@@ -142,7 +155,8 @@ extension ProductMapper on Product {
       name: name == null ? const Value.absent() : Value(name!),
       image: image == null ? const Value.absent() : Value(image!),
       stock: stock == null ? const Value.absent() : Value(stock!),
-      price: Value(price),
+      price: price == null ? const Value.absent() : Value(price!),
+      purchaseprice: purchaseprice == null ? const Value.absent() : Value(purchaseprice!),
       createdat: createdat == null ? const Value.absent() : Value(createdat!),
       owner: owner == null ? const Value.absent() : Value(owner!),
       barcode: barcode == null ? const Value.absent() : Value(barcode!),
@@ -154,7 +168,16 @@ extension ProductMapper on Product {
       syncstatus: Value(syncstatus ?? false),
       lastsyncedat: lastsyncedat == null ? const Value.absent() : Value(lastsyncedat!),
       syncstate: Value(syncstate ?? ""),
-      isdemo: Value(isdemo ?? false), // 👈 agregado
+      isdemo: Value(isdemo ?? false),
+      expiryDate: expiryDate == null ? const Value.absent() : Value(expiryDate!),
+      unit: unit == null ? const Value.absent() : Value(unit!),
+      taxRate: taxRate == null ? const Value.absent() : Value(taxRate!),
+      status: status == null ? const Value.absent() : Value(status!),
+      supplier: supplier == null ? const Value.absent() : Value(supplier!),
+      averageCost: averageCost == null ? const Value.absent() : Value(averageCost!),
+      aisle: aisle == null ? const Value.absent() : Value(aisle!),
+      shelf: shelf == null ? const Value.absent() : Value(shelf!),
+      description: description == null ? const Value.absent() : Value(description!),
     );
   }
 }

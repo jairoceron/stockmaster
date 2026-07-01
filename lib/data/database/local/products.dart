@@ -12,8 +12,7 @@ class Products extends Table {
   IntColumn get stock => integer().nullable()();
   RealColumn get price => real().nullable()();
 
-  /// 🔹 Nuevo campo: precio de compra
-  RealColumn get purchaseprice => real().nullable()();
+
 
   TextColumn get owner => text().nullable()();
   TextColumn get barcode => text().nullable()();
@@ -45,6 +44,8 @@ class Products extends Table {
   TextColumn get aisle => text().nullable()();
   TextColumn get shelf => text().nullable()();
   TextColumn get description => text().nullable()();
+  /// 🔹 Nuevo campo: precio de compra
+  RealColumn get purchaseprice => real().nullable()();
 
   @override
   Set<Column> get primaryKey => {id}; // 👈 define la PK

@@ -1,116 +1,35 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
-import '../data/database/local/product_dao.dart';
+import 'package:stockmaster/data/repositories/product_image_repository.dart';
+import '../helpers/product_photo_helper.dart';
+import '../helpers/stock_master_image_viewer_helper.dart';
 import '../models/product.dart';
+import '../models/image_stockmaster.dart'; // 🔹 Import del modelo
 import '../controllers/inventory_controller.dart';
 import '../state/inventory_notifier.dart';
+import '../providers/inventory_type_provider.dart';
+import '../domain/strategies/menu_strategy_factory.dart';
+import '../screens/lots/product_lot_form_screen.dart';
+import '../data/database/local/product_dao.dart';
 
-class ProductListItem extends StatefulWidget {
+
+class ProductCardItem extends StatefulWidget {
   final Product product;
   final InventoryController controller;
 
-  const ProductListItem({
+  const ProductCardItem({
     Key? key,
     required this.product,
     required this.controller,
   }) : super(key: key);
 
   @override
-  State<ProductListItem> createState() => _ProductListItemState();
+  State<ProductCardItem> createState() => _ProductCardItemState();
 }
 
-class _ProductListItemState extends State<ProductListItem> {
-  final ImagePicker _picker = ImagePicker();
+class _ProductCardItemState extends State<ProductCardItem> {
   bool _loadingImage = false;
-
-  /// Seleccionar foto desde cámara o galería
-  Future<void> _seleccionarFoto(Product product) async {
-    try {
-      final opcion = await showModalBottomSheet<ImageSource>(
-        context: context,
-        builder: (ctx) => Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ListTile(
-              leading: const Icon(Icons.camera_alt),
-              title: const Text('Tomar foto'),
-              onTap: () => Navigator.pop(ctx, ImageSource.camera),
-            ),
-            ListTile(
-              leading: const Icon(Icons.photo_library),
-              title: const Text('Cargar desde galería'),
-              onTap: () => Navigator.pop(ctx, ImageSource.gallery),
-            ),
-          ],
-        ),
-      );
-
-      if (opcion == null) return;
-
-      setState(() => _loadingImage = true);
-
-      final XFile? xfile = await ImagePicker().pickImage(
-        source: opcion,
-        imageQuality: 90,
-      );
-
-      if (xfile == null) {
-        setState(() => _loadingImage = false);
-        return;
-      }
-
-      final appDir = await getApplicationDocumentsDirectory();
-      final newPath = '${appDir.path}/${product.id}_image.jpg';
-      final savedFile = await File(xfile.path).copy(newPath);
-
-      // 🔹 Crear miniatura optimizada
-      final thumbPath = '${appDir.path}/${product.id}_thumb.jpg';
-      final thumbFile = await File(xfile.path).copy(thumbPath);
-
-      setState(() {
-        product.image = thumbFile.path; // usar miniatura en la lista
-        _loadingImage = false;
-      });
-
-      final dao = context.read<ProductDao>();
-      await dao.updateProductImage(product.id!, thumbFile.path);
-
-    } on PlatformException {
-      setState(() => _loadingImage = false);
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("No se pudo acceder a la cámara/galería")),
-      );
-    } on FileSystemException {
-      setState(() => _loadingImage = false);
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Error al guardar la foto")),
-      );
-    }
-  }
-
-  /// Resolver imagen desde ruta (assets o filesystem)
-  ImageProvider? _resolverImagen(String? imagePath) {
-    if (imagePath == null || imagePath.isEmpty) return null;
-
-    // Caso 1: assets declarados en pubspec.yaml
-    if (imagePath.startsWith("assets/")) {
-      return AssetImage(imagePath);
-    }
-
-    // Caso 2: archivos locales en el filesystem
-    final file = File(imagePath);
-    if (file.existsSync()) {
-      return FileImage(file);
-    }
-
-    // Si no existe, devolver null
-    return null;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -124,7 +43,17 @@ class _ProductListItemState extends State<ProductListItem> {
       decimalDigits: 0,
     );
 
-    final resolvedImage = _resolverImagen(p.image);
+    final inventoryType = context.watch<InventoryTypeProvider>().inventoryType;
+    final strategy = MenuStrategyFactory.getStrategy(inventoryType);
+
+    final imageStockmaster = ImageStockmaster(
+      id: p.id,
+      path: p.image ?? '',
+      ownerType: 'product',
+      ownerId: p.id ?? '',
+      thumbnailPath: null,
+      createdAt: DateTime.now(),
+    );
 
     return Card(
       margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
@@ -132,43 +61,43 @@ class _ProductListItemState extends State<ProductListItem> {
         padding: const EdgeInsets.all(12),
         child: Row(
           children: [
-            // Columna 1: Imagen (20%)
+            // Columna 1: Imagen
             Expanded(
               flex: 2,
-              child: GestureDetector(
-                onTap: () => _seleccionarFoto(p),
-                child: Container(
-                  height: 120,
-                  decoration: BoxDecoration(
-                    color: Colors.blue.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: _loadingImage
-                      ? const Center(child: CircularProgressIndicator())
-                      : (p.image == null || p.image!.isEmpty || resolvedImage == null)
-                      ? const Icon(Icons.inventory_2_outlined, size: 40)
-                      : ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
-                    child: Image(
-                      image: resolvedImage,
-                      height: 120,
-                      width: double.infinity,
-                      fit: BoxFit.contain, // 👈 escala perfectamente
-                    ),
-                  ),
-                ),
+              child: StockMasterImageViewerHelper.buildImage(
+                context: context,
+                imagePath: imageStockmaster.path,
+                loading: _loadingImage,
+                onTap: () async {
+                  final path = await ProductPhotoHelper.seleccionarFoto(
+                    context,
+                    imageStockmaster,
+                        (loading) => setState(() => _loadingImage = loading),
+                  );
+
+                  if (path != null) {
+                    setState(() {
+                      p.image = path;
+                    });
+
+                    // 🔹 Actualizar en BD usando el repositorio
+                    final dao = context.read<ProductDao>();
+                    final repo = ProductImageRepository(dao);
+                    await repo.updateProductImage(p.id!, path);
+                  }
+                },
               ),
             ),
 
             const SizedBox(width: 8),
 
-            // Columna 2: Grilla con 4 filas (80%)
+            // Columna 2: Info del producto
             Expanded(
               flex: 8,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Fila 1: Nombre + DEMO (si aplica)
+                  // Nombre + DEMO
                   Row(
                     children: [
                       Expanded(
@@ -180,8 +109,7 @@ class _ProductListItemState extends State<ProductListItem> {
                       ),
                       if (p.isdemo == true)
                         Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 8, vertical: 4),
+                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                           decoration: BoxDecoration(
                             color: Colors.red,
                             borderRadius: BorderRadius.circular(4),
@@ -198,7 +126,7 @@ class _ProductListItemState extends State<ProductListItem> {
                   ),
                   const SizedBox(height: 0.5),
 
-                  // Fila 2: Precio + botón aumentar + menú contextual
+                  // Precio + botones
                   Row(
                     children: [
                       IconButton(
@@ -232,39 +160,32 @@ class _ProductListItemState extends State<ProductListItem> {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(content: Text('${p.name} eliminado')),
                             );
+                          } else if (value == 'lot') {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => const ProductLotFormScreen(
+                                  productLot: null,
+                                ),
+                              ),
+                            );
                           }
                         },
-                        itemBuilder: (context) => [
-                          const PopupMenuItem(
-                            value: 'edit',
-                            child: ListTile(
-                              leading: Icon(Icons.edit, color: Colors.blue),
-                              title: Text('Editar'),
-                            ),
-                          ),
-                          const PopupMenuItem(
-                            value: 'delete',
-                            child: ListTile(
-                              leading: Icon(Icons.delete, color: Colors.red),
-                              title: Text('Eliminar'),
-                            ),
-                          ),
-                        ],
+                        itemBuilder: (context) =>
+                            strategy.buildMenu(p, widget.controller, context),
                       ),
                     ],
                   ),
                   const SizedBox(height: 0.5),
 
-                  // Raya divisoria
                   Container(
                     height: 1,
                     color: Colors.black26,
                     margin: const EdgeInsets.symmetric(vertical: 4),
                   ),
 
-                  // Fila 3: Stock + botón disminuir
+                  // Stock + botón disminuir
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       IconButton(
                         iconSize: 32,

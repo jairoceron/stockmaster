@@ -1,15 +1,17 @@
+// lib/screens/inventory_list_screen.dart
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:stockmaster/screens/InventoryAppBar.dart';
 import 'package:stockmaster/screens/product_form.dart';
 import '../models/user.dart';
 import '../services/subscription_service.dart';
 import '../state/inventory_notifier.dart';
-import 'product_search_bar.dart';
 import 'inventory_filter_sheet.dart';
 import 'empty_state_widget.dart';
 import 'inventory_list_view.dart';
 import 'package:hugeicons/hugeicons.dart';
 import '/utils/decode_token.dart';
+
 
 class InventoryListScreen extends StatefulWidget {
   final AppUser user;
@@ -38,16 +40,15 @@ class _InventoryListScreenState extends State<InventoryListScreen> {
   @override
   Widget build(BuildContext context) {
     final provider = context.watch<InventoryNotifier>();
-    debugPrint("\n\n InventoryListScreen() +++++ EStoy indagando de donde sale el problema ${provider.products} \n\n");
 
     return Scaffold(
-      body: Column(
-        children: [
-          // Barra de búsqueda
-          ProductSearchBar(onSearch: provider.searchProducts),
+      body: CustomScrollView(
+        slivers: [
+          // 🔹 AppBar reutilizable
+          const InventoryAppBar(),
 
-          // Lista o estado vacío
-          Expanded(
+          // 🔹 Lista o estado vacío
+          SliverFillRemaining(
             child: provider.products.isEmpty
                 ? EmptyStateWidget(onClearFilters: provider.clearFilters)
                 : InventoryListView(
@@ -57,6 +58,8 @@ class _InventoryListScreenState extends State<InventoryListScreen> {
           ),
         ],
       ),
+
+      // 🔹 Botón flotante para agregar producto
       floatingActionButton: FloatingActionButton(
         heroTag: "fab_inventory", // 👈 único
         onPressed: () {
@@ -70,13 +73,13 @@ class _InventoryListScreenState extends State<InventoryListScreen> {
                 ),
                 body: const Padding(
                   padding: EdgeInsets.all(16.0),
-                  child: ProductForm(), // 👈 ahora no necesita parámetros
+                  child: ProductForm(),
                 ),
               ),
             ),
           );
         },
-        backgroundColor: const Color(0xFFFFF176), // amarillo pollito
+        backgroundColor: const Color(0xFFFFF176),
         elevation: 6,
         child: HugeIcon(
           icon: HugeIcons.strokeRoundedAddSquare,
@@ -86,7 +89,6 @@ class _InventoryListScreenState extends State<InventoryListScreen> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-
     );
   }
 }

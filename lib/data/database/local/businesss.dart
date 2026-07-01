@@ -16,6 +16,7 @@ class Businesss extends Table {
   TextColumn get longitud => text().nullable()();
   TextColumn get acteconomica => text().nullable()();
   TextColumn get celular => text().nullable()();
+  TextColumn get typeinventory => text().nullable()();
 
   // createdat como DateTime con valor por defecto
   DateTimeColumn get createdat =>

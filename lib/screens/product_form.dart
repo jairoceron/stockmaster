@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show FilteringTextInputFormatter;
 import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:stockmaster/data/database/local/business_dao.dart';
+import 'package:stockmaster/providers/BusinessProvider.dart';
+import 'package:stockmaster/providers/inventory_type_provider.dart';
 import 'package:stockmaster/state/attribute_notifier.dart';
 import 'package:stockmaster/state/inventory_notifier.dart';
 import '../models/product.dart';
@@ -30,12 +33,43 @@ class _ProductFormState extends State<ProductForm> {
   void initState() {
     super.initState();
     final notifier = context.read<AttributeNotifier>();
-    notifier.loadAttributesForClient("Salsamentaria");
+    var selectedType = context.read<InventoryTypeProvider>().inventoryType;
 
-    for (var attr in notifier.clientAttributes) {
-      _attributeControllers[attr.fieldName] = TextEditingController();
+    if (selectedType == null || selectedType.isEmpty) {
+      debugPrint("⚠️ InventoryTypeProvider está vacío, leyendo Business...");
+      final businessDao = context.read<BusinessDao>();
+
+      businessDao.getFirstBusiness().then((business) {
+        if (business != null) {
+          String? selectedType = context.read<InventoryTypeProvider>().inventoryType;
+
+          if (selectedType == null || selectedType.isEmpty) {
+            final businessDao = context.read<BusinessDao>();
+            businessDao.getFirstBusiness().then((business) {
+              if (business != null && business.typeinventory != null) {
+                selectedType = business.typeinventory; // ✅ ahora no da error
+                context.read<InventoryTypeProvider>().setInventoryType(selectedType!);
+                notifier.loadAttributesForClient(selectedType!);
+              }
+            });
+          } else {
+            notifier.loadAttributesForClient(selectedType);
+          }
+          // actualizar provider
+          context.read<InventoryTypeProvider>().setInventoryType(selectedType!);
+          // opcional: guardar todo el negocio en BusinessProvider
+          context.read<BusinessProvider>().setBusiness(business);
+
+          notifier.loadAttributesForClient(selectedType!);
+          debugPrint("*** ProductForm cargó atributos desde Business: $selectedType");
+        }
+      });
+    } else {
+      notifier.loadAttributesForClient(selectedType);
+      debugPrint("*** ProductForm cargó atributos desde InventoryTypeProvider: $selectedType");
     }
   }
+
 
   @override
   void dispose() {
@@ -67,7 +101,7 @@ class _ProductFormState extends State<ProductForm> {
 
   void _saveProduct(BuildContext context, AttributeNotifier attributeNotifier) {
     final tenantid = context.read<UserProvider>().user.tenantid;
-    debugPrint("\n\n Este es el $tenantid  de la empresa   \n\n");
+    debugPrint("\n\n Este es el $tenantid de la empresa \n\n");
 
     var stock = int.tryParse(_stockController.text.trim()) ?? 100;
     if (stock < 0) stock = 100;
@@ -194,6 +228,7 @@ class _ProductFormState extends State<ProductForm> {
           ),
         ];
 
+        // 🔧 Aquí inicializamos los controladores dinámicos en el builder
         final dynamicSteps = attributeNotifier.clientAttributes.map((attr) {
           _attributeControllers.putIfAbsent(attr.fieldName, () => TextEditingController());
           return _buildStep(
@@ -253,8 +288,7 @@ class _ProductFormState extends State<ProductForm> {
                         )
                       else
                         ElevatedButton.icon(
-                          onPressed: () =>
-                              _saveProduct(context, attributeNotifier),
+                          onPressed: () => _saveProduct(context, attributeNotifier),
                           icon: const Icon(Icons.check),
                           label: Text("form.buttons.save".tr()),
                           style: ElevatedButton.styleFrom(
@@ -281,7 +315,7 @@ class _ProductFormState extends State<ProductForm> {
           style: const TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
-            color: Colors.black87,
+            color:Colors.black87,
           ),
         ),
         const SizedBox(height: 12),

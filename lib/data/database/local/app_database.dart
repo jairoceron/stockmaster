@@ -4,19 +4,34 @@ import 'package:drift/native.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 
+
 import 'package:stockmaster/data/database/local/cart_groups_dao.dart';
 import 'package:stockmaster/data/database/local/client_attributes.dart';
 import 'package:stockmaster/data/database/local/client_attributes_dao.dart';
+import 'package:stockmaster/data/database/local/images_stockmaster.dart';
+import 'package:stockmaster/data/database/local/images_stockmaster_dao.dart';
+import 'package:stockmaster/data/database/local/items.dart';
+import 'package:stockmaster/data/database/local/items_dao.dart';
 import 'package:stockmaster/data/database/local/product-attributes.dart';
 import 'package:stockmaster/data/database/local/product_attributes_dao.dart';
 import 'package:stockmaster/data/database/local/product_dao.dart';
+import 'package:stockmaster/data/database/local/product_lots.dart';
+import 'package:stockmaster/data/database/local/product_lots_dao.dart';
+import 'package:stockmaster/data/database/local/services_dao.dart';
+import 'package:stockmaster/data/database/local/third_parts.dart';
+import 'package:stockmaster/data/database/local/third_parts_dao.dart';
 import 'package:stockmaster/data/database/local/transaction_dao.dart';
+import 'package:stockmaster/data/database/local/type_inventories.dart';
+import 'package:stockmaster/data/database/local/type_inventories_dao.dart';
 import 'package:stockmaster/data/database/local/users.dart';
 import 'package:stockmaster/data/database/local/users_dao.dart';
 
 import '../../../helpers/uuid_helper.dart';
+import '../../seed/client_attribute_seeder.dart';
+import '../../seed/type_inventory_seeder.dart';
 import 'business_dao.dart';
 import 'businesss.dart';
+import 'services.dart';
 import 'cart_groups.dart';
 import 'products.dart';
 import 'transactions.dart';
@@ -32,6 +47,12 @@ part 'app_database.g.dart';
     Users,
     ClientAttributes,
     ProductAttributes,
+    TypeInventories,
+    ProductLots,
+    ThirdParts,
+    ImagesStockmaster,
+    Services,
+    Items
   ],
   daos: [
     ProductDao,
@@ -41,6 +62,12 @@ part 'app_database.g.dart';
     UsersDao,
     ClientAttributesDao,
     ProductAttributesDao,
+    TypeInventoriesDao,
+    ProductLotsDao,
+    ThirdPartsDao,
+    ImagesStockmasterDao,
+    ServicesDao,
+    ItemsDao
   ],
 )
 class AppDatabase extends _$AppDatabase {
@@ -57,6 +84,17 @@ class AppDatabase extends _$AppDatabase {
       print('\n\n >>>>>>>>> Creando todas las tablas en onCreate() \n\n');
       await m.createAll();
       print('\n\n >>>>>>>>> Tablas creadas correctamente \n\n');
+      final typeInventoriesDao = TypeInventoriesDao(this);
+      final seeder = TypeInventoriesSeeder(typeInventoriesDao);
+      await seeder.seed();
+
+      // 👇 Inicializar el DAO de atributos
+      final clientAttributesDao = ClientAttributesDao(this);
+      final attrSeeder = ClientAttributeSeeder(clientAttributesDao);
+
+// 👇 Poblar atributos de Droguería/Naturistas
+      await attrSeeder.seedCategoriesAttributes();
+
 
       // 👇 Si quieres insertar datos iniciales:
       // await into(products).insert(ProductsCompanion.insert(
