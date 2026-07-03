@@ -17,6 +17,11 @@ import 'package:stockmaster/data/database/local/product_attributes_dao.dart';
 import 'package:stockmaster/data/database/local/product_dao.dart';
 import 'package:stockmaster/data/database/local/product_lots.dart';
 import 'package:stockmaster/data/database/local/product_lots_dao.dart';
+import 'package:stockmaster/data/database/local/sale_items.dart';
+
+import 'package:stockmaster/data/database/local/sale_items_dao.dart';
+import 'package:stockmaster/data/database/local/sales.dart';
+import 'package:stockmaster/data/database/local/sales_dao.dart';
 import 'package:stockmaster/data/database/local/services_dao.dart';
 import 'package:stockmaster/data/database/local/third_parts.dart';
 import 'package:stockmaster/data/database/local/third_parts_dao.dart';
@@ -25,6 +30,7 @@ import 'package:stockmaster/data/database/local/type_inventories.dart';
 import 'package:stockmaster/data/database/local/type_inventories_dao.dart';
 import 'package:stockmaster/data/database/local/users.dart';
 import 'package:stockmaster/data/database/local/users_dao.dart';
+import 'package:stockmaster/data/seed/services_seeder.dart';
 
 import '../../../helpers/uuid_helper.dart';
 import '../../seed/client_attribute_seeder.dart';
@@ -52,7 +58,9 @@ part 'app_database.g.dart';
     ThirdParts,
     ImagesStockmaster,
     Services,
-    Items
+    Items,
+    SaleItems,
+    Sales
   ],
   daos: [
     ProductDao,
@@ -67,7 +75,9 @@ part 'app_database.g.dart';
     ThirdPartsDao,
     ImagesStockmasterDao,
     ServicesDao,
-    ItemsDao
+    ItemsDao,
+    SaleItemsDao,
+    SalesDao
   ],
 )
 class AppDatabase extends _$AppDatabase {
@@ -87,6 +97,12 @@ class AppDatabase extends _$AppDatabase {
       final typeInventoriesDao = TypeInventoriesDao(this);
       final seeder = TypeInventoriesSeeder(typeInventoriesDao);
       await seeder.seed();
+
+      // Inicializar tabla de servicios si está vacía
+    //  final seederServices = ServicesSeeder(servicesDao);
+    //  await seederServices.seedServicesIfEmpty();
+//66666
+
 
       // 👇 Inicializar el DAO de atributos
       final clientAttributesDao = ClientAttributesDao(this);

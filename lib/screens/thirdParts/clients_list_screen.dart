@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:provider/provider.dart' as provider;
 import 'package:stockmaster/providers/image_stockmaster_provider.dart';
 import 'package:stockmaster/screens/thirdParts/client_list_item.dart';
 import '/providers/third_parts_providers.dart';
 import 'client_detail_screen.dart';
 import 'client_form_screen.dart';
 import '/data/database/local/third_part_mapper.dart';
+import 'package:stockmaster/data/database/local/services_dao.dart';
 
 class ClientsListScreen extends ConsumerStatefulWidget {
   const ClientsListScreen({super.key});
@@ -21,6 +23,9 @@ class _ClientsListScreenState extends ConsumerState<ClientsListScreen> {
   Widget build(BuildContext context) {
     final entities = ref.watch(thirdPartsNotifierProvider);
     final clients = entities.map((e) => e.toModel()).toList();
+
+    // ✅ obtenemos el ServicesDao desde el provider global
+    final servicesDao = provider.Provider.of<ServicesDao>(context, listen: false);
 
     return Scaffold(
       appBar: AppBar(title: const Text("Terceros")),
@@ -44,9 +49,15 @@ class _ClientsListScreenState extends ConsumerState<ClientsListScreen> {
               );
             },
             onTapDetail: () {
+              final clienteSeleccionado = c.toEntity();
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (_) => ClientDetailScreen(entity: c.toEntity())),
+                MaterialPageRoute(
+                  builder: (_) => ClientDetailScreen(
+                    entity: clienteSeleccionado,
+                    servicesDao: servicesDao, // ✅ pasamos el DAO requerido
+                  ),
+                ),
               );
             },
             onImageSelected: (path) async {
@@ -59,7 +70,6 @@ class _ClientsListScreenState extends ConsumerState<ClientsListScreen> {
               setState(() => _loadingImage = loading);
             },
           );
-
         },
       ),
       floatingActionButton: FloatingActionButton(

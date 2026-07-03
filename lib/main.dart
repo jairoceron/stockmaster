@@ -28,6 +28,7 @@ import 'data/database/local/business_dao.dart';
 import 'data/database/local/client_attributes_dao.dart';
 import 'data/database/local/product_dao.dart';
 import 'data/database/local/product_lots_dao.dart';
+import 'data/database/local/third_parts_dao.dart';
 import 'data/database/local/transaction_dao.dart';
 import 'data/database/local/type_inventories_dao.dart';
 import 'data/repositories/service/ReportService.dart';
@@ -37,6 +38,8 @@ import 'data/repositories/transaction-service.dart';
 import 'data/seed/DatabaseInitializer.dart';
 import 'data/repositories/product_repository.dart';
 import 'data/seed/InventoryInitializer.dart';
+import 'data/seed/services_seeder.dart';
+import 'data/seed/third_parts_seeder.dart';
 import 'data/seed/type_inventory_seeder.dart';
 import 'providers/user_provider.dart';
 import 'providers/inventory_provider.dart';
@@ -69,6 +72,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'data/database/local/services_dao.dart';
 import 'data/repositories/services_repository.dart';
 
+// 👇 Importación de SalesDao y SaleItemsDao
+import 'data/database/local/sales_dao.dart';
+import 'data/database/local/sale_items_dao.dart';
 
 Future<void> initDatabase() async {
   // tu lógica de initDatabase
@@ -122,6 +128,16 @@ Future<void> main() async {
   );
 
   await initCompany.initSession();
+  final servicesDao = ServicesDao(db);
+  // Inicializar tabla de servicios si está vacía
+  final seeder = ServicesSeeder(servicesDao);
+  await seeder.seedServicesIfEmpty();
+
+  final thirdPartsDao = ThirdPartsDao(db);
+
+  // Inicializar tabla de clientes si está vacía
+  final seederThirdPart = ThirdPartsSeeder(thirdPartsDao);
+  await seederThirdPart.seedClientsIfEmpty();
 
   final reportNotifier = ReportNotifier(TransactionService(TransactionDao(db)));
 
@@ -155,6 +171,14 @@ Future<void> main() async {
                   context.read<ServicesRepository>(),
                 ),
               ),
+              // 👇 Nuevo provider para SalesDao
+              provider.Provider<SalesDao>(create: (_) => SalesDao(db)),
+              // 👇 Nuevo provider para SaleItemsDao
+              provider.Provider<SaleItemsDao>(create: (_) => SaleItemsDao(db)),
+
+              // ⚠️ SalesNotifier NO se inicializa aquí porque requiere un cliente específico.
+              // Se debe crear en ClientDetailScreen con el ThirdPartEntity correspondiente.
+
               provider.Provider<ProductRepository>(
                 create: (context) {
                   final user = provider.Provider.of<UserProvider>(context, listen: false).user;

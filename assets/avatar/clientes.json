@@ -1,0 +1,28 @@
+[
+  {
+    "name": "Olga Lucía Lopez",
+    "phone": 3001472356,
+    "imageUrl": "assets/avatar/avatar_00.png"
+  },
+  {
+    "name": "Carlos Alberto Cardenas",
+    "phone": 3001474126,
+    "imageUrl": "assets/avatar/avatar_01.png"
+  },
+  
+  {
+    "name": "Daniela Duarte",
+    "phone": 3004122356,
+    "imageUrl": "assets/avatar/avatar_03.png"
+  },
+  {
+    "name": "Rene Dionisio Diaz",
+    "phone": 3001789656,
+    "imageUrl": "assets/avatar/avatar_04.png"
+  },
+  {
+    "name": "Viviana Andrea Rojas",
+    "phone": 3001745656,
+    "imageUrl": "assets/avatar/avatar_02.png"
+  }
+]

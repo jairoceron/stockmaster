@@ -155,6 +155,18 @@ flutter:
     - assets/images/ferreteria.png
     - assets/fonts/Poppins-Regular.ttf
     - assets/fonts/Poppins-Bold.ttf
+    - assets/servicios/servicios.json
+    - assets/servicios/corte.png
+    - assets/servicios/coloracion.png
+    - assets/servicios/peinado.png
+    - assets/servicios/tratamiento.png
+    - assets/servicios/secado.png
+    - assets/avatar/clientes.json
+    - assets/avatar/avatar_00.png
+    - assets/avatar/avatar_01.png
+    - assets/avatar/avatar_02.png
+    - assets/avatar/avatar_03.png
+    - assets/avatar/avatar_04.png
 
 
     # - assets/images/zapatosHombre_01.png

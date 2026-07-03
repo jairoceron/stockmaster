@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Corte de cabello",
+    "price": 25000,
+    "image": "assets/servicios/corte.png"
+  },
+  {
+    "name": "Coloración",
+    "price": 80000,
+    "image": "assets/servicios/coloracion.png"
+  },
+  {
+    "name": "Peinados y recogidos",
+    "price": 40000,
+    "image": "assets/servicios/peinado.png"
+  },
+  {
+    "name": "Tratamientos capilares",
+    "price": 125000,
+    "image": "assets/servicios/tratamiento.png"
+  },
+  {
+    "name": "Lavado y secado (brushing)",
+    "price": 42000,
+    "image": "assets/servicios/secado.png"
+  }
+]

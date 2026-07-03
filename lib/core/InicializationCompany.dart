@@ -101,6 +101,9 @@ class InicializationCompany {
 
     debugPrint("\n\n UserProvider tenantId: ${userProvider.user?.tenantid} \n\n");
     debugPrint("\n\n BusinessProvider business: ${businessProvider.business} \n\n");
+
+
+
   }
 
 
