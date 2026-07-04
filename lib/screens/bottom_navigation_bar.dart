@@ -42,7 +42,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
     if (Platform.isAndroid || Platform.isIOS) {
       // 🔹 Crear y cargar el banner
       _bannerAd = BannerAd(
-        adUnitId: 'ca-app-pub-3940256099942544/6300978111', // 👈 ID de prueba
+        // adUnitId: 'ca-app-pub-3940256099942544/6300978111', // 👈 ID de prueba
+        adUnitId: 'ca-app-pub-8652653002656806/9450066870',
         size: AdSize.banner, // altura ~50px
         request: const AdRequest(),
         listener: BannerAdListener(

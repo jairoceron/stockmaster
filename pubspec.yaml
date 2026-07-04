@@ -167,6 +167,11 @@ flutter:
     - assets/avatar/avatar_02.png
     - assets/avatar/avatar_03.png
     - assets/avatar/avatar_04.png
+    - assets/menu/carrito.png
+    - assets/menu/clientes.png
+    - assets/menu/inventario.png
+    - assets/menu/reporte.png
+    - assets/menu/servicios.png
 
 
     # - assets/images/zapatosHombre_01.png
