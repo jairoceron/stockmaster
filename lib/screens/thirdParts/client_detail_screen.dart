@@ -7,7 +7,7 @@ import 'package:stockmaster/data/database/local/services_dao.dart';
 import 'package:stockmaster/data/database/local/sales_dao.dart';
 import 'package:stockmaster/data/database/local/sale_items_dao.dart';
 import 'package:provider/provider.dart';
-import '../../providers/sales_notifies.dart';
+import '../../providers/sales_notifier.dart';
 
 class ClientDetailScreen extends StatelessWidget {
   final ThirdPartEntity entity;

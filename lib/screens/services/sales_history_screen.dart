@@ -4,7 +4,7 @@ import 'package:stockmaster/data/database/local/sales_dao.dart';
 import 'package:stockmaster/data/database/local/sale_items_dao.dart';
 import 'package:stockmaster/data/database/local/services_dao.dart';
 import '../../data/database/local/app_database.dart';
-import '../../providers/sales_notifies.dart';
+import '../../providers/sales_notifier.dart';
 import '/data/database/local/third_parts.dart';
 
 import 'package:flutter/material.dart';

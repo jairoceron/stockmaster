@@ -5,6 +5,13 @@ import 'package:stockmaster/data/database/local/services_dao.dart';
 import '../data/database/local/app_database.dart';
 import '/data/database/local/third_parts.dart';
 
+import 'package:flutter/material.dart';
+import 'package:stockmaster/data/database/local/sales_dao.dart';
+import 'package:stockmaster/data/database/local/sale_items_dao.dart';
+import 'package:stockmaster/data/database/local/services_dao.dart';
+import '../data/database/local/app_database.dart';
+import '/data/database/local/third_parts.dart';
+
 class SalesNotifier extends ChangeNotifier {
   final SalesDao salesDao;
   final SaleItemsDao saleItemsDao;
@@ -62,8 +69,49 @@ class SalesNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// Refresca el historial desde la base de datos
+  /// Refresca el historial desde la base de datos (por cliente actual)
   Future<void> refreshHistory() async {
     await _loadHistory();
+  }
+
+  /// 🔹 Carga TODAS las ventas de la BD (con sale_items y services)
+  Future<void> loadAllSales() async {
+    final sales = await salesDao.getAllSales();
+    sales.sort((a, b) => b.date.compareTo(a.date));
+
+    final List<Map<String, dynamic>> history = [];
+    for (final sale in sales) {
+      final items = await saleItemsDao.getItemsBySale(sale.id);
+      for (final item in items) {
+        final service = await servicesDao.getServiceById(item.serviceId);
+        history.add({
+          'date': sale.date,
+          'serviceName': service?.name ?? 'Servicio',
+          'price': item.subtotal,
+          'saleId': sale.id,
+        });
+      }
+    }
+    _history = history;
+    notifyListeners();
+  }
+
+  /// 🔹 Nuevo método: carga TODAS las ventas directamente de la tabla sales
+  /// útil para ventas rápidas que no tienen sale_items
+  Future<void> loadSalesDirect() async {
+    final sales = await salesDao.getAllSales();
+    sales.sort((a, b) => b.date.compareTo(a.date));
+
+    final List<Map<String, dynamic>> history = [];
+    for (final sale in sales) {
+      history.add({
+        'date': sale.date,
+        'serviceName': 'Venta rápida', // etiqueta fija
+        'price': sale.totalAmount ?? 0,
+        'saleId': sale.id,
+      });
+    }
+    _history = history;
+    notifyListeners();
   }
 }

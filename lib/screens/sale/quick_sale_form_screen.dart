@@ -7,11 +7,14 @@ import 'package:drift/drift.dart' as drift;
 import 'package:stockmaster/data/database/local/app_database.dart';
 import 'package:stockmaster/data/database/local/sales.dart';
 import 'package:stockmaster/data/database/local/sales_dao.dart';
+import 'package:stockmaster/data/database/local/sale_items_dao.dart';
+import 'package:stockmaster/data/database/local/services_dao.dart';
+import '../../providers/sales_notifier.dart';
 import '/helpers/uuid_helper.dart';
 import '/state/third_parts_notifier.dart';
 import '/providers/third_parts_providers.dart';
 import '/data/database/local/third_parts.dart';
-import 'sale_confirmation_screen.dart'; // 👈 Importa tu pantalla de confirmación
+
 
 class QuickSaleFormScreen extends StatefulWidget {
   const QuickSaleFormScreen({Key? key}) : super(key: key);
@@ -24,7 +27,7 @@ class _QuickSaleFormScreenState extends State<QuickSaleFormScreen> {
   final _formKey = GlobalKey<FormBuilderState>();
   final List<String> paymentMethods = ['Efectivo', 'Tarjeta', 'Nequi'];
 
-  /// Método helper para guardar la venta en la tabla sales
+  /// Método helper para guardar la venta en la tabla sales y actualizar el notifier
   Future<void> _saveSale(Map<String, dynamic> data) async {
     final salesDao = provider.Provider.of<SalesDao>(context, listen: false);
 
@@ -37,6 +40,15 @@ class _QuickSaleFormScreenState extends State<QuickSaleFormScreen> {
     );
 
     await salesDao.insertSale(sale);
+
+    // 🔹 Actualizamos el SalesNotifier si está disponible en el árbol de widgets
+    final salesNotifier = provider.Provider.of<SalesNotifier>(context, listen: false);
+    await salesNotifier.addSaleRecord({
+      'date': DateTime.now(),
+      'serviceName': 'Venta rápida',
+      'price': double.parse(data['total']),
+      'saleId': sale.id.value,
+    });
 
     // Notificación moderna
     ScaffoldMessenger.of(context).showSnackBar(
@@ -52,17 +64,10 @@ class _QuickSaleFormScreenState extends State<QuickSaleFormScreen> {
       ),
     );
 
-    // 👇 Navegación hacia pantalla de confirmación
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (_) => SaleConfirmationScreen(
-          total: double.parse(data['total']),
-          paymentMethod: data['metodo_pago'],
-          date: DateTime.now(),
-        ),
-      ),
-    );
+    // 👇 Retornar a la pantalla que llamó después de un pequeño delay
+    Future.delayed(const Duration(seconds: 2), () {
+      Navigator.pop(context, true); // retornamos true para indicar éxito
+    });
   }
 
   @override
