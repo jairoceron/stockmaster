@@ -6,16 +6,6 @@ import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:stockmaster/models/image_stockmaster.dart';
 
-import '../data/database/local/product_dao.dart';
-import '../models/product.dart';
-
-import 'dart:io';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:stockmaster/models/image_stockmaster.dart';
-
 class ProductPhotoHelper {
   static final ImagePicker _picker = ImagePicker();
 

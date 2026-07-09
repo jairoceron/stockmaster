@@ -16,10 +16,10 @@ class _SalesScreenState extends State<SalesScreen> {
   @override
   void initState() {
     super.initState();
-    // 🔹 Forzar carga inicial de TODAS las ventas directamente desde la tabla sales
+    // 🔹 Forzar carga inicial de TODAS las ventas con join hacia clientes
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final notifier = provider.Provider.of<SalesNotifier>(context, listen: false);
-      notifier.loadSalesDirect(); // 👈 ahora usa el método directo
+      notifier.loadSalesDirectWithClients(); // 👈 ahora usa el método con join
     });
   }
 
@@ -27,11 +27,10 @@ class _SalesScreenState extends State<SalesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // 🔹 Flecha de retroceso
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pop(context); // Retorna a la pantalla anterior
+            Navigator.pop(context);
           },
         ),
         title: Text(
@@ -115,14 +114,14 @@ class _SalesScreenState extends State<SalesScreen> {
                     itemCount: sales.length,
                     itemBuilder: (_, i) {
                       final sale = sales[i];
-                      final imageProvider = ProductImageHelper.resolve(null); // opcional
+                      final imageUrl = sale['imageUrl'] as String?;
+                      final imageProvider = ProductImageHelper.resolve(imageUrl);
 
-                      // 🔹 Resaltar la última venta registrada (primer elemento)
                       final isLatest = i == 0;
 
                       return Card(
                         margin: const EdgeInsets.symmetric(vertical: 8),
-                        color: isLatest ? Colors.lightGreen.shade100 : null, // 👈 color contraste
+                        color: isLatest ? Colors.lightGreen.shade100 : null,
                         child: ListTile(
                           leading: imageProvider != null
                               ? CircleAvatar(backgroundImage: imageProvider)
@@ -137,7 +136,7 @@ class _SalesScreenState extends State<SalesScreen> {
                             ),
                           ),
                           subtitle: Text(
-                            "Cliente: ${sale['serviceName']}\nTotal: \$${(sale['price'] as double).toStringAsFixed(2)}",
+                            "Cliente: ${sale['clientName']}\nTotal: \$${(sale['price'] as double).toStringAsFixed(2)}",
                             style: GoogleFonts.poppins(
                               fontSize: 13,
                               color: Colors.black54,
@@ -183,7 +182,7 @@ class _SalesScreenState extends State<SalesScreen> {
                     final salesNotifier = provider.Provider.of<SalesNotifier>(
                         context,
                         listen: false);
-                    await salesNotifier.loadSalesDirect(); // 👈 refresca usando el método directo
+                    await salesNotifier.loadSalesDirectWithClients(); // 👈 refresca con join
                   }
                 },
               ),

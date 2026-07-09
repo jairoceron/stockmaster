@@ -5,13 +5,6 @@ import 'package:stockmaster/data/database/local/services_dao.dart';
 import '../data/database/local/app_database.dart';
 import '/data/database/local/third_parts.dart';
 
-import 'package:flutter/material.dart';
-import 'package:stockmaster/data/database/local/sales_dao.dart';
-import 'package:stockmaster/data/database/local/sale_items_dao.dart';
-import 'package:stockmaster/data/database/local/services_dao.dart';
-import '../data/database/local/app_database.dart';
-import '/data/database/local/third_parts.dart';
-
 class SalesNotifier extends ChangeNotifier {
   final SalesDao salesDao;
   final SaleItemsDao saleItemsDao;
@@ -96,7 +89,7 @@ class SalesNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// 🔹 Nuevo método: carga TODAS las ventas directamente de la tabla sales
+  /// 🔹 Carga TODAS las ventas directamente de la tabla sales
   /// útil para ventas rápidas que no tienen sale_items
   Future<void> loadSalesDirect() async {
     final sales = await salesDao.getAllSales();
@@ -106,12 +99,34 @@ class SalesNotifier extends ChangeNotifier {
     for (final sale in sales) {
       history.add({
         'date': sale.date,
-        'serviceName': 'Venta rápida', // etiqueta fija
+        'serviceName': 'Venta rápida',
         'price': sale.totalAmount ?? 0,
         'saleId': sale.id,
+        'clientId': sale.clientId,
       });
     }
     _history = history;
+    notifyListeners();
+  }
+
+  /// 🔹 Nuevo método: carga TODAS las ventas con join hacia ThirdParts
+  /// para obtener también nombre e imagen del cliente
+  Future<void> loadSalesDirectWithClients() async {
+    final rows = await salesDao.getSalesWithClients(); // 👈 este método lo defines en SalesDao
+    rows.sort((a, b) => (b['date'] as DateTime).compareTo(a['date'] as DateTime));
+
+    _history = rows.map((row) {
+      return {
+        'saleId': row['saleId'],
+        'date': row['date'],
+        'price': row['price'],
+        'paymentMethod': row['paymentMethod'],
+        'clientId': row['clientId'],
+        'clientName': row['clientName'] ?? 'Venta rápida',
+        'imageUrl': row['imageUrl'], // ✅ ruta de la imagen del cliente
+      };
+    }).toList();
+
     notifyListeners();
   }
 }
