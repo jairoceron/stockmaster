@@ -4,6 +4,9 @@ import 'package:stockmaster/screens/reports_screen.dart';
 import 'package:stockmaster/screens/sales_screen.dart';
 
 import '../data/database/local/app_database.dart';
+import '../data/database/local/product_dao.dart';
+import '../data/database/local/inventory_movements_dao.dart';
+import '../screens/dashboard/dashboard_inventory_screen.dart'; // 👈 Import del dashboard
 import '../data/repositories/sales_repository.dart';
 
 class RootScreenNew extends StatefulWidget {
@@ -17,18 +20,27 @@ class _RootScreenState extends State<RootScreenNew> {
   int _currentIndex = 0;
 
   late final SalesRepository _salesRepository;
+  late final AppDatabase _db;
+  late final ProductDao _productDao;
+  late final InventoryMovementsDao _inventoryMovementsDao;
 
   @override
   void initState() {
     super.initState();
-    final db = AppDatabase();
-    _salesRepository = SalesRepository(db);
+    _db = AppDatabase();
+    _salesRepository = SalesRepository(_db);
+    _productDao = ProductDao(_db);
+    _inventoryMovementsDao = InventoryMovementsDao(_db);
   }
 
-  // Pantallas principales (solo Home y Reportes se quedan en IndexedStack)
+  // Pantallas principales (Home, Reportes y DashboardInventarioScreen en IndexedStack)
   late final List<Widget> _screens = [
     const HomeGridScreen(),
     const ReportsScreen(),
+    DashboardInventarioScreen(
+      productDao: _productDao,
+      inventoryMovementsDao: _inventoryMovementsDao,
+    ),
   ];
 
   @override
@@ -66,11 +78,12 @@ class _RootScreenState extends State<RootScreenNew> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (_) => SalesScreen(),
+                builder: (_) => const SalesScreen(),
               ),
             );
           } else {
-            setState(() => _currentIndex = index == 0 ? 0 : 1);
+            // 🔹 Cambiar índice para Home (0) y Reportes/Dashboard (2)
+            setState(() => _currentIndex = index);
           }
         },
         items: const [

@@ -6,6 +6,8 @@ import 'package:stockmaster/screens/services/services_list_screen.dart';
 import 'package:stockmaster/screens/thirdParts/clients_list_screen.dart';
 import 'package:stockmaster/data/database/local/services_dao.dart';
 
+import 'dashboard/report_char_screen.dart';
+
 class HomeGridScreen extends StatelessWidget {
   const HomeGridScreen({super.key});
 
@@ -64,6 +66,10 @@ class HomeGridScreen extends StatelessWidget {
             }
             if (item["title"] == "Reportes") {
               // Aquí puedes añadir navegación para Reportes
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const ReportCharScreen()),
+              );
             }
           },
           child: Card(

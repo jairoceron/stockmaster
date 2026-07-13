@@ -63,6 +63,7 @@ dependencies:
   form_builder_validators: 11.3.0
   flutter_riverpod: ^3.3.2
   open_file: ^4.0.0
+  syncfusion_flutter_charts: ^33.2.12
 
 
 dev_dependencies:
@@ -156,6 +157,7 @@ flutter:
     - assets/fonts/Poppins-Regular.ttf
     - assets/fonts/Poppins-Bold.ttf
     - assets/servicios/servicios.json
+    - assets/servicios/movimientoInventario.json
     - assets/servicios/corte.png
     - assets/servicios/coloracion.png
     - assets/servicios/peinado.png

@@ -22,16 +22,18 @@ Future<void> main() async {
     await MobileAds.instance.initialize();
   }
 
-  // 👇 Inicializa Hive para GraphQL
-  await initHiveForFlutter(); // esto ya abre las cajas necesarias
+  // Inicializa Hive para GraphQL
+  await initHiveForFlutter();
 
   // Inicializadores
   final db = await DatabaseInitializer.initDatabase();
   await AmplifyInitializer.configure();
   final client = GraphQLInitializer.initClient();
   await SeedInitializer.seed(db);
+
   final userProvider = UserProvider();
   userProvider.setGuestUser();
+
   await EasyLocalization.ensureInitialized();
 
   runApp(
@@ -50,5 +52,4 @@ Future<void> main() async {
       ),
     ),
   );
-
 }

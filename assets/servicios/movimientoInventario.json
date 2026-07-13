@@ -1,0 +1,2011 @@
+[
+  {
+    "product": {
+      "id": "d57b9ffc-f03e-4fa4-b710-000000000a6c",
+      "name": "Newprolys spray",
+      "stock": 80,
+      "precio": 29000,
+      "image": "assets/images/newprolys_pray-300x300.jpeg"
+    },
+    "inventoryMovements": [
+      {
+        "id": "2cb85766-7eca-4487-9337-000000000e5b",
+        "productId": "d57b9ffc-f03e-4fa4-b710-000000000a6c",
+        "movementType": "salida",
+        "quantity": 80,
+        "previousStock": 80,
+        "newStock": 0,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-12T01:37:20.975922"
+      },
+      {
+        "id": "bf11e686-6276-4ef3-84e6-000000000954",
+        "productId": "d57b9ffc-f03e-4fa4-b710-000000000a6c",
+        "movementType": "salida",
+        "quantity": 0,
+        "previousStock": 0,
+        "newStock": 0,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-17T04:37:20.975922"
+      },
+      {
+        "id": "2ebf0633-abe6-4497-bddd-00000000032e",
+        "productId": "d57b9ffc-f03e-4fa4-b710-000000000a6c",
+        "movementType": "entrada",
+        "quantity": 64,
+        "previousStock": 0,
+        "newStock": 64,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-22T10:37:20.975922"
+      }
+    ]
+  },
+  {
+    "product": {
+      "id": "3eeaafc5-4cc0-4af6-89bd-000000000dab",
+      "name": "Propóleo compuesto 300 gramos",
+      "stock": 80,
+      "precio": 26000,
+      "image": "assets/images/propoleo_compuesto_300gramos-300x300.jpeg"
+    },
+    "inventoryMovements": [
+      {
+        "id": "9dae4c86-ca24-4754-b74b-000000000c78",
+        "productId": "3eeaafc5-4cc0-4af6-89bd-000000000dab",
+        "movementType": "entrada",
+        "quantity": 58,
+        "previousStock": 80,
+        "newStock": 138,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-11T23:37:20.978922"
+      },
+      {
+        "id": "326b65cd-d167-4209-beea-0000000008cf",
+        "productId": "3eeaafc5-4cc0-4af6-89bd-000000000dab",
+        "movementType": "entrada",
+        "quantity": 9,
+        "previousStock": 138,
+        "newStock": 147,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-17T08:37:20.978922"
+      },
+      {
+        "id": "8afb7950-0244-4397-b47e-000000000d55",
+        "productId": "3eeaafc5-4cc0-4af6-89bd-000000000dab",
+        "movementType": "salida",
+        "quantity": 63,
+        "previousStock": 147,
+        "newStock": 84,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-21T15:37:20.978922"
+      }
+    ]
+  },
+  {
+    "product": {
+      "id": "7b3e6f85-20f8-49d6-a901-000000000cd7",
+      "name": "Miel 1000 gramos",
+      "stock": 80,
+      "precio": 40000,
+      "image": "assets/images/Miel_natural_1000gramos-300x300.jpeg"
+    },
+    "inventoryMovements": [
+      {
+        "id": "9ec1651a-1664-4e1c-a34f-000000000074",
+        "productId": "7b3e6f85-20f8-49d6-a901-000000000cd7",
+        "movementType": "salida",
+        "quantity": 66,
+        "previousStock": 80,
+        "newStock": 14,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-12T02:37:20.978922"
+      },
+      {
+        "id": "5fdb60dd-d5e6-4d1a-aa6a-000000000e07",
+        "productId": "7b3e6f85-20f8-49d6-a901-000000000cd7",
+        "movementType": "salida",
+        "quantity": 14,
+        "previousStock": 14,
+        "newStock": 0,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-16T18:37:20.978922"
+      },
+      {
+        "id": "54996b42-8a01-499c-a5ea-00000000035e",
+        "productId": "7b3e6f85-20f8-49d6-a901-000000000cd7",
+        "movementType": "entrada",
+        "quantity": 22,
+        "previousStock": 0,
+        "newStock": 22,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-22T11:37:20.978922"
+      }
+    ]
+  },
+  {
+    "product": {
+      "id": "da0a21f2-7b99-413e-8b7b-000000000478",
+      "name": "Miel Natural 300 gramos",
+      "stock": 80,
+      "precio": 15000,
+      "image": "assets/images/miel_Naturalx300gramos-600x600.jpeg"
+    },
+    "inventoryMovements": [
+      {
+        "id": "05fb0c37-cc5f-4ff0-860a-000000000122",
+        "productId": "da0a21f2-7b99-413e-8b7b-000000000478",
+        "movementType": "salida",
+        "quantity": 52,
+        "previousStock": 80,
+        "newStock": 28,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-11T20:37:20.978922"
+      },
+      {
+        "id": "1ed286d4-3e8d-4024-8c4a-000000000b89",
+        "productId": "da0a21f2-7b99-413e-8b7b-000000000478",
+        "movementType": "salida",
+        "quantity": 28,
+        "previousStock": 28,
+        "newStock": 0,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-17T06:37:20.978922"
+      },
+      {
+        "id": "41ac5875-7c59-4658-87b4-000000000c05",
+        "productId": "da0a21f2-7b99-413e-8b7b-000000000478",
+        "movementType": "salida",
+        "quantity": 0,
+        "previousStock": 0,
+        "newStock": 0,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-22T10:37:20.978922"
+      }
+    ]
+  },
+  {
+    "product": {
+      "id": "637837fc-8d87-4ee0-8363-000000000192",
+      "name": "Miel Natural 175 gramos",
+      "stock": 80,
+      "precio": 9500,
+      "image": "assets/images/miel_natural_175gramos-600x600.jpeg"
+    },
+    "inventoryMovements": [
+      {
+        "id": "ddb19d66-0ca3-4b2c-83ec-0000000004b1",
+        "productId": "637837fc-8d87-4ee0-8363-000000000192",
+        "movementType": "salida",
+        "quantity": 24,
+        "previousStock": 80,
+        "newStock": 56,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-12T13:37:20.978922"
+      },
+      {
+        "id": "f52e85ae-1c4b-42d9-a8e9-000000000948",
+        "productId": "637837fc-8d87-4ee0-8363-000000000192",
+        "movementType": "entrada",
+        "quantity": 43,
+        "previousStock": 56,
+        "newStock": 99,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-16T14:37:20.978922"
+      },
+      {
+        "id": "a54c39ea-a85d-42e1-94c0-000000000b94",
+        "productId": "637837fc-8d87-4ee0-8363-000000000192",
+        "movementType": "entrada",
+        "quantity": 82,
+        "previousStock": 99,
+        "newStock": 181,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-22T09:37:20.978922"
+      }
+    ]
+  },
+  {
+    "product": {
+      "id": "bffffec9-8669-4b7b-adc6-000000000172",
+      "name": "Protector Labial de Cera de Abejas",
+      "stock": 80,
+      "precio": 13000,
+      "image": "assets/images/protector_labial-600x600.jpeg"
+    },
+    "inventoryMovements": [
+      {
+        "id": "fccc45b0-4a57-40cf-b7bd-000000000c6e",
+        "productId": "bffffec9-8669-4b7b-adc6-000000000172",
+        "movementType": "salida",
+        "quantity": 30,
+        "previousStock": 80,
+        "newStock": 50,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-12T06:37:20.978922"
+      },
+      {
+        "id": "021f6f54-3c03-4e06-921b-000000000276",
+        "productId": "bffffec9-8669-4b7b-adc6-000000000172",
+        "movementType": "entrada",
+        "quantity": 88,
+        "previousStock": 50,
+        "newStock": 138,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-16T18:37:20.978922"
+      },
+      {
+        "id": "ec306390-7d58-4638-b09a-0000000007d6",
+        "productId": "bffffec9-8669-4b7b-adc6-000000000172",
+        "movementType": "salida",
+        "quantity": 92,
+        "previousStock": 138,
+        "newStock": 46,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-22T13:37:20.978922"
+      }
+    ]
+  },
+  {
+    "product": {
+      "id": "e4afdfa3-b92f-4778-8219-000000000c44",
+      "name": "Marco de Alza",
+      "stock": 80,
+      "precio": 3200,
+      "image": "assets/images/MARCO-DE-ALZA-600x600.jpg"
+    },
+    "inventoryMovements": [
+      {
+        "id": "f4496214-08bd-493c-b4b8-0000000005a6",
+        "productId": "e4afdfa3-b92f-4778-8219-000000000c44",
+        "movementType": "salida",
+        "quantity": 80,
+        "previousStock": 80,
+        "newStock": 0,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-12T13:37:20.978922"
+      },
+      {
+        "id": "4ccf55ec-cd57-47e4-82aa-000000000bc8",
+        "productId": "e4afdfa3-b92f-4778-8219-000000000c44",
+        "movementType": "salida",
+        "quantity": 0,
+        "previousStock": 0,
+        "newStock": 0,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-16T17:37:20.978922"
+      },
+      {
+        "id": "a5cc4b12-5efa-40ba-949b-0000000008e4",
+        "productId": "e4afdfa3-b92f-4778-8219-000000000c44",
+        "movementType": "salida",
+        "quantity": 0,
+        "previousStock": 0,
+        "newStock": 0,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-21T18:37:20.978922"
+      }
+    ]
+  },
+  {
+    "product": {
+      "id": "6c86b12d-446f-4236-8de2-0000000008fd",
+      "name": "Propolis Gotero",
+      "stock": 80,
+      "precio": 24000,
+      "image": "assets/images/propolis_Gotero-600x600.jpeg"
+    },
+    "inventoryMovements": [
+      {
+        "id": "d65e2892-fbae-413b-a6de-0000000008a8",
+        "productId": "6c86b12d-446f-4236-8de2-0000000008fd",
+        "movementType": "salida",
+        "quantity": 77,
+        "previousStock": 80,
+        "newStock": 3,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-12T03:37:20.978922"
+      },
+      {
+        "id": "37c421aa-c521-4070-a13e-000000000dc2",
+        "productId": "6c86b12d-446f-4236-8de2-0000000008fd",
+        "movementType": "entrada",
+        "quantity": 33,
+        "previousStock": 3,
+        "newStock": 36,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-17T05:37:20.978922"
+      },
+      {
+        "id": "5f1a1c13-aad4-40f4-9e2b-000000000a86",
+        "productId": "6c86b12d-446f-4236-8de2-0000000008fd",
+        "movementType": "salida",
+        "quantity": 36,
+        "previousStock": 36,
+        "newStock": 0,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-22T05:37:20.978922"
+      }
+    ]
+  },
+  {
+    "product": {
+      "id": "96eeb73a-dc0a-4c2b-bbd0-000000000f0b",
+      "name": "Propóleo Natural 300 gramos",
+      "stock": 80,
+      "precio": 24000,
+      "image": "assets/images/propoleo_compuesto_300gramos-300x300.jpeg"
+    },
+    "inventoryMovements": [
+      {
+        "id": "294fab16-3126-4e7c-a257-000000000ebe",
+        "productId": "96eeb73a-dc0a-4c2b-bbd0-000000000f0b",
+        "movementType": "entrada",
+        "quantity": 100,
+        "previousStock": 80,
+        "newStock": 180,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-12T09:37:20.978922"
+      },
+      {
+        "id": "8da2d763-06c5-48e1-a797-000000000677",
+        "productId": "96eeb73a-dc0a-4c2b-bbd0-000000000f0b",
+        "movementType": "salida",
+        "quantity": 23,
+        "previousStock": 180,
+        "newStock": 157,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-17T12:37:20.978922"
+      },
+      {
+        "id": "91dbb30e-cd8f-4042-8dae-0000000001e8",
+        "productId": "96eeb73a-dc0a-4c2b-bbd0-000000000f0b",
+        "movementType": "entrada",
+        "quantity": 28,
+        "previousStock": 157,
+        "newStock": 185,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-21T14:37:20.978922"
+      }
+    ]
+  },
+  {
+    "product": {
+      "id": "4ababe6c-8764-4f25-b8ad-000000000aae",
+      "name": "Café Mullalpa",
+      "stock": 80,
+      "precio": 45000,
+      "image": "assets/images/CAFE-300x300.jpg"
+    },
+    "inventoryMovements": [
+      {
+        "id": "92d8299d-c22d-4294-a78f-0000000005a5",
+        "productId": "4ababe6c-8764-4f25-b8ad-000000000aae",
+        "movementType": "salida",
+        "quantity": 25,
+        "previousStock": 80,
+        "newStock": 55,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-12T06:37:20.978922"
+      },
+      {
+        "id": "d1c29300-f1fa-4785-9c1d-00000000059a",
+        "productId": "4ababe6c-8764-4f25-b8ad-000000000aae",
+        "movementType": "salida",
+        "quantity": 55,
+        "previousStock": 55,
+        "newStock": 0,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-16T19:37:20.978922"
+      },
+      {
+        "id": "355bb18b-f106-40bf-b076-000000000e5d",
+        "productId": "4ababe6c-8764-4f25-b8ad-000000000aae",
+        "movementType": "entrada",
+        "quantity": 2,
+        "previousStock": 0,
+        "newStock": 2,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-21T19:37:20.978922"
+      }
+    ]
+  },
+  {
+    "product": {
+      "id": "221554b4-3c8b-4e83-9952-000000000774",
+      "name": "Ahumador",
+      "stock": 80,
+      "precio": 95000,
+      "image": "assets/images/ahumador-300x300.jpg"
+    },
+    "inventoryMovements": [
+      {
+        "id": "0c47dd94-d29a-4fe9-9702-000000000673",
+        "productId": "221554b4-3c8b-4e83-9952-000000000774",
+        "movementType": "salida",
+        "quantity": 69,
+        "previousStock": 80,
+        "newStock": 11,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-11T15:37:20.978922"
+      },
+      {
+        "id": "a4f60984-3861-4c19-baa5-0000000001cc",
+        "productId": "221554b4-3c8b-4e83-9952-000000000774",
+        "movementType": "entrada",
+        "quantity": 84,
+        "previousStock": 11,
+        "newStock": 95,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-17T02:37:20.978922"
+      },
+      {
+        "id": "10ffd18d-d1c6-4199-a9d7-000000000a83",
+        "productId": "221554b4-3c8b-4e83-9952-000000000774",
+        "movementType": "entrada",
+        "quantity": 10,
+        "previousStock": 95,
+        "newStock": 105,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-21T15:37:20.978922"
+      }
+    ]
+  },
+  {
+    "product": {
+      "id": "116883e9-a351-4d39-a2dc-000000000dc4",
+      "name": "Miel 27 Kilos",
+      "stock": 80,
+      "precio": 491000,
+      "image": "assets/images/MIEL-X-20-KG.jpg"
+    },
+    "inventoryMovements": [
+      {
+        "id": "50c3fc27-56bf-4a19-9a56-0000000007c9",
+        "productId": "116883e9-a351-4d39-a2dc-000000000dc4",
+        "movementType": "salida",
+        "quantity": 29,
+        "previousStock": 80,
+        "newStock": 51,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-12T12:37:20.979922"
+      },
+      {
+        "id": "d03e8693-cfd0-4cd2-a06e-000000000e05",
+        "productId": "116883e9-a351-4d39-a2dc-000000000dc4",
+        "movementType": "salida",
+        "quantity": 14,
+        "previousStock": 51,
+        "newStock": 37,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-17T03:37:20.979922"
+      },
+      {
+        "id": "27aba1a6-5b0f-44bd-8b72-000000000f09",
+        "productId": "116883e9-a351-4d39-a2dc-000000000dc4",
+        "movementType": "salida",
+        "quantity": 37,
+        "previousStock": 37,
+        "newStock": 0,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-21T23:37:20.979922"
+      }
+    ]
+  },
+  {
+    "product": {
+      "id": "f4a0e1c7-e590-4811-9704-0000000001d9",
+      "name": "Panal de miel por gramo",
+      "stock": 80,
+      "precio": 6000,
+      "image": "assets/images/panal-de-miel-600x600.jpg"
+    },
+    "inventoryMovements": [
+      {
+        "id": "7e82009f-d34c-41c9-b398-0000000000de",
+        "productId": "f4a0e1c7-e590-4811-9704-0000000001d9",
+        "movementType": "entrada",
+        "quantity": 90,
+        "previousStock": 80,
+        "newStock": 170,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-12T08:37:20.979922"
+      },
+      {
+        "id": "0972f004-5972-4219-a64a-0000000002bc",
+        "productId": "f4a0e1c7-e590-4811-9704-0000000001d9",
+        "movementType": "salida",
+        "quantity": 40,
+        "previousStock": 170,
+        "newStock": 130,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-17T08:37:20.979922"
+      },
+      {
+        "id": "0433797b-5361-4ce1-b402-000000000d17",
+        "productId": "f4a0e1c7-e590-4811-9704-0000000001d9",
+        "movementType": "entrada",
+        "quantity": 11,
+        "previousStock": 130,
+        "newStock": 141,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-22T02:37:20.979922"
+      }
+    ]
+  },
+  {
+    "product": {
+      "id": "b82a4b5f-21ca-46a4-af42-0000000009ca",
+      "name": "Turrón Chocolate 50 Gramos",
+      "stock": 80,
+      "precio": 6500,
+      "image": "assets/images/turron-600x600.png"
+    },
+    "inventoryMovements": [
+      {
+        "id": "ff22a135-c8ca-4059-b13a-0000000000cd",
+        "productId": "b82a4b5f-21ca-46a4-af42-0000000009ca",
+        "movementType": "entrada",
+        "quantity": 66,
+        "previousStock": 80,
+        "newStock": 146,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-12T10:37:20.979922"
+      },
+      {
+        "id": "50527f83-23b7-4895-9dd2-0000000006ca",
+        "productId": "b82a4b5f-21ca-46a4-af42-0000000009ca",
+        "movementType": "entrada",
+        "quantity": 72,
+        "previousStock": 146,
+        "newStock": 218,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-16T15:37:20.979922"
+      },
+      {
+        "id": "92c332d8-0937-4d6c-8523-000000000610",
+        "productId": "b82a4b5f-21ca-46a4-af42-0000000009ca",
+        "movementType": "salida",
+        "quantity": 35,
+        "previousStock": 218,
+        "newStock": 183,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-21T14:37:20.979922"
+      }
+    ]
+  },
+  {
+    "product": {
+      "id": "3d7e9ddb-dc1b-4915-8172-000000000d71",
+      "name": "Jusira Jarea Paquete x7 unidades",
+      "stock": 80,
+      "precio": 54000,
+      "image": "assets/images/Jusira_Jarea_paquete_7_unidades-600x600.jpeg"
+    },
+    "inventoryMovements": [
+      {
+        "id": "71e41455-8372-42d0-a4d2-000000000385",
+        "productId": "3d7e9ddb-dc1b-4915-8172-000000000d71",
+        "movementType": "entrada",
+        "quantity": 90,
+        "previousStock": 80,
+        "newStock": 170,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-12T02:37:20.979922"
+      },
+      {
+        "id": "e844669f-99f4-4719-9d70-000000000ce4",
+        "productId": "3d7e9ddb-dc1b-4915-8172-000000000d71",
+        "movementType": "salida",
+        "quantity": 23,
+        "previousStock": 170,
+        "newStock": 147,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-16T16:37:20.979922"
+      },
+      {
+        "id": "803ef24d-8011-4040-8621-0000000007a0",
+        "productId": "3d7e9ddb-dc1b-4915-8172-000000000d71",
+        "movementType": "salida",
+        "quantity": 46,
+        "previousStock": 147,
+        "newStock": 101,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-21T16:37:20.979922"
+      }
+    ]
+  },
+  {
+    "product": {
+      "id": "ae9adfaa-f91f-4f02-b891-000000000933",
+      "name": "Polen WayraSua 1000 gramos",
+      "stock": 80,
+      "precio": 47000,
+      "image": "assets/images/polen-100g.jpg"
+    },
+    "inventoryMovements": [
+      {
+        "id": "20f7582f-3fe4-460a-b307-000000000704",
+        "productId": "ae9adfaa-f91f-4f02-b891-000000000933",
+        "movementType": "entrada",
+        "quantity": 27,
+        "previousStock": 80,
+        "newStock": 107,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-11T19:37:20.979922"
+      },
+      {
+        "id": "e7303fb4-841e-4fcf-93ac-0000000005f1",
+        "productId": "ae9adfaa-f91f-4f02-b891-000000000933",
+        "movementType": "entrada",
+        "quantity": 90,
+        "previousStock": 107,
+        "newStock": 197,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-17T04:37:20.979922"
+      },
+      {
+        "id": "4cae0ab0-412a-47c2-a375-000000000fd8",
+        "productId": "ae9adfaa-f91f-4f02-b891-000000000933",
+        "movementType": "entrada",
+        "quantity": 78,
+        "previousStock": 197,
+        "newStock": 275,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-22T06:37:20.979922"
+      }
+    ]
+  },
+  {
+    "product": {
+      "id": "3b5557d0-7ea5-4c59-a503-000000000cd6",
+      "name": "Polen WayraSua 500 gramos",
+      "stock": 80,
+      "precio": 25000,
+      "image": "assets/images/polen_500_gramos.jpeg"
+    },
+    "inventoryMovements": [
+      {
+        "id": "9263fad8-e01e-4a70-baed-000000000b22",
+        "productId": "3b5557d0-7ea5-4c59-a503-000000000cd6",
+        "movementType": "salida",
+        "quantity": 79,
+        "previousStock": 80,
+        "newStock": 1,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-11T22:37:20.979922"
+      },
+      {
+        "id": "8936942b-988c-487d-9dd1-000000000747",
+        "productId": "3b5557d0-7ea5-4c59-a503-000000000cd6",
+        "movementType": "entrada",
+        "quantity": 25,
+        "previousStock": 1,
+        "newStock": 26,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-17T01:37:20.979922"
+      },
+      {
+        "id": "5cf200d6-c415-4daf-9246-000000000483",
+        "productId": "3b5557d0-7ea5-4c59-a503-000000000cd6",
+        "movementType": "salida",
+        "quantity": 26,
+        "previousStock": 26,
+        "newStock": 0,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-22T12:37:20.979922"
+      }
+    ]
+  },
+  {
+    "product": {
+      "id": "dbdd05b3-f684-4ff4-9d26-00000000068b",
+      "name": "Polen WayraSua 250 gramos",
+      "stock": 80,
+      "precio": 15000,
+      "image": "assets/images/Polen_wayraSua_250_gramos-600x600.jpeg"
+    },
+    "inventoryMovements": [
+      {
+        "id": "a22567f1-1ee6-490a-8acf-000000000f8d",
+        "productId": "dbdd05b3-f684-4ff4-9d26-00000000068b",
+        "movementType": "salida",
+        "quantity": 34,
+        "previousStock": 80,
+        "newStock": 46,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-12T00:37:20.980923"
+      },
+      {
+        "id": "df08a74f-57b0-4612-8f69-000000000789",
+        "productId": "dbdd05b3-f684-4ff4-9d26-00000000068b",
+        "movementType": "salida",
+        "quantity": 11,
+        "previousStock": 46,
+        "newStock": 35,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-17T12:37:20.980923"
+      },
+      {
+        "id": "5f413446-bae6-404b-9590-00000000033b",
+        "productId": "dbdd05b3-f684-4ff4-9d26-00000000068b",
+        "movementType": "salida",
+        "quantity": 35,
+        "previousStock": 35,
+        "newStock": 0,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-22T02:37:20.980923"
+      }
+    ]
+  },
+  {
+    "product": {
+      "id": "27d61d71-d449-4ddc-8025-000000000635",
+      "name": "Polen WayraSua 125 gramos",
+      "stock": 80,
+      "precio": 8500,
+      "image": "assets/images/Polen_wayraSua_125_gramos-600x600.jpeg"
+    },
+    "inventoryMovements": [
+      {
+        "id": "5c0bbf6c-565f-41bb-9385-00000000092d",
+        "productId": "27d61d71-d449-4ddc-8025-000000000635",
+        "movementType": "entrada",
+        "quantity": 87,
+        "previousStock": 80,
+        "newStock": 167,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-12T07:37:20.980923"
+      },
+      {
+        "id": "e0c221e7-6989-42fd-a12e-0000000007a0",
+        "productId": "27d61d71-d449-4ddc-8025-000000000635",
+        "movementType": "entrada",
+        "quantity": 74,
+        "previousStock": 167,
+        "newStock": 241,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-17T11:37:20.980923"
+      },
+      {
+        "id": "8321f952-b7c5-4dd9-a5ed-000000000f5f",
+        "productId": "27d61d71-d449-4ddc-8025-000000000635",
+        "movementType": "salida",
+        "quantity": 27,
+        "previousStock": 241,
+        "newStock": 214,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-22T06:37:20.980923"
+      }
+    ]
+  },
+  {
+    "product": {
+      "id": "dbf23a26-e5b3-4553-b3d1-000000000ebb",
+      "name": "Miel WayraSua 330 gramos",
+      "stock": 80,
+      "precio": 15000,
+      "image": "assets/images/wayrasua300g2.jpg"
+    },
+    "inventoryMovements": [
+      {
+        "id": "9770e080-26f4-49ed-a96c-000000000ed8",
+        "productId": "dbf23a26-e5b3-4553-b3d1-000000000ebb",
+        "movementType": "entrada",
+        "quantity": 43,
+        "previousStock": 80,
+        "newStock": 123,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-12T12:37:20.980923"
+      },
+      {
+        "id": "186cc8ac-9efb-49ae-b14d-0000000007df",
+        "productId": "dbf23a26-e5b3-4553-b3d1-000000000ebb",
+        "movementType": "salida",
+        "quantity": 24,
+        "previousStock": 123,
+        "newStock": 99,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-17T10:37:20.980923"
+      },
+      {
+        "id": "33cbae84-c20b-4f2c-9984-000000000434",
+        "productId": "dbf23a26-e5b3-4553-b3d1-000000000ebb",
+        "movementType": "salida",
+        "quantity": 72,
+        "previousStock": 99,
+        "newStock": 27,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-22T09:37:20.980923"
+      }
+    ]
+  },
+  {
+    "product": {
+      "id": "2e1430e3-6f18-401e-a3ba-00000000094e",
+      "name": "Miel Natural 1000 gramos",
+      "stock": 80,
+      "precio": 45000,
+      "image": "assets/images/Miel_natural_1000gramos-300x300.jpeg"
+    },
+    "inventoryMovements": [
+      {
+        "id": "da95652b-6ca0-4165-9d23-000000000637",
+        "productId": "2e1430e3-6f18-401e-a3ba-00000000094e",
+        "movementType": "salida",
+        "quantity": 80,
+        "previousStock": 80,
+        "newStock": 0,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-12T00:37:20.980923"
+      },
+      {
+        "id": "8b586e47-2838-44ec-b18d-000000000c45",
+        "productId": "2e1430e3-6f18-401e-a3ba-00000000094e",
+        "movementType": "salida",
+        "quantity": 0,
+        "previousStock": 0,
+        "newStock": 0,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-16T16:37:20.980923"
+      },
+      {
+        "id": "70b44825-5c14-40e8-a48a-000000000463",
+        "productId": "2e1430e3-6f18-401e-a3ba-00000000094e",
+        "movementType": "entrada",
+        "quantity": 13,
+        "previousStock": 0,
+        "newStock": 13,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-21T17:37:20.980923"
+      }
+    ]
+  },
+  {
+    "product": {
+      "id": "9e20e98f-eb01-4cd0-9306-000000000791",
+      "name": "Cepillo",
+      "stock": 80,
+      "precio": 19000,
+      "image": "assets/images/cepillo-600x600.jpg"
+    },
+    "inventoryMovements": [
+      {
+        "id": "495c6d4f-8807-4525-94a7-000000000f51",
+        "productId": "9e20e98f-eb01-4cd0-9306-000000000791",
+        "movementType": "entrada",
+        "quantity": 99,
+        "previousStock": 80,
+        "newStock": 179,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-12T12:37:20.980923"
+      },
+      {
+        "id": "3f1fed3f-37b0-4886-b174-0000000003f7",
+        "productId": "9e20e98f-eb01-4cd0-9306-000000000791",
+        "movementType": "entrada",
+        "quantity": 59,
+        "previousStock": 179,
+        "newStock": 238,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-17T07:37:20.980923"
+      },
+      {
+        "id": "d515af7a-6805-401a-946a-0000000009ba",
+        "productId": "9e20e98f-eb01-4cd0-9306-000000000791",
+        "movementType": "salida",
+        "quantity": 33,
+        "previousStock": 238,
+        "newStock": 205,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-22T02:37:20.980923"
+      }
+    ]
+  },
+  {
+    "product": {
+      "id": "6fc8f4b0-a8f1-441b-b878-00000000090f",
+      "name": "Achiras",
+      "stock": 80,
+      "precio": 6000,
+      "image": "assets/images/ACHIRAS-600x600.jpg"
+    },
+    "inventoryMovements": [
+      {
+        "id": "4e231660-882e-4ee6-aa37-000000000912",
+        "productId": "6fc8f4b0-a8f1-441b-b878-00000000090f",
+        "movementType": "entrada",
+        "quantity": 19,
+        "previousStock": 80,
+        "newStock": 99,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-12T03:37:20.980923"
+      },
+      {
+        "id": "98291471-4781-402d-8969-000000000ea4",
+        "productId": "6fc8f4b0-a8f1-441b-b878-00000000090f",
+        "movementType": "entrada",
+        "quantity": 42,
+        "previousStock": 99,
+        "newStock": 141,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-16T15:37:20.980923"
+      },
+      {
+        "id": "a6c87f7a-be82-4596-9cc1-000000000e36",
+        "productId": "6fc8f4b0-a8f1-441b-b878-00000000090f",
+        "movementType": "salida",
+        "quantity": 36,
+        "previousStock": 141,
+        "newStock": 105,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-22T09:37:20.980923"
+      }
+    ]
+  },
+  {
+    "product": {
+      "id": "9d3e4131-0003-415d-b38a-0000000007c0",
+      "name": "Palanca",
+      "stock": 80,
+      "precio": 28000,
+      "image": "assets/images/PALA-600x600.jpg"
+    },
+    "inventoryMovements": [
+      {
+        "id": "3cb77645-148c-453c-b74b-000000000da7",
+        "productId": "9d3e4131-0003-415d-b38a-0000000007c0",
+        "movementType": "entrada",
+        "quantity": 85,
+        "previousStock": 80,
+        "newStock": 165,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-12T01:37:20.980923"
+      },
+      {
+        "id": "ec973462-e2f0-4872-a165-000000000461",
+        "productId": "9d3e4131-0003-415d-b38a-0000000007c0",
+        "movementType": "entrada",
+        "quantity": 33,
+        "previousStock": 165,
+        "newStock": 198,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-16T15:37:20.980923"
+      },
+      {
+        "id": "05ef3b45-12d5-4942-a560-00000000054c",
+        "productId": "9d3e4131-0003-415d-b38a-0000000007c0",
+        "movementType": "salida",
+        "quantity": 1,
+        "previousStock": 198,
+        "newStock": 197,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-21T22:37:20.980923"
+      }
+    ]
+  },
+  {
+    "product": {
+      "id": "93324e48-fa94-4dde-b8d1-000000000979",
+      "name": "Miel 5 Kilos",
+      "stock": 80,
+      "precio": 151000,
+      "image": "assets/images/MIEL-X-5-KG-600x600.jpg"
+    },
+    "inventoryMovements": [
+      {
+        "id": "f15e83fb-082a-40a7-9f37-0000000005ab",
+        "productId": "93324e48-fa94-4dde-b8d1-000000000979",
+        "movementType": "entrada",
+        "quantity": 100,
+        "previousStock": 80,
+        "newStock": 180,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-12T07:37:20.980923"
+      },
+      {
+        "id": "b3431816-81b9-45ef-9489-00000000055e",
+        "productId": "93324e48-fa94-4dde-b8d1-000000000979",
+        "movementType": "salida",
+        "quantity": 6,
+        "previousStock": 180,
+        "newStock": 174,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-17T10:37:20.980923"
+      },
+      {
+        "id": "0776e9a9-2750-4385-951c-0000000002ef",
+        "productId": "93324e48-fa94-4dde-b8d1-000000000979",
+        "movementType": "entrada",
+        "quantity": 58,
+        "previousStock": 174,
+        "newStock": 232,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-22T13:37:20.980923"
+      }
+    ]
+  },
+  {
+    "product": {
+      "id": "d5ac1724-0847-414b-87af-000000000a38",
+      "name": "Cera de abejas",
+      "stock": 80,
+      "precio": 62000,
+      "image": "assets/images/cera-de-abejas-600x600.jpg"
+    },
+    "inventoryMovements": [
+      {
+        "id": "6538de56-f5f1-4f68-9985-000000000f7b",
+        "productId": "d5ac1724-0847-414b-87af-000000000a38",
+        "movementType": "entrada",
+        "quantity": 94,
+        "previousStock": 80,
+        "newStock": 174,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-11T20:37:20.980923"
+      },
+      {
+        "id": "856422de-7d2a-4129-9c52-000000000bf1",
+        "productId": "d5ac1724-0847-414b-87af-000000000a38",
+        "movementType": "salida",
+        "quantity": 18,
+        "previousStock": 174,
+        "newStock": 156,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-16T22:37:20.980923"
+      },
+      {
+        "id": "a428d7d0-1ef8-433e-97d3-0000000001ee",
+        "productId": "d5ac1724-0847-414b-87af-000000000a38",
+        "movementType": "entrada",
+        "quantity": 59,
+        "previousStock": 156,
+        "newStock": 215,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-21T15:37:20.980923"
+      }
+    ]
+  },
+  {
+    "product": {
+      "id": "310a9c95-79ac-4466-82e1-00000000088f",
+      "name": "Guantes",
+      "stock": 80,
+      "precio": 30000,
+      "image": "assets/images/guantes-600x600.jpg"
+    },
+    "inventoryMovements": [
+      {
+        "id": "97ec2d5e-fad7-4b04-9a57-0000000000ff",
+        "productId": "310a9c95-79ac-4466-82e1-00000000088f",
+        "movementType": "entrada",
+        "quantity": 39,
+        "previousStock": 80,
+        "newStock": 119,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-11T19:37:20.981922"
+      },
+      {
+        "id": "be4cfdde-73c2-4e76-8b48-000000000197",
+        "productId": "310a9c95-79ac-4466-82e1-00000000088f",
+        "movementType": "entrada",
+        "quantity": 50,
+        "previousStock": 119,
+        "newStock": 169,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-17T00:37:20.981922"
+      },
+      {
+        "id": "be404e86-4c2e-4af6-8b5f-000000000cc2",
+        "productId": "310a9c95-79ac-4466-82e1-00000000088f",
+        "movementType": "entrada",
+        "quantity": 30,
+        "previousStock": 169,
+        "newStock": 199,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-21T14:37:20.981922"
+      }
+    ]
+  },
+  {
+    "product": {
+      "id": "3cbdc9c0-e3bd-4e7f-b70d-000000000d34",
+      "name": "Overol en malla",
+      "stock": 80,
+      "precio": 140000,
+      "image": "assets/images/OVEROL-EN-MALLA-2-PIEZAS-TIPO-HILDE-300x300.jpg"
+    },
+    "inventoryMovements": [
+      {
+        "id": "05b73a06-ca87-4fda-abc9-0000000003b4",
+        "productId": "3cbdc9c0-e3bd-4e7f-b70d-000000000d34",
+        "movementType": "entrada",
+        "quantity": 8,
+        "previousStock": 80,
+        "newStock": 88,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-11T23:37:20.981922"
+      },
+      {
+        "id": "f2346b7f-06b1-4ea7-aa9e-000000000300",
+        "productId": "3cbdc9c0-e3bd-4e7f-b70d-000000000d34",
+        "movementType": "salida",
+        "quantity": 14,
+        "previousStock": 88,
+        "newStock": 74,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-17T08:37:20.981922"
+      },
+      {
+        "id": "c15d1096-1b24-420f-a9c3-0000000002b6",
+        "productId": "3cbdc9c0-e3bd-4e7f-b70d-000000000d34",
+        "movementType": "salida",
+        "quantity": 18,
+        "previousStock": 74,
+        "newStock": 56,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-22T01:37:20.981922"
+      }
+    ]
+  },
+  {
+    "product": {
+      "id": "bbac22eb-3574-42b4-b835-000000000697",
+      "name": "Overol espumoso",
+      "stock": 80,
+      "precio": 140000,
+      "image": "assets/images/OVEROL-ESPUMOSO-300x300.jpg"
+    },
+    "inventoryMovements": [
+      {
+        "id": "8d99e987-9548-4d9a-9a08-000000000722",
+        "productId": "bbac22eb-3574-42b4-b835-000000000697",
+        "movementType": "salida",
+        "quantity": 55,
+        "previousStock": 80,
+        "newStock": 25,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-11T17:37:20.981922"
+      },
+      {
+        "id": "0a50db09-c3a4-4c73-a407-000000000c75",
+        "productId": "bbac22eb-3574-42b4-b835-000000000697",
+        "movementType": "salida",
+        "quantity": 25,
+        "previousStock": 25,
+        "newStock": 0,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-16T17:37:20.981922"
+      },
+      {
+        "id": "bc267575-ff59-4b73-91aa-00000000056d",
+        "productId": "bbac22eb-3574-42b4-b835-000000000697",
+        "movementType": "entrada",
+        "quantity": 48,
+        "previousStock": 0,
+        "newStock": 48,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-22T03:37:20.981922"
+      }
+    ]
+  },
+  {
+    "product": {
+      "id": "314a4735-77c3-42ed-b12c-000000000284",
+      "name": "Overol en Dril",
+      "stock": 80,
+      "precio": 140000,
+      "image": "assets/images/OVEROL-EN-DRIL-300x300.jpg"
+    },
+    "inventoryMovements": [
+      {
+        "id": "78017075-7faf-423b-9501-0000000003c8",
+        "productId": "314a4735-77c3-42ed-b12c-000000000284",
+        "movementType": "salida",
+        "quantity": 60,
+        "previousStock": 80,
+        "newStock": 20,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-12T13:37:20.981922"
+      },
+      {
+        "id": "0e32d8d1-8d6a-471e-8e4b-000000000f19",
+        "productId": "314a4735-77c3-42ed-b12c-000000000284",
+        "movementType": "salida",
+        "quantity": 20,
+        "previousStock": 20,
+        "newStock": 0,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-17T08:37:20.981922"
+      },
+      {
+        "id": "5d135754-a22a-4c00-b86d-000000000462",
+        "productId": "314a4735-77c3-42ed-b12c-000000000284",
+        "movementType": "entrada",
+        "quantity": 58,
+        "previousStock": 0,
+        "newStock": 58,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-22T06:37:20.981922"
+      }
+    ]
+  },
+  {
+    "product": {
+      "id": "992420ff-43d8-4ee7-a6c6-000000000149",
+      "name": "Jalea Real",
+      "stock": 80,
+      "precio": 75000,
+      "image": "assets/images/Jalea-Real-600x600.jpg"
+    },
+    "inventoryMovements": [
+      {
+        "id": "19062c4f-afa5-48d3-894d-00000000095c",
+        "productId": "992420ff-43d8-4ee7-a6c6-000000000149",
+        "movementType": "salida",
+        "quantity": 62,
+        "previousStock": 80,
+        "newStock": 18,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-12T07:37:20.981922"
+      },
+      {
+        "id": "d498c007-74e3-425a-80eb-0000000009d3",
+        "productId": "992420ff-43d8-4ee7-a6c6-000000000149",
+        "movementType": "entrada",
+        "quantity": 6,
+        "previousStock": 18,
+        "newStock": 24,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-16T22:37:20.981922"
+      },
+      {
+        "id": "b7658355-9960-4265-a263-000000000848",
+        "productId": "992420ff-43d8-4ee7-a6c6-000000000149",
+        "movementType": "salida",
+        "quantity": 15,
+        "previousStock": 24,
+        "newStock": 9,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-22T06:37:20.981922"
+      }
+    ]
+  },
+  {
+    "product": {
+      "id": "38aac671-77be-4e2e-838d-000000000f5c",
+      "name": "Base Piquera",
+      "stock": 80,
+      "precio": 24000,
+      "image": "assets/images/BASE-O-PIQUERA-600x600.jpg"
+    },
+    "inventoryMovements": [
+      {
+        "id": "849ac200-a850-461a-912b-0000000004d5",
+        "productId": "38aac671-77be-4e2e-838d-000000000f5c",
+        "movementType": "entrada",
+        "quantity": 58,
+        "previousStock": 80,
+        "newStock": 138,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-12T00:37:20.981922"
+      },
+      {
+        "id": "ac4a809b-d482-4f9d-bf51-00000000008a",
+        "productId": "38aac671-77be-4e2e-838d-000000000f5c",
+        "movementType": "salida",
+        "quantity": 80,
+        "previousStock": 138,
+        "newStock": 58,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-16T20:37:20.981922"
+      },
+      {
+        "id": "76378061-5a90-4b57-8823-00000000062c",
+        "productId": "38aac671-77be-4e2e-838d-000000000f5c",
+        "movementType": "entrada",
+        "quantity": 24,
+        "previousStock": 58,
+        "newStock": 82,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-22T00:37:20.981922"
+      }
+    ]
+  },
+  {
+    "product": {
+      "id": "97b74d95-8a47-4e4a-8427-000000000332",
+      "name": "Marco profundo",
+      "stock": 80,
+      "precio": 3600,
+      "image": "assets/images/MARCO-PROFUNDO-600x600.jpg"
+    },
+    "inventoryMovements": [
+      {
+        "id": "567a0f6c-4dd5-4140-9381-000000000baa",
+        "productId": "97b74d95-8a47-4e4a-8427-000000000332",
+        "movementType": "entrada",
+        "quantity": 37,
+        "previousStock": 80,
+        "newStock": 117,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-11T17:37:20.981922"
+      },
+      {
+        "id": "b878622a-f6da-4548-86a2-00000000090a",
+        "productId": "97b74d95-8a47-4e4a-8427-000000000332",
+        "movementType": "salida",
+        "quantity": 51,
+        "previousStock": 117,
+        "newStock": 66,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-17T04:37:20.981922"
+      },
+      {
+        "id": "655b0091-fba3-411c-abd2-000000000b8f",
+        "productId": "97b74d95-8a47-4e4a-8427-000000000332",
+        "movementType": "entrada",
+        "quantity": 80,
+        "previousStock": 66,
+        "newStock": 146,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-21T14:37:20.981922"
+      }
+    ]
+  },
+  {
+    "product": {
+      "id": "eb994ff5-cac2-4a2f-ba10-000000000bd1",
+      "name": "Cámara profunda",
+      "stock": 80,
+      "precio": 38000,
+      "image": "assets/images/CAMARA-PROFUNDA-600x600.jpg"
+    },
+    "inventoryMovements": [
+      {
+        "id": "c887f5e7-03f2-4c07-a919-0000000005e2",
+        "productId": "eb994ff5-cac2-4a2f-ba10-000000000bd1",
+        "movementType": "entrada",
+        "quantity": 37,
+        "previousStock": 80,
+        "newStock": 117,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-12T02:37:20.981922"
+      },
+      {
+        "id": "5629c53c-9118-4f31-b6b9-00000000002d",
+        "productId": "eb994ff5-cac2-4a2f-ba10-000000000bd1",
+        "movementType": "entrada",
+        "quantity": 95,
+        "previousStock": 117,
+        "newStock": 212,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-16T16:37:20.981922"
+      },
+      {
+        "id": "e0ae9e05-5c37-4ffa-ae86-000000000a46",
+        "productId": "eb994ff5-cac2-4a2f-ba10-000000000bd1",
+        "movementType": "entrada",
+        "quantity": 15,
+        "previousStock": 212,
+        "newStock": 227,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-22T08:37:20.981922"
+      }
+    ]
+  },
+  {
+    "product": {
+      "id": "9d1fe4cc-5a91-4bb7-9138-000000000606",
+      "name": "Tapa interna",
+      "stock": 80,
+      "precio": 23000,
+      "image": "assets/images/TAPA-INTERNA-600x600.jpg"
+    },
+    "inventoryMovements": [
+      {
+        "id": "0074ab4b-1bdc-4e04-8b11-0000000004a2",
+        "productId": "9d1fe4cc-5a91-4bb7-9138-000000000606",
+        "movementType": "entrada",
+        "quantity": 58,
+        "previousStock": 80,
+        "newStock": 138,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-12T02:37:20.981922"
+      },
+      {
+        "id": "fff532de-1bf6-4850-9421-00000000024a",
+        "productId": "9d1fe4cc-5a91-4bb7-9138-000000000606",
+        "movementType": "salida",
+        "quantity": 63,
+        "previousStock": 138,
+        "newStock": 75,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-17T07:37:20.981922"
+      },
+      {
+        "id": "016a2d5c-5e78-4622-83c4-000000000774",
+        "productId": "9d1fe4cc-5a91-4bb7-9138-000000000606",
+        "movementType": "entrada",
+        "quantity": 31,
+        "previousStock": 75,
+        "newStock": 106,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-21T16:37:20.981922"
+      }
+    ]
+  },
+  {
+    "product": {
+      "id": "1aa17307-aff3-46cb-b1c0-000000000187",
+      "name": "Techo colmena",
+      "stock": 80,
+      "precio": 28000,
+      "image": "assets/images/techo-600x600.jpg"
+    },
+    "inventoryMovements": [
+      {
+        "id": "6e8cf463-c09a-4438-90a4-00000000087b",
+        "productId": "1aa17307-aff3-46cb-b1c0-000000000187",
+        "movementType": "entrada",
+        "quantity": 68,
+        "previousStock": 80,
+        "newStock": 148,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-12T04:37:20.981922"
+      },
+      {
+        "id": "00538f96-cb7c-40a4-8506-000000000fd9",
+        "productId": "1aa17307-aff3-46cb-b1c0-000000000187",
+        "movementType": "salida",
+        "quantity": 97,
+        "previousStock": 148,
+        "newStock": 51,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-17T13:37:20.981922"
+      },
+      {
+        "id": "5dbabb97-1b7c-4431-b0d2-000000000666",
+        "productId": "1aa17307-aff3-46cb-b1c0-000000000187",
+        "movementType": "salida",
+        "quantity": 51,
+        "previousStock": 51,
+        "newStock": 0,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-22T08:37:20.981922"
+      }
+    ]
+  },
+  {
+    "product": {
+      "id": "2130ae9a-0aeb-47e5-903b-000000000a45",
+      "name": "Colmena Completa",
+      "stock": 80,
+      "precio": 280000,
+      "image": "assets/images/COLMENA-COMPLETA-300x300.jpg"
+    },
+    "inventoryMovements": [
+      {
+        "id": "e92447ae-4346-47ac-9951-0000000004d1",
+        "productId": "2130ae9a-0aeb-47e5-903b-000000000a45",
+        "movementType": "entrada",
+        "quantity": 84,
+        "previousStock": 80,
+        "newStock": 164,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-12T12:37:20.982922"
+      },
+      {
+        "id": "358423c6-9c2e-4c83-a1f5-00000000058c",
+        "productId": "2130ae9a-0aeb-47e5-903b-000000000a45",
+        "movementType": "entrada",
+        "quantity": 36,
+        "previousStock": 164,
+        "newStock": 200,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-16T22:37:20.982922"
+      },
+      {
+        "id": "9d800474-431d-45e9-9807-000000000d5d",
+        "productId": "2130ae9a-0aeb-47e5-903b-000000000a45",
+        "movementType": "salida",
+        "quantity": 38,
+        "previousStock": 200,
+        "newStock": 162,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-21T23:37:20.982922"
+      }
+    ]
+  },
+  {
+    "product": {
+      "id": "a015f24f-32e5-40be-b30f-0000000003d4",
+      "name": "Alza",
+      "stock": 80,
+      "precio": 28000,
+      "image": "assets/images/ALZA-300x300.jpg"
+    },
+    "inventoryMovements": [
+      {
+        "id": "585640c8-f0ee-4b6e-b6da-000000000c27",
+        "productId": "a015f24f-32e5-40be-b30f-0000000003d4",
+        "movementType": "entrada",
+        "quantity": 24,
+        "previousStock": 80,
+        "newStock": 104,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-12T09:37:20.982922"
+      },
+      {
+        "id": "3919f748-9b98-4846-aef6-000000000fc0",
+        "productId": "a015f24f-32e5-40be-b30f-0000000003d4",
+        "movementType": "salida",
+        "quantity": 88,
+        "previousStock": 104,
+        "newStock": 16,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-17T03:37:20.982922"
+      },
+      {
+        "id": "a03a2217-006e-48b2-abf1-0000000008e5",
+        "productId": "a015f24f-32e5-40be-b30f-0000000003d4",
+        "movementType": "salida",
+        "quantity": 16,
+        "previousStock": 16,
+        "newStock": 0,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-21T21:37:20.982922"
+      }
+    ]
+  },
+  {
+    "product": {
+      "id": "2d9c3dd3-0a59-43ef-a091-00000000018e",
+      "name": "Turrón Chocolate 125 Gramos",
+      "stock": 80,
+      "precio": 13000,
+      "image": "assets/images/turron-600x600.png"
+    },
+    "inventoryMovements": [
+      {
+        "id": "b3d5f429-3f4a-47b5-8d1c-000000000669",
+        "productId": "2d9c3dd3-0a59-43ef-a091-00000000018e",
+        "movementType": "salida",
+        "quantity": 80,
+        "previousStock": 80,
+        "newStock": 0,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-11T15:37:20.982922"
+      },
+      {
+        "id": "0e01c0f2-8965-4779-aced-000000000e46",
+        "productId": "2d9c3dd3-0a59-43ef-a091-00000000018e",
+        "movementType": "entrada",
+        "quantity": 56,
+        "previousStock": 0,
+        "newStock": 56,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-16T20:37:20.982922"
+      },
+      {
+        "id": "e012d1c6-5094-4bb1-a009-00000000088f",
+        "productId": "2d9c3dd3-0a59-43ef-a091-00000000018e",
+        "movementType": "entrada",
+        "quantity": 88,
+        "previousStock": 56,
+        "newStock": 144,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-22T03:37:20.982922"
+      }
+    ]
+  },
+  {
+    "product": {
+      "id": "7c6f9226-1bfa-45ee-948c-000000000695",
+      "name": "Granola",
+      "stock": 80,
+      "precio": 40000,
+      "image": "assets/images/Granola-600x600.jpg"
+    },
+    "inventoryMovements": [
+      {
+        "id": "07ca0b30-e73c-415d-ae19-000000000387",
+        "productId": "7c6f9226-1bfa-45ee-948c-000000000695",
+        "movementType": "salida",
+        "quantity": 61,
+        "previousStock": 80,
+        "newStock": 19,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-11T16:37:20.982922"
+      },
+      {
+        "id": "567542d7-3b57-4a8e-b34b-000000000774",
+        "productId": "7c6f9226-1bfa-45ee-948c-000000000695",
+        "movementType": "salida",
+        "quantity": 19,
+        "previousStock": 19,
+        "newStock": 0,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-17T11:37:20.982922"
+      },
+      {
+        "id": "431b1780-f222-41fb-9e2d-0000000005e3",
+        "productId": "7c6f9226-1bfa-45ee-948c-000000000695",
+        "movementType": "salida",
+        "quantity": 0,
+        "previousStock": 0,
+        "newStock": 0,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-21T23:37:20.982922"
+      }
+    ]
+  },
+  {
+    "product": {
+      "id": "ee455bf1-49e0-41e0-a50a-0000000005b3",
+      "name": "Vinum Acre",
+      "stock": 80,
+      "precio": 21000,
+      "image": "assets/images/vinagre-600x600.jpg"
+    },
+    "inventoryMovements": [
+      {
+        "id": "929b7925-15c4-4e60-b24a-0000000007e7",
+        "productId": "ee455bf1-49e0-41e0-a50a-0000000005b3",
+        "movementType": "salida",
+        "quantity": 28,
+        "previousStock": 80,
+        "newStock": 52,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-11T21:37:20.982922"
+      },
+      {
+        "id": "f0a5cf27-c4c2-4ae5-a41f-0000000004dd",
+        "productId": "ee455bf1-49e0-41e0-a50a-0000000005b3",
+        "movementType": "entrada",
+        "quantity": 32,
+        "previousStock": 52,
+        "newStock": 84,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-16T21:37:20.982922"
+      },
+      {
+        "id": "f3e10315-e5e0-41ba-adb1-000000000dc0",
+        "productId": "ee455bf1-49e0-41e0-a50a-0000000005b3",
+        "movementType": "salida",
+        "quantity": 8,
+        "previousStock": 84,
+        "newStock": 76,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-21T23:37:20.982922"
+      }
+    ]
+  },
+  {
+    "product": {
+      "id": "539aa49d-5a0c-4913-8729-000000000a0a",
+      "name": "Galletas Lebkuchen",
+      "stock": 80,
+      "precio": 5000,
+      "image": "assets/images/galletas_lebkuchen-600x600.jpeg"
+    },
+    "inventoryMovements": [
+      {
+        "id": "f09e4061-43d2-4ccb-a568-000000000d79",
+        "productId": "539aa49d-5a0c-4913-8729-000000000a0a",
+        "movementType": "entrada",
+        "quantity": 71,
+        "previousStock": 80,
+        "newStock": 151,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-11T18:37:20.982922"
+      },
+      {
+        "id": "f4e72233-f284-4534-8662-00000000007c",
+        "productId": "539aa49d-5a0c-4913-8729-000000000a0a",
+        "movementType": "entrada",
+        "quantity": 7,
+        "previousStock": 151,
+        "newStock": 158,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-16T18:37:20.982922"
+      },
+      {
+        "id": "a14715df-ea47-40d0-9a51-000000000f6f",
+        "productId": "539aa49d-5a0c-4913-8729-000000000a0a",
+        "movementType": "entrada",
+        "quantity": 20,
+        "previousStock": 158,
+        "newStock": 178,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-21T20:37:20.982922"
+      }
+    ]
+  },
+  {
+    "product": {
+      "id": "46f1a71f-59b7-4702-80fe-00000000082c",
+      "name": "Polen 500 gramos",
+      "stock": 80,
+      "precio": 27000,
+      "image": "assets/images/polen_500_gramos.jpeg"
+    },
+    "inventoryMovements": [
+      {
+        "id": "2fc29a57-832b-4b80-9b97-000000000b96",
+        "productId": "46f1a71f-59b7-4702-80fe-00000000082c",
+        "movementType": "salida",
+        "quantity": 80,
+        "previousStock": 80,
+        "newStock": 0,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-11T22:37:20.982922"
+      },
+      {
+        "id": "6849d6f6-698d-4756-86e0-000000000ea2",
+        "productId": "46f1a71f-59b7-4702-80fe-00000000082c",
+        "movementType": "entrada",
+        "quantity": 42,
+        "previousStock": 0,
+        "newStock": 42,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-16T22:37:20.982922"
+      },
+      {
+        "id": "9ce7c99a-cbdf-4db8-8a4b-00000000055e",
+        "productId": "46f1a71f-59b7-4702-80fe-00000000082c",
+        "movementType": "salida",
+        "quantity": 42,
+        "previousStock": 42,
+        "newStock": 0,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-22T07:37:20.982922"
+      }
+    ]
+  },
+  {
+    "product": {
+      "id": "21cade12-d8e7-4f6c-acc9-000000000849",
+      "name": "Polen 250 gramos",
+      "stock": 80,
+      "precio": 18000,
+      "image": "assets/images/polen_250gramos.jpeg"
+    },
+    "inventoryMovements": [
+      {
+        "id": "e427d583-b91c-4e78-8d8d-000000000b7d",
+        "productId": "21cade12-d8e7-4f6c-acc9-000000000849",
+        "movementType": "entrada",
+        "quantity": 79,
+        "previousStock": 80,
+        "newStock": 159,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-11T22:37:20.982922"
+      },
+      {
+        "id": "4d35a35f-8e7b-4926-81ea-00000000038d",
+        "productId": "21cade12-d8e7-4f6c-acc9-000000000849",
+        "movementType": "entrada",
+        "quantity": 6,
+        "previousStock": 159,
+        "newStock": 165,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-17T10:37:20.982922"
+      },
+      {
+        "id": "98bfd348-1594-47c1-be99-00000000057b",
+        "productId": "21cade12-d8e7-4f6c-acc9-000000000849",
+        "movementType": "salida",
+        "quantity": 25,
+        "previousStock": 165,
+        "newStock": 140,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-22T07:37:20.982922"
+      }
+    ]
+  },
+  {
+    "product": {
+      "id": "10a59a14-1b23-4054-8470-000000000bbf",
+      "name": "Miel WayraSua 500 gramos",
+      "stock": 80,
+      "precio": 25000,
+      "image": "assets/images/miel_wayraSua_500gramos-600x600.jpeg"
+    },
+    "inventoryMovements": [
+      {
+        "id": "5ff71d47-3aa1-4167-b79d-000000000723",
+        "productId": "10a59a14-1b23-4054-8470-000000000bbf",
+        "movementType": "entrada",
+        "quantity": 31,
+        "previousStock": 80,
+        "newStock": 111,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-12T09:37:20.982922"
+      },
+      {
+        "id": "b95cf32e-21e9-4001-9942-000000000227",
+        "productId": "10a59a14-1b23-4054-8470-000000000bbf",
+        "movementType": "entrada",
+        "quantity": 48,
+        "previousStock": 111,
+        "newStock": 159,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-17T10:37:20.982922"
+      },
+      {
+        "id": "06849c3f-11ca-405c-8553-000000000460",
+        "productId": "10a59a14-1b23-4054-8470-000000000bbf",
+        "movementType": "salida",
+        "quantity": 77,
+        "previousStock": 159,
+        "newStock": 82,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-22T11:37:20.982922"
+      }
+    ]
+  },
+  {
+    "product": {
+      "id": "98e83625-047e-488e-9712-000000000e58",
+      "name": "Polen 500 gramos",
+      "stock": 80,
+      "precio": 27000,
+      "image": "assets/images/polen_500_gramos.jpeg"
+    },
+    "inventoryMovements": [
+      {
+        "id": "3fefe735-decd-4916-8d00-0000000000b8",
+        "productId": "98e83625-047e-488e-9712-000000000e58",
+        "movementType": "entrada",
+        "quantity": 83,
+        "previousStock": 80,
+        "newStock": 163,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-11T21:37:20.982922"
+      },
+      {
+        "id": "5ba5019c-a3dd-465d-a93c-000000000b2c",
+        "productId": "98e83625-047e-488e-9712-000000000e58",
+        "movementType": "entrada",
+        "quantity": 73,
+        "previousStock": 163,
+        "newStock": 236,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-17T07:37:20.982922"
+      },
+      {
+        "id": "9cd56359-9ba8-4526-aa0d-000000000445",
+        "productId": "98e83625-047e-488e-9712-000000000e58",
+        "movementType": "salida",
+        "quantity": 63,
+        "previousStock": 236,
+        "newStock": 173,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-22T08:37:20.982922"
+      }
+    ]
+  },
+  {
+    "product": {
+      "id": "dca0f4ad-e43d-494f-8108-000000000a4b",
+      "name": "Polen 250 gramos",
+      "stock": 80,
+      "precio": 18000,
+      "image": "assets/images/polen_250gramos.jpeg"
+    },
+    "inventoryMovements": [
+      {
+        "id": "ca073070-aab4-4358-a07d-00000000065a",
+        "productId": "dca0f4ad-e43d-494f-8108-000000000a4b",
+        "movementType": "entrada",
+        "quantity": 82,
+        "previousStock": 80,
+        "newStock": 162,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-11T14:37:20.982922"
+      },
+      {
+        "id": "9c730ce2-7afb-4375-b674-000000000b4a",
+        "productId": "dca0f4ad-e43d-494f-8108-000000000a4b",
+        "movementType": "salida",
+        "quantity": 54,
+        "previousStock": 162,
+        "newStock": 108,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-17T09:37:20.982922"
+      },
+      {
+        "id": "0ccaf55e-1e1f-415a-8834-0000000003e2",
+        "productId": "dca0f4ad-e43d-494f-8108-000000000a4b",
+        "movementType": "entrada",
+        "quantity": 43,
+        "previousStock": 108,
+        "newStock": 151,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-22T12:37:20.982922"
+      }
+    ]
+  },
+  {
+    "product": {
+      "id": "0c51ca91-1a58-4e97-b522-000000000110",
+      "name": "Miel WayraSua 500 gramos",
+      "stock": 80,
+      "precio": 25000,
+      "image": "assets/images/miel_wayraSua_500gramos-600x600.jpeg"
+    },
+    "inventoryMovements": [
+      {
+        "id": "ece22a14-39e1-4b87-ab55-00000000069f",
+        "productId": "0c51ca91-1a58-4e97-b522-000000000110",
+        "movementType": "entrada",
+        "quantity": 100,
+        "previousStock": 80,
+        "newStock": 180,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-11T21:37:20.983922"
+      },
+      {
+        "id": "e59e943c-6d89-40a8-8a3d-000000000bdc",
+        "productId": "0c51ca91-1a58-4e97-b522-000000000110",
+        "movementType": "salida",
+        "quantity": 44,
+        "previousStock": 180,
+        "newStock": 136,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-17T03:37:20.983922"
+      },
+      {
+        "id": "51306218-41da-4e40-a0f8-000000000b57",
+        "productId": "0c51ca91-1a58-4e97-b522-000000000110",
+        "movementType": "salida",
+        "quantity": 32,
+        "previousStock": 136,
+        "newStock": 104,
+        "note": "Venta en almacén",
+        "timestamp": "2026-06-22T07:37:20.983922"
+      }
+    ]
+  },
+  {
+    "product": {
+      "id": "71258b17-cd91-47c0-9537-0000000003e9",
+      "name": "Miel Natural x 700 gramos",
+      "stock": 80,
+      "precio": 29800,
+      "image": "assets/images/700g-300x300.jpg"
+    },
+    "inventoryMovements": [
+      {
+        "id": "048e68b2-f4da-4d97-8ac7-000000000c3e",
+        "productId": "71258b17-cd91-47c0-9537-0000000003e9",
+        "movementType": "entrada",
+        "quantity": 88,
+        "previousStock": 80,
+        "newStock": 168,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-11T18:37:20.983922"
+      },
+      {
+        "id": "77532d75-0040-4118-a308-00000000029d",
+        "productId": "71258b17-cd91-47c0-9537-0000000003e9",
+        "movementType": "entrada",
+        "quantity": 77,
+        "previousStock": 168,
+        "newStock": 245,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-17T09:37:20.983922"
+      },
+      {
+        "id": "e65806c1-f763-4efa-8a34-0000000001b9",
+        "productId": "71258b17-cd91-47c0-9537-0000000003e9",
+        "movementType": "entrada",
+        "quantity": 50,
+        "previousStock": 245,
+        "newStock": 295,
+        "note": "Compra proveedor",
+        "timestamp": "2026-06-22T11:37:20.983922"
+      }
+    ]
+  }
+]

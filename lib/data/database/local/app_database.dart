@@ -10,6 +10,7 @@ import 'package:stockmaster/data/database/local/client_attributes.dart';
 import 'package:stockmaster/data/database/local/client_attributes_dao.dart';
 import 'package:stockmaster/data/database/local/images_stockmaster.dart';
 import 'package:stockmaster/data/database/local/images_stockmaster_dao.dart';
+import 'package:stockmaster/data/database/local/inventory_movements.dart';
 import 'package:stockmaster/data/database/local/items.dart';
 import 'package:stockmaster/data/database/local/items_dao.dart';
 import 'package:stockmaster/data/database/local/product-attributes.dart';
@@ -37,6 +38,7 @@ import '../../seed/client_attribute_seeder.dart';
 import '../../seed/type_inventory_seeder.dart';
 import 'business_dao.dart';
 import 'businesss.dart';
+import 'inventory_movements_dao.dart';
 import 'services.dart';
 import 'cart_groups.dart';
 import 'products.dart';
@@ -60,7 +62,8 @@ part 'app_database.g.dart';
     Services,
     Items,
     SaleItems,
-    Sales
+    Sales,
+    InventoryMovements
   ],
   daos: [
     ProductDao,
@@ -77,7 +80,8 @@ part 'app_database.g.dart';
     ServicesDao,
     ItemsDao,
     SaleItemsDao,
-    SalesDao
+    SalesDao,
+    InventoryMovementsDao
   ],
 )
 class AppDatabase extends _$AppDatabase {

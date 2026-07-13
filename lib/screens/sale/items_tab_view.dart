@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stockmaster/screens/sale/sale_screen_general.dart';
 import 'product_list_view.dart';
 import 'service_list_view.dart';
 
@@ -11,7 +12,7 @@ class ItemsTabView extends StatelessWidget {
     return TabBarView(
       controller: tabController,
       children: const [
-        ProductListView(),
+        SaleScreenGeneral(),
         ServiceListView(),
       ],
     );

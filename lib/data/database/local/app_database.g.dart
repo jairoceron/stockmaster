@@ -10187,6 +10187,729 @@ class SalesCompanion extends UpdateCompanion<SaleEntity> {
   }
 }
 
+class $InventoryMovementsTable extends InventoryMovements
+    with TableInfo<$InventoryMovementsTable, InventoryMovementEntity> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $InventoryMovementsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    clientDefault: generateUuid,
+  );
+  static const VerificationMeta _productIdMeta = const VerificationMeta(
+    'productId',
+  );
+  @override
+  late final GeneratedColumn<String> productId = GeneratedColumn<String>(
+    'product_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES products (id)',
+    ),
+  );
+  static const VerificationMeta _movementTypeMeta = const VerificationMeta(
+    'movementType',
+  );
+  @override
+  late final GeneratedColumn<String> movementType = GeneratedColumn<String>(
+    'movement_type',
+    aliasedName,
+    false,
+    check: () => movementType.isIn(['entrada', 'salida']),
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _quantityMeta = const VerificationMeta(
+    'quantity',
+  );
+  @override
+  late final GeneratedColumn<int> quantity = GeneratedColumn<int>(
+    'quantity',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _previousStockMeta = const VerificationMeta(
+    'previousStock',
+  );
+  @override
+  late final GeneratedColumn<int> previousStock = GeneratedColumn<int>(
+    'previous_stock',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _newStockMeta = const VerificationMeta(
+    'newStock',
+  );
+  @override
+  late final GeneratedColumn<int> newStock = GeneratedColumn<int>(
+    'new_stock',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _timestampMeta = const VerificationMeta(
+    'timestamp',
+  );
+  @override
+  late final GeneratedColumn<DateTime> timestamp = GeneratedColumn<DateTime>(
+    'timestamp',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now(),
+  );
+  static const VerificationMeta _noteMeta = const VerificationMeta('note');
+  @override
+  late final GeneratedColumn<String> note = GeneratedColumn<String>(
+    'note',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _deviceIdMeta = const VerificationMeta(
+    'deviceId',
+  );
+  @override
+  late final GeneratedColumn<String> deviceId = GeneratedColumn<String>(
+    'device_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _ownerMeta = const VerificationMeta('owner');
+  @override
+  late final GeneratedColumn<String> owner = GeneratedColumn<String>(
+    'owner',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _syncStateMeta = const VerificationMeta(
+    'syncState',
+  );
+  @override
+  late final GeneratedColumn<String> syncState = GeneratedColumn<String>(
+    'sync_state',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _syncStatusMeta = const VerificationMeta(
+    'syncStatus',
+  );
+  @override
+  late final GeneratedColumn<bool> syncStatus = GeneratedColumn<bool>(
+    'sync_status',
+    aliasedName,
+    true,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("sync_status" IN (0, 1))',
+    ),
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    productId,
+    movementType,
+    quantity,
+    previousStock,
+    newStock,
+    timestamp,
+    note,
+    deviceId,
+    owner,
+    syncState,
+    syncStatus,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'inventory_movements';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<InventoryMovementEntity> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('product_id')) {
+      context.handle(
+        _productIdMeta,
+        productId.isAcceptableOrUnknown(data['product_id']!, _productIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_productIdMeta);
+    }
+    if (data.containsKey('movement_type')) {
+      context.handle(
+        _movementTypeMeta,
+        movementType.isAcceptableOrUnknown(
+          data['movement_type']!,
+          _movementTypeMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_movementTypeMeta);
+    }
+    if (data.containsKey('quantity')) {
+      context.handle(
+        _quantityMeta,
+        quantity.isAcceptableOrUnknown(data['quantity']!, _quantityMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_quantityMeta);
+    }
+    if (data.containsKey('previous_stock')) {
+      context.handle(
+        _previousStockMeta,
+        previousStock.isAcceptableOrUnknown(
+          data['previous_stock']!,
+          _previousStockMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_previousStockMeta);
+    }
+    if (data.containsKey('new_stock')) {
+      context.handle(
+        _newStockMeta,
+        newStock.isAcceptableOrUnknown(data['new_stock']!, _newStockMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_newStockMeta);
+    }
+    if (data.containsKey('timestamp')) {
+      context.handle(
+        _timestampMeta,
+        timestamp.isAcceptableOrUnknown(data['timestamp']!, _timestampMeta),
+      );
+    }
+    if (data.containsKey('note')) {
+      context.handle(
+        _noteMeta,
+        note.isAcceptableOrUnknown(data['note']!, _noteMeta),
+      );
+    }
+    if (data.containsKey('device_id')) {
+      context.handle(
+        _deviceIdMeta,
+        deviceId.isAcceptableOrUnknown(data['device_id']!, _deviceIdMeta),
+      );
+    }
+    if (data.containsKey('owner')) {
+      context.handle(
+        _ownerMeta,
+        owner.isAcceptableOrUnknown(data['owner']!, _ownerMeta),
+      );
+    }
+    if (data.containsKey('sync_state')) {
+      context.handle(
+        _syncStateMeta,
+        syncState.isAcceptableOrUnknown(data['sync_state']!, _syncStateMeta),
+      );
+    }
+    if (data.containsKey('sync_status')) {
+      context.handle(
+        _syncStatusMeta,
+        syncStatus.isAcceptableOrUnknown(data['sync_status']!, _syncStatusMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  InventoryMovementEntity map(
+    Map<String, dynamic> data, {
+    String? tablePrefix,
+  }) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return InventoryMovementEntity(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      productId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}product_id'],
+      )!,
+      movementType: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}movement_type'],
+      )!,
+      quantity: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}quantity'],
+      )!,
+      previousStock: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}previous_stock'],
+      )!,
+      newStock: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}new_stock'],
+      )!,
+      timestamp: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}timestamp'],
+      )!,
+      note: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}note'],
+      ),
+      deviceId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}device_id'],
+      ),
+      owner: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}owner'],
+      ),
+      syncState: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}sync_state'],
+      ),
+      syncStatus: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}sync_status'],
+      ),
+    );
+  }
+
+  @override
+  $InventoryMovementsTable createAlias(String alias) {
+    return $InventoryMovementsTable(attachedDatabase, alias);
+  }
+}
+
+class InventoryMovementEntity extends DataClass
+    implements Insertable<InventoryMovementEntity> {
+  final String id;
+  final String productId;
+  final String movementType;
+  final int quantity;
+  final int previousStock;
+  final int newStock;
+  final DateTime timestamp;
+  final String? note;
+  final String? deviceId;
+  final String? owner;
+  final String? syncState;
+  final bool? syncStatus;
+  const InventoryMovementEntity({
+    required this.id,
+    required this.productId,
+    required this.movementType,
+    required this.quantity,
+    required this.previousStock,
+    required this.newStock,
+    required this.timestamp,
+    this.note,
+    this.deviceId,
+    this.owner,
+    this.syncState,
+    this.syncStatus,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['product_id'] = Variable<String>(productId);
+    map['movement_type'] = Variable<String>(movementType);
+    map['quantity'] = Variable<int>(quantity);
+    map['previous_stock'] = Variable<int>(previousStock);
+    map['new_stock'] = Variable<int>(newStock);
+    map['timestamp'] = Variable<DateTime>(timestamp);
+    if (!nullToAbsent || note != null) {
+      map['note'] = Variable<String>(note);
+    }
+    if (!nullToAbsent || deviceId != null) {
+      map['device_id'] = Variable<String>(deviceId);
+    }
+    if (!nullToAbsent || owner != null) {
+      map['owner'] = Variable<String>(owner);
+    }
+    if (!nullToAbsent || syncState != null) {
+      map['sync_state'] = Variable<String>(syncState);
+    }
+    if (!nullToAbsent || syncStatus != null) {
+      map['sync_status'] = Variable<bool>(syncStatus);
+    }
+    return map;
+  }
+
+  InventoryMovementsCompanion toCompanion(bool nullToAbsent) {
+    return InventoryMovementsCompanion(
+      id: Value(id),
+      productId: Value(productId),
+      movementType: Value(movementType),
+      quantity: Value(quantity),
+      previousStock: Value(previousStock),
+      newStock: Value(newStock),
+      timestamp: Value(timestamp),
+      note: note == null && nullToAbsent ? const Value.absent() : Value(note),
+      deviceId: deviceId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(deviceId),
+      owner: owner == null && nullToAbsent
+          ? const Value.absent()
+          : Value(owner),
+      syncState: syncState == null && nullToAbsent
+          ? const Value.absent()
+          : Value(syncState),
+      syncStatus: syncStatus == null && nullToAbsent
+          ? const Value.absent()
+          : Value(syncStatus),
+    );
+  }
+
+  factory InventoryMovementEntity.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return InventoryMovementEntity(
+      id: serializer.fromJson<String>(json['id']),
+      productId: serializer.fromJson<String>(json['productId']),
+      movementType: serializer.fromJson<String>(json['movementType']),
+      quantity: serializer.fromJson<int>(json['quantity']),
+      previousStock: serializer.fromJson<int>(json['previousStock']),
+      newStock: serializer.fromJson<int>(json['newStock']),
+      timestamp: serializer.fromJson<DateTime>(json['timestamp']),
+      note: serializer.fromJson<String?>(json['note']),
+      deviceId: serializer.fromJson<String?>(json['deviceId']),
+      owner: serializer.fromJson<String?>(json['owner']),
+      syncState: serializer.fromJson<String?>(json['syncState']),
+      syncStatus: serializer.fromJson<bool?>(json['syncStatus']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'productId': serializer.toJson<String>(productId),
+      'movementType': serializer.toJson<String>(movementType),
+      'quantity': serializer.toJson<int>(quantity),
+      'previousStock': serializer.toJson<int>(previousStock),
+      'newStock': serializer.toJson<int>(newStock),
+      'timestamp': serializer.toJson<DateTime>(timestamp),
+      'note': serializer.toJson<String?>(note),
+      'deviceId': serializer.toJson<String?>(deviceId),
+      'owner': serializer.toJson<String?>(owner),
+      'syncState': serializer.toJson<String?>(syncState),
+      'syncStatus': serializer.toJson<bool?>(syncStatus),
+    };
+  }
+
+  InventoryMovementEntity copyWith({
+    String? id,
+    String? productId,
+    String? movementType,
+    int? quantity,
+    int? previousStock,
+    int? newStock,
+    DateTime? timestamp,
+    Value<String?> note = const Value.absent(),
+    Value<String?> deviceId = const Value.absent(),
+    Value<String?> owner = const Value.absent(),
+    Value<String?> syncState = const Value.absent(),
+    Value<bool?> syncStatus = const Value.absent(),
+  }) => InventoryMovementEntity(
+    id: id ?? this.id,
+    productId: productId ?? this.productId,
+    movementType: movementType ?? this.movementType,
+    quantity: quantity ?? this.quantity,
+    previousStock: previousStock ?? this.previousStock,
+    newStock: newStock ?? this.newStock,
+    timestamp: timestamp ?? this.timestamp,
+    note: note.present ? note.value : this.note,
+    deviceId: deviceId.present ? deviceId.value : this.deviceId,
+    owner: owner.present ? owner.value : this.owner,
+    syncState: syncState.present ? syncState.value : this.syncState,
+    syncStatus: syncStatus.present ? syncStatus.value : this.syncStatus,
+  );
+  InventoryMovementEntity copyWithCompanion(InventoryMovementsCompanion data) {
+    return InventoryMovementEntity(
+      id: data.id.present ? data.id.value : this.id,
+      productId: data.productId.present ? data.productId.value : this.productId,
+      movementType: data.movementType.present
+          ? data.movementType.value
+          : this.movementType,
+      quantity: data.quantity.present ? data.quantity.value : this.quantity,
+      previousStock: data.previousStock.present
+          ? data.previousStock.value
+          : this.previousStock,
+      newStock: data.newStock.present ? data.newStock.value : this.newStock,
+      timestamp: data.timestamp.present ? data.timestamp.value : this.timestamp,
+      note: data.note.present ? data.note.value : this.note,
+      deviceId: data.deviceId.present ? data.deviceId.value : this.deviceId,
+      owner: data.owner.present ? data.owner.value : this.owner,
+      syncState: data.syncState.present ? data.syncState.value : this.syncState,
+      syncStatus: data.syncStatus.present
+          ? data.syncStatus.value
+          : this.syncStatus,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('InventoryMovementEntity(')
+          ..write('id: $id, ')
+          ..write('productId: $productId, ')
+          ..write('movementType: $movementType, ')
+          ..write('quantity: $quantity, ')
+          ..write('previousStock: $previousStock, ')
+          ..write('newStock: $newStock, ')
+          ..write('timestamp: $timestamp, ')
+          ..write('note: $note, ')
+          ..write('deviceId: $deviceId, ')
+          ..write('owner: $owner, ')
+          ..write('syncState: $syncState, ')
+          ..write('syncStatus: $syncStatus')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    productId,
+    movementType,
+    quantity,
+    previousStock,
+    newStock,
+    timestamp,
+    note,
+    deviceId,
+    owner,
+    syncState,
+    syncStatus,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is InventoryMovementEntity &&
+          other.id == this.id &&
+          other.productId == this.productId &&
+          other.movementType == this.movementType &&
+          other.quantity == this.quantity &&
+          other.previousStock == this.previousStock &&
+          other.newStock == this.newStock &&
+          other.timestamp == this.timestamp &&
+          other.note == this.note &&
+          other.deviceId == this.deviceId &&
+          other.owner == this.owner &&
+          other.syncState == this.syncState &&
+          other.syncStatus == this.syncStatus);
+}
+
+class InventoryMovementsCompanion
+    extends UpdateCompanion<InventoryMovementEntity> {
+  final Value<String> id;
+  final Value<String> productId;
+  final Value<String> movementType;
+  final Value<int> quantity;
+  final Value<int> previousStock;
+  final Value<int> newStock;
+  final Value<DateTime> timestamp;
+  final Value<String?> note;
+  final Value<String?> deviceId;
+  final Value<String?> owner;
+  final Value<String?> syncState;
+  final Value<bool?> syncStatus;
+  final Value<int> rowid;
+  const InventoryMovementsCompanion({
+    this.id = const Value.absent(),
+    this.productId = const Value.absent(),
+    this.movementType = const Value.absent(),
+    this.quantity = const Value.absent(),
+    this.previousStock = const Value.absent(),
+    this.newStock = const Value.absent(),
+    this.timestamp = const Value.absent(),
+    this.note = const Value.absent(),
+    this.deviceId = const Value.absent(),
+    this.owner = const Value.absent(),
+    this.syncState = const Value.absent(),
+    this.syncStatus = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  InventoryMovementsCompanion.insert({
+    this.id = const Value.absent(),
+    required String productId,
+    required String movementType,
+    required int quantity,
+    required int previousStock,
+    required int newStock,
+    this.timestamp = const Value.absent(),
+    this.note = const Value.absent(),
+    this.deviceId = const Value.absent(),
+    this.owner = const Value.absent(),
+    this.syncState = const Value.absent(),
+    this.syncStatus = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : productId = Value(productId),
+       movementType = Value(movementType),
+       quantity = Value(quantity),
+       previousStock = Value(previousStock),
+       newStock = Value(newStock);
+  static Insertable<InventoryMovementEntity> custom({
+    Expression<String>? id,
+    Expression<String>? productId,
+    Expression<String>? movementType,
+    Expression<int>? quantity,
+    Expression<int>? previousStock,
+    Expression<int>? newStock,
+    Expression<DateTime>? timestamp,
+    Expression<String>? note,
+    Expression<String>? deviceId,
+    Expression<String>? owner,
+    Expression<String>? syncState,
+    Expression<bool>? syncStatus,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (productId != null) 'product_id': productId,
+      if (movementType != null) 'movement_type': movementType,
+      if (quantity != null) 'quantity': quantity,
+      if (previousStock != null) 'previous_stock': previousStock,
+      if (newStock != null) 'new_stock': newStock,
+      if (timestamp != null) 'timestamp': timestamp,
+      if (note != null) 'note': note,
+      if (deviceId != null) 'device_id': deviceId,
+      if (owner != null) 'owner': owner,
+      if (syncState != null) 'sync_state': syncState,
+      if (syncStatus != null) 'sync_status': syncStatus,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  InventoryMovementsCompanion copyWith({
+    Value<String>? id,
+    Value<String>? productId,
+    Value<String>? movementType,
+    Value<int>? quantity,
+    Value<int>? previousStock,
+    Value<int>? newStock,
+    Value<DateTime>? timestamp,
+    Value<String?>? note,
+    Value<String?>? deviceId,
+    Value<String?>? owner,
+    Value<String?>? syncState,
+    Value<bool?>? syncStatus,
+    Value<int>? rowid,
+  }) {
+    return InventoryMovementsCompanion(
+      id: id ?? this.id,
+      productId: productId ?? this.productId,
+      movementType: movementType ?? this.movementType,
+      quantity: quantity ?? this.quantity,
+      previousStock: previousStock ?? this.previousStock,
+      newStock: newStock ?? this.newStock,
+      timestamp: timestamp ?? this.timestamp,
+      note: note ?? this.note,
+      deviceId: deviceId ?? this.deviceId,
+      owner: owner ?? this.owner,
+      syncState: syncState ?? this.syncState,
+      syncStatus: syncStatus ?? this.syncStatus,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (productId.present) {
+      map['product_id'] = Variable<String>(productId.value);
+    }
+    if (movementType.present) {
+      map['movement_type'] = Variable<String>(movementType.value);
+    }
+    if (quantity.present) {
+      map['quantity'] = Variable<int>(quantity.value);
+    }
+    if (previousStock.present) {
+      map['previous_stock'] = Variable<int>(previousStock.value);
+    }
+    if (newStock.present) {
+      map['new_stock'] = Variable<int>(newStock.value);
+    }
+    if (timestamp.present) {
+      map['timestamp'] = Variable<DateTime>(timestamp.value);
+    }
+    if (note.present) {
+      map['note'] = Variable<String>(note.value);
+    }
+    if (deviceId.present) {
+      map['device_id'] = Variable<String>(deviceId.value);
+    }
+    if (owner.present) {
+      map['owner'] = Variable<String>(owner.value);
+    }
+    if (syncState.present) {
+      map['sync_state'] = Variable<String>(syncState.value);
+    }
+    if (syncStatus.present) {
+      map['sync_status'] = Variable<bool>(syncStatus.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('InventoryMovementsCompanion(')
+          ..write('id: $id, ')
+          ..write('productId: $productId, ')
+          ..write('movementType: $movementType, ')
+          ..write('quantity: $quantity, ')
+          ..write('previousStock: $previousStock, ')
+          ..write('newStock: $newStock, ')
+          ..write('timestamp: $timestamp, ')
+          ..write('note: $note, ')
+          ..write('deviceId: $deviceId, ')
+          ..write('owner: $owner, ')
+          ..write('syncState: $syncState, ')
+          ..write('syncStatus: $syncStatus, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
@@ -10211,6 +10934,8 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   late final $ItemsTable items = $ItemsTable(this);
   late final $SaleItemsTable saleItems = $SaleItemsTable(this);
   late final $SalesTable sales = $SalesTable(this);
+  late final $InventoryMovementsTable inventoryMovements =
+      $InventoryMovementsTable(this);
   late final ProductDao productDao = ProductDao(this as AppDatabase);
   late final TransactionDao transactionDao = TransactionDao(
     this as AppDatabase,
@@ -10238,6 +10963,8 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   late final ItemsDao itemsDao = ItemsDao(this as AppDatabase);
   late final SaleItemsDao saleItemsDao = SaleItemsDao(this as AppDatabase);
   late final SalesDao salesDao = SalesDao(this as AppDatabase);
+  late final InventoryMovementsDao inventoryMovementsDao =
+      InventoryMovementsDao(this as AppDatabase);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
@@ -10258,6 +10985,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     items,
     saleItems,
     sales,
+    inventoryMovements,
   ];
 }
 
@@ -10371,6 +11099,33 @@ final class $$ProductsTableReferences
 
     final cache = $_typedResult.readTableOrNull(
       _productAttributesRefsTable($_db),
+    );
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+
+  static MultiTypedResultKey<
+    $InventoryMovementsTable,
+    List<InventoryMovementEntity>
+  >
+  _inventoryMovementsRefsTable(_$AppDatabase db) =>
+      MultiTypedResultKey.fromTable(
+        db.inventoryMovements,
+        aliasName: $_aliasNameGenerator(
+          db.products.id,
+          db.inventoryMovements.productId,
+        ),
+      );
+
+  $$InventoryMovementsTableProcessedTableManager get inventoryMovementsRefs {
+    final manager = $$InventoryMovementsTableTableManager(
+      $_db,
+      $_db.inventoryMovements,
+    ).filter((f) => f.productId.id.sqlEquals($_itemColumn<String>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(
+      _inventoryMovementsRefsTable($_db),
     );
     return ProcessedTableManager(
       manager.$state.copyWith(prefetchedData: cache),
@@ -10573,6 +11328,31 @@ class $$ProductsTableFilterComposer
           }) => $$ProductAttributesTableFilterComposer(
             $db: $db,
             $table: $db.productAttributes,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<bool> inventoryMovementsRefs(
+    Expression<bool> Function($$InventoryMovementsTableFilterComposer f) f,
+  ) {
+    final $$InventoryMovementsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.inventoryMovements,
+      getReferencedColumn: (t) => t.productId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$InventoryMovementsTableFilterComposer(
+            $db: $db,
+            $table: $db.inventoryMovements,
             $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
             joinBuilder: joinBuilder,
             $removeJoinBuilderFromRootComposer:
@@ -10902,6 +11682,32 @@ class $$ProductsTableAnnotationComposer
         );
     return f(composer);
   }
+
+  Expression<T> inventoryMovementsRefs<T extends Object>(
+    Expression<T> Function($$InventoryMovementsTableAnnotationComposer a) f,
+  ) {
+    final $$InventoryMovementsTableAnnotationComposer composer =
+        $composerBuilder(
+          composer: this,
+          getCurrentColumn: (t) => t.id,
+          referencedTable: $db.inventoryMovements,
+          getReferencedColumn: (t) => t.productId,
+          builder:
+              (
+                joinBuilder, {
+                $addJoinBuilderToRootComposer,
+                $removeJoinBuilderFromRootComposer,
+              }) => $$InventoryMovementsTableAnnotationComposer(
+                $db: $db,
+                $table: $db.inventoryMovements,
+                $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+                joinBuilder: joinBuilder,
+                $removeJoinBuilderFromRootComposer:
+                    $removeJoinBuilderFromRootComposer,
+              ),
+        );
+    return f(composer);
+  }
 }
 
 class $$ProductsTableTableManager
@@ -10920,6 +11726,7 @@ class $$ProductsTableTableManager
           PrefetchHooks Function({
             bool transactionsRefs,
             bool productAttributesRefs,
+            bool inventoryMovementsRefs,
           })
         > {
   $$ProductsTableTableManager(_$AppDatabase db, $ProductsTable table)
@@ -11070,12 +11877,17 @@ class $$ProductsTableTableManager
               )
               .toList(),
           prefetchHooksCallback:
-              ({transactionsRefs = false, productAttributesRefs = false}) {
+              ({
+                transactionsRefs = false,
+                productAttributesRefs = false,
+                inventoryMovementsRefs = false,
+              }) {
                 return PrefetchHooks(
                   db: db,
                   explicitlyWatchedTables: [
                     if (transactionsRefs) db.transactions,
                     if (productAttributesRefs) db.productAttributes,
+                    if (inventoryMovementsRefs) db.inventoryMovements,
                   ],
                   addJoins: null,
                   getPrefetchedDataCallback: (items) async {
@@ -11122,6 +11934,27 @@ class $$ProductsTableTableManager
                               ),
                           typedResults: items,
                         ),
+                      if (inventoryMovementsRefs)
+                        await $_getPrefetchedData<
+                          ProductEntity,
+                          $ProductsTable,
+                          InventoryMovementEntity
+                        >(
+                          currentTable: table,
+                          referencedTable: $$ProductsTableReferences
+                              ._inventoryMovementsRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$ProductsTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).inventoryMovementsRefs,
+                          referencedItemsForCurrentItem:
+                              (item, referencedItems) => referencedItems.where(
+                                (e) => e.productId == item.id,
+                              ),
+                          typedResults: items,
+                        ),
                     ];
                   },
                 );
@@ -11145,6 +11978,7 @@ typedef $$ProductsTableProcessedTableManager =
       PrefetchHooks Function({
         bool transactionsRefs,
         bool productAttributesRefs,
+        bool inventoryMovementsRefs,
       })
     >;
 typedef $$CartGroupsTableCreateCompanionBuilder =
@@ -16002,6 +16836,480 @@ typedef $$SalesTableProcessedTableManager =
       SaleEntity,
       PrefetchHooks Function()
     >;
+typedef $$InventoryMovementsTableCreateCompanionBuilder =
+    InventoryMovementsCompanion Function({
+      Value<String> id,
+      required String productId,
+      required String movementType,
+      required int quantity,
+      required int previousStock,
+      required int newStock,
+      Value<DateTime> timestamp,
+      Value<String?> note,
+      Value<String?> deviceId,
+      Value<String?> owner,
+      Value<String?> syncState,
+      Value<bool?> syncStatus,
+      Value<int> rowid,
+    });
+typedef $$InventoryMovementsTableUpdateCompanionBuilder =
+    InventoryMovementsCompanion Function({
+      Value<String> id,
+      Value<String> productId,
+      Value<String> movementType,
+      Value<int> quantity,
+      Value<int> previousStock,
+      Value<int> newStock,
+      Value<DateTime> timestamp,
+      Value<String?> note,
+      Value<String?> deviceId,
+      Value<String?> owner,
+      Value<String?> syncState,
+      Value<bool?> syncStatus,
+      Value<int> rowid,
+    });
+
+final class $$InventoryMovementsTableReferences
+    extends
+        BaseReferences<
+          _$AppDatabase,
+          $InventoryMovementsTable,
+          InventoryMovementEntity
+        > {
+  $$InventoryMovementsTableReferences(
+    super.$_db,
+    super.$_table,
+    super.$_typedResult,
+  );
+
+  static $ProductsTable _productIdTable(_$AppDatabase db) =>
+      db.products.createAlias(
+        $_aliasNameGenerator(db.inventoryMovements.productId, db.products.id),
+      );
+
+  $$ProductsTableProcessedTableManager get productId {
+    final $_column = $_itemColumn<String>('product_id')!;
+
+    final manager = $$ProductsTableTableManager(
+      $_db,
+      $_db.products,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_productIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+}
+
+class $$InventoryMovementsTableFilterComposer
+    extends Composer<_$AppDatabase, $InventoryMovementsTable> {
+  $$InventoryMovementsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get movementType => $composableBuilder(
+    column: $table.movementType,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get quantity => $composableBuilder(
+    column: $table.quantity,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get previousStock => $composableBuilder(
+    column: $table.previousStock,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get newStock => $composableBuilder(
+    column: $table.newStock,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get timestamp => $composableBuilder(
+    column: $table.timestamp,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get note => $composableBuilder(
+    column: $table.note,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get deviceId => $composableBuilder(
+    column: $table.deviceId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get owner => $composableBuilder(
+    column: $table.owner,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get syncState => $composableBuilder(
+    column: $table.syncState,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get syncStatus => $composableBuilder(
+    column: $table.syncStatus,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  $$ProductsTableFilterComposer get productId {
+    final $$ProductsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.productId,
+      referencedTable: $db.products,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProductsTableFilterComposer(
+            $db: $db,
+            $table: $db.products,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$InventoryMovementsTableOrderingComposer
+    extends Composer<_$AppDatabase, $InventoryMovementsTable> {
+  $$InventoryMovementsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get movementType => $composableBuilder(
+    column: $table.movementType,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get quantity => $composableBuilder(
+    column: $table.quantity,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get previousStock => $composableBuilder(
+    column: $table.previousStock,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get newStock => $composableBuilder(
+    column: $table.newStock,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get timestamp => $composableBuilder(
+    column: $table.timestamp,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get note => $composableBuilder(
+    column: $table.note,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get deviceId => $composableBuilder(
+    column: $table.deviceId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get owner => $composableBuilder(
+    column: $table.owner,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get syncState => $composableBuilder(
+    column: $table.syncState,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get syncStatus => $composableBuilder(
+    column: $table.syncStatus,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  $$ProductsTableOrderingComposer get productId {
+    final $$ProductsTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.productId,
+      referencedTable: $db.products,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProductsTableOrderingComposer(
+            $db: $db,
+            $table: $db.products,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$InventoryMovementsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $InventoryMovementsTable> {
+  $$InventoryMovementsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get movementType => $composableBuilder(
+    column: $table.movementType,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get quantity =>
+      $composableBuilder(column: $table.quantity, builder: (column) => column);
+
+  GeneratedColumn<int> get previousStock => $composableBuilder(
+    column: $table.previousStock,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get newStock =>
+      $composableBuilder(column: $table.newStock, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get timestamp =>
+      $composableBuilder(column: $table.timestamp, builder: (column) => column);
+
+  GeneratedColumn<String> get note =>
+      $composableBuilder(column: $table.note, builder: (column) => column);
+
+  GeneratedColumn<String> get deviceId =>
+      $composableBuilder(column: $table.deviceId, builder: (column) => column);
+
+  GeneratedColumn<String> get owner =>
+      $composableBuilder(column: $table.owner, builder: (column) => column);
+
+  GeneratedColumn<String> get syncState =>
+      $composableBuilder(column: $table.syncState, builder: (column) => column);
+
+  GeneratedColumn<bool> get syncStatus => $composableBuilder(
+    column: $table.syncStatus,
+    builder: (column) => column,
+  );
+
+  $$ProductsTableAnnotationComposer get productId {
+    final $$ProductsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.productId,
+      referencedTable: $db.products,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProductsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.products,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$InventoryMovementsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $InventoryMovementsTable,
+          InventoryMovementEntity,
+          $$InventoryMovementsTableFilterComposer,
+          $$InventoryMovementsTableOrderingComposer,
+          $$InventoryMovementsTableAnnotationComposer,
+          $$InventoryMovementsTableCreateCompanionBuilder,
+          $$InventoryMovementsTableUpdateCompanionBuilder,
+          (InventoryMovementEntity, $$InventoryMovementsTableReferences),
+          InventoryMovementEntity,
+          PrefetchHooks Function({bool productId})
+        > {
+  $$InventoryMovementsTableTableManager(
+    _$AppDatabase db,
+    $InventoryMovementsTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$InventoryMovementsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$InventoryMovementsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$InventoryMovementsTableAnnotationComposer(
+                $db: db,
+                $table: table,
+              ),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<String> productId = const Value.absent(),
+                Value<String> movementType = const Value.absent(),
+                Value<int> quantity = const Value.absent(),
+                Value<int> previousStock = const Value.absent(),
+                Value<int> newStock = const Value.absent(),
+                Value<DateTime> timestamp = const Value.absent(),
+                Value<String?> note = const Value.absent(),
+                Value<String?> deviceId = const Value.absent(),
+                Value<String?> owner = const Value.absent(),
+                Value<String?> syncState = const Value.absent(),
+                Value<bool?> syncStatus = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => InventoryMovementsCompanion(
+                id: id,
+                productId: productId,
+                movementType: movementType,
+                quantity: quantity,
+                previousStock: previousStock,
+                newStock: newStock,
+                timestamp: timestamp,
+                note: note,
+                deviceId: deviceId,
+                owner: owner,
+                syncState: syncState,
+                syncStatus: syncStatus,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                required String productId,
+                required String movementType,
+                required int quantity,
+                required int previousStock,
+                required int newStock,
+                Value<DateTime> timestamp = const Value.absent(),
+                Value<String?> note = const Value.absent(),
+                Value<String?> deviceId = const Value.absent(),
+                Value<String?> owner = const Value.absent(),
+                Value<String?> syncState = const Value.absent(),
+                Value<bool?> syncStatus = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => InventoryMovementsCompanion.insert(
+                id: id,
+                productId: productId,
+                movementType: movementType,
+                quantity: quantity,
+                previousStock: previousStock,
+                newStock: newStock,
+                timestamp: timestamp,
+                note: note,
+                deviceId: deviceId,
+                owner: owner,
+                syncState: syncState,
+                syncStatus: syncStatus,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable(table),
+                  $$InventoryMovementsTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: ({productId = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [],
+              addJoins:
+                  <
+                    T extends TableManagerState<
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic
+                    >
+                  >(state) {
+                    if (productId) {
+                      state =
+                          state.withJoin(
+                                currentTable: table,
+                                currentColumn: table.productId,
+                                referencedTable:
+                                    $$InventoryMovementsTableReferences
+                                        ._productIdTable(db),
+                                referencedColumn:
+                                    $$InventoryMovementsTableReferences
+                                        ._productIdTable(db)
+                                        .id,
+                              )
+                              as T;
+                    }
+
+                    return state;
+                  },
+              getPrefetchedDataCallback: (items) async {
+                return [];
+              },
+            );
+          },
+        ),
+      );
+}
+
+typedef $$InventoryMovementsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $InventoryMovementsTable,
+      InventoryMovementEntity,
+      $$InventoryMovementsTableFilterComposer,
+      $$InventoryMovementsTableOrderingComposer,
+      $$InventoryMovementsTableAnnotationComposer,
+      $$InventoryMovementsTableCreateCompanionBuilder,
+      $$InventoryMovementsTableUpdateCompanionBuilder,
+      (InventoryMovementEntity, $$InventoryMovementsTableReferences),
+      InventoryMovementEntity,
+      PrefetchHooks Function({bool productId})
+    >;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;
@@ -16036,4 +17344,6 @@ class $AppDatabaseManager {
       $$SaleItemsTableTableManager(_db, _db.saleItems);
   $$SalesTableTableManager get sales =>
       $$SalesTableTableManager(_db, _db.sales);
+  $$InventoryMovementsTableTableManager get inventoryMovements =>
+      $$InventoryMovementsTableTableManager(_db, _db.inventoryMovements);
 }

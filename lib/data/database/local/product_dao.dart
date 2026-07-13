@@ -1,4 +1,5 @@
 import 'package:drift/drift.dart';
+import 'package:flutter/cupertino.dart';
 import 'products.dart';
 import 'app_database.dart';
 
@@ -7,7 +8,6 @@ part 'product_dao.g.dart';
 @DriftAccessor(tables: [Products])
 class ProductDao extends DatabaseAccessor<AppDatabase> with _$ProductDaoMixin {
   ProductDao(AppDatabase db) : super(db);
-
 
   /// Actualizar producto completo
   Future<bool> updateProduct(ProductEntity entity) =>
@@ -24,7 +24,6 @@ class ProductDao extends DatabaseAccessor<AppDatabase> with _$ProductDaoMixin {
         .write(ProductsCompanion(image: Value(imagePath)));
   }
 
-
   /// Obtener todos los productos
   Future<List<ProductEntity>> getAll() => select(products).get();
 
@@ -40,8 +39,6 @@ class ProductDao extends DatabaseAccessor<AppDatabase> with _$ProductDaoMixin {
   Future<ProductEntity?> getProductById(String id) =>
       (select(products)..where((tbl) => tbl.id.equals(id))).getSingleOrNull();
 
-
-
   /// Eliminar producto por id
   Future<int> deleteProduct(String id) =>
       (delete(products)..where((tbl) => tbl.id.equals(id))).go();
@@ -51,8 +48,6 @@ class ProductDao extends DatabaseAccessor<AppDatabase> with _$ProductDaoMixin {
     final count = await (select(products)..limit(1)).get();
     return count.isNotEmpty;
   }
-
-
 
   /// Insertar productos iniciales en batch
   Future<void> insertInitialProducts(List<ProductsCompanion> initial) async {
@@ -79,7 +74,6 @@ class ProductDao extends DatabaseAccessor<AppDatabase> with _$ProductDaoMixin {
   /// Obtener todos los productos (alias de getAll)
   Future<List<ProductEntity>> getAllProducts() => select(products).get();
 
-
   Future<int> countProductsEfficient() async {
     final countExp = products.id.count();
     final query = selectOnly(products)..addColumns([countExp]);
@@ -97,4 +91,31 @@ class ProductDao extends DatabaseAccessor<AppDatabase> with _$ProductDaoMixin {
     return delete(products).go();
   }
 
+  /// 🔥 Nuevo método: descontar stock automáticamente al registrar una venta
+  ///
+  /// Recibe una lista de mapas con:
+  /// {
+  ///   'product': ProductEntity,
+  ///   'quantity': int
+  /// }
+  ///
+  /// Actualiza el stock de cada producto restando la cantidad vendida.
+  Future<void> decrementStockForSale(List<Map<String, dynamic>> saleItems) async {
+
+    debugPrint("\n\n  productDao.dart  ..\n.. decrementStockForSale ::: saleItems:  $saleItems  ---  " );
+
+    await transaction(() async {
+      for (var item in saleItems) {
+        final ProductEntity product = item['product'] as ProductEntity;
+        final int quantity = item['quantity'] as int;
+
+        final currentStock = product.stock ?? 0;
+        final newStock = (currentStock - quantity).clamp(0, currentStock);
+        debugPrint("\n\n  productDao.dart  ..\n.. decrementStockForSale ::: productId:  ${product.id}  --- newStock $newStock \n\n " );
+
+        await (update(products)..where((tbl) => tbl.id.equals(product.id)))
+            .write(ProductsCompanion(stock: Value(newStock)));
+      }
+    });
+  }
 }

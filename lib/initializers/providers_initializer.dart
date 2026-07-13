@@ -39,11 +39,11 @@ import 'package:stockmaster/state/cart_notifier.dart';
 import 'package:stockmaster/state/report_notifier.dart';
 import 'package:stockmaster/state/attribute_notifier.dart';
 
-
 import 'package:stockmaster/presentation/report/report_controller.dart';
 import 'package:stockmaster/theme/theme_provider.dart';
 
 import '../providers/sales_notifier.dart';
+import '../providers/sale_state_notifier.dart'; // 🔥 añadido
 
 class ProvidersInitializer {
   static List<SingleChildWidget> build(
@@ -114,6 +114,11 @@ class ProvidersInitializer {
             client: quickClient,
           );
         },
+      ),
+
+      // 👇 SaleStateNotifier global para manejar selección y total
+      provider.ChangeNotifierProvider<SaleStateNotifier>(
+        create: (_) => SaleStateNotifier(),
       ),
 
       // 👇 ProductRepository
